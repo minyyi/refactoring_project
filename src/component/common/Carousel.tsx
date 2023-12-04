@@ -1,18 +1,38 @@
 import React from "react";
-import styled from "@emotion/styled";
+import Carousel from "react-material-ui-carousel";
+import { Paper } from "@mui/material";
 
-const Carousel = () => {
+const CarouselComponent = () => {
+  const carouselImg = [
+    {
+      id: 1,
+      src: "img1.avif",
+    },
+    {
+      id: 2,
+      src: "img2.avif",
+    },
+    {
+      id: 3,
+      src: "img3.avif",
+    },
+  ];
+
   return (
     <>
-      <Div> 캐러셀자리</Div>
+      <Carousel
+        sx={{
+          display: { sm: "flex", md: "flex" },
+          justifyContent: "center",
+        }}
+      >
+        {carouselImg.map((item) => (
+          <Paper key={item.id}>
+            <img src={item.src} alt="이미지" />
+          </Paper>
+        ))}
+      </Carousel>
     </>
   );
 };
-export default Carousel;
-
-const Div = styled.div`
-  display: flex;
-  justify-content: center;
-  min-height: 200px;
-  border: 1px solid lightcoral;
-`;
+export default CarouselComponent;

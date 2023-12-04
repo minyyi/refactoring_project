@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { Search } from "@mui/icons-material";
 
 const pages = ["type", "name", "point"];
 const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
@@ -43,7 +44,7 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Search sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -52,14 +53,13 @@ function ResponsiveAppBar() {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: "none",
+              letterSpacing: 2,
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            테스트중이야
+            OfficeFinder
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -108,14 +108,13 @@ function ResponsiveAppBar() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: "none",
+              letterSpacing: 2,
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            반응형
+            OfficeFinder
           </Typography>
           <Box
             sx={{
