@@ -1,9 +1,10 @@
 import React from "react";
+import MainPage from "./page/MainPage";
 
 const App = () => {
   return (
     <>
-      <div>프로젝트 세팅</div>
+      <MainPage />
     </>
   );
 };

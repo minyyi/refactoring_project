@@ -4,12 +4,12 @@ import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { theme } from "./theme/theme";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import App from "./App";
+import MainPage from "./page/MainPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    // element: <Main />,
+    element: <MainPage />,
   },
 ]);
 
@@ -18,7 +18,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <RouterProvider router={router} />
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <App />
     </ThemeProvider>
   </React.StrictMode>
 );

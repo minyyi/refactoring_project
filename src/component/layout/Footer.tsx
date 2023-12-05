@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 // import styled from "@emotion/styled";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <>
       <Box sx={{ backgroundColor: "primary.light" }}>
@@ -29,3 +29,5 @@ export const Footer = () => {
     </>
   );
 };
+
+export default Footer;
