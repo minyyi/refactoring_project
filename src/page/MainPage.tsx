@@ -6,8 +6,7 @@ import Search from "../component/common/Search";
 const MainPage = () => {
   return (
     <Layout>
-      <Carousel />
-      <Search />
+      <div></div>
     </Layout>
   );
 };
