@@ -9,6 +9,7 @@ import {
   MenuItem,
 } from "@mui/material";
 
+const pages = ["type", "name", "point"];
 const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
 
 const Profile = () => {
@@ -19,6 +20,7 @@ const Profile = () => {
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
+  console.log(anchorElUser);
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);

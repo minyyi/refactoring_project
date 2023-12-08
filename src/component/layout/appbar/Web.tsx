@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 // import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from "@mui/icons-material";
@@ -7,14 +6,6 @@ const pages = ["type", "name", "point"];
 // const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
 
 const WebAppbar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   return (
     <>
       <Box
@@ -50,7 +41,6 @@ const WebAppbar = () => {
         {pages.map((page) => (
           <Button
             key={page}
-            onClick={handleCloseNavMenu}
             sx={{
               my: 2,
               color: "inherit",
