@@ -6,7 +6,7 @@ import { Search } from "@mui/icons-material";
 const pages = ["type", "name", "point"];
 // const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
 
-const WebComponent = () => {
+const WebAppbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -65,4 +65,4 @@ const WebComponent = () => {
   );
 };
 
-export default WebComponent;
+export default WebAppbar;
