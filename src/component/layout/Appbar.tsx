@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   AppBar,
@@ -9,13 +9,13 @@ import {
   Menu,
   Container,
   Avatar,
-  Button,
   Tooltip,
   MenuItem,
   useMediaQuery,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from "@mui/icons-material";
+import Web from "../appbar/Web";
 
 const pages = ["type", "name", "point"];
 const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
@@ -58,46 +58,10 @@ function ResponsiveAppBar() {
             },
           }}
         >
-          {/* 900이상로고 */}
+          {/* 900이상 */}
           {!matches && (
             <>
-              <Search sx={{ display: "flex", mr: 1 }} />
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                href="#app-bar-with-responsive-menu"
-                sx={{
-                  mr: 2,
-                  fontWeight: 700,
-                  letterSpacing: 2,
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                OfficeFinder
-              </Typography>
-              <Box
-                sx={{
-                  flexGrow: 1,
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}
-              >
-                {pages.map((page) => (
-                  <Button
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      my: 2,
-                      color: "inherit",
-                      display: "flex",
-                    }}
-                  >
-                    {page}
-                  </Button>
-                ))}
-              </Box>
+              <Web />
             </>
           )}
           {/* 반응형 */}
@@ -140,23 +104,29 @@ function ResponsiveAppBar() {
                   ))}
                 </Menu>
               </Box>
-              <Search sx={{ display: "flex", mr: 1 }} />
-              <Typography
-                variant="h5"
-                noWrap
-                component="a"
-                href="#app-bar-with-responsive-menu"
+              <Box
                 sx={{
-                  mr: 2,
                   display: "flex",
-                  fontWeight: 700,
-                  letterSpacing: 2,
-                  color: "inherit",
-                  textDecoration: "none",
                 }}
               >
-                OfficeFinder
-              </Typography>
+                <Search sx={{ display: "flex", mr: 0.5, mt: 0.5 }} />
+                <Typography
+                  variant="h5"
+                  noWrap
+                  component="a"
+                  href="#app-bar-with-responsive-menu"
+                  sx={{
+                    mr: 2,
+                    display: "flex",
+                    fontWeight: 700,
+                    letterSpacing: 2,
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                >
+                  OfficeFinder
+                </Typography>
+              </Box>
             </>
           )}
           <Box>
