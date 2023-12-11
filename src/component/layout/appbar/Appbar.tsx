@@ -1,6 +1,6 @@
 import { useTheme } from "@mui/material/styles";
 import { AppBar, Toolbar, Container, useMediaQuery } from "@mui/material";
-import WebAppbar from "./Web";
+import WebAppbar from "./WebAppbar";
 import Profile from "./Profile";
 import MobileAppbar from "./Mobile";
 

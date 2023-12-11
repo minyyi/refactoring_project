@@ -1,6 +1,6 @@
-import { Box, IconButton, Typography } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Box, Typography } from "@mui/material";
 import { Search } from "@mui/icons-material";
+import Sidebar from "./Sidebar";
 
 const MobileAppbar = () => {
   return (
@@ -15,7 +15,7 @@ const MobileAppbar = () => {
           variant="h5"
           noWrap
           component="a"
-          href="#app-bar-with-responsive-menu"
+          href="#"
           sx={{
             mr: 2,
             display: "flex",
@@ -30,15 +30,7 @@ const MobileAppbar = () => {
       </Box>
 
       <Box sx={{ display: "flex" }}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <MenuIcon />
-        </IconButton>
+        <Sidebar />
       </Box>
     </>
   );
