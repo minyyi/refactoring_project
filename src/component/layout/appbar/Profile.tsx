@@ -9,7 +9,6 @@ import {
   MenuItem,
 } from "@mui/material";
 
-const pages = ["type", "name", "point"];
 const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
 
 const Profile = () => {

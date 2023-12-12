@@ -35,6 +35,7 @@ const Sidebar = () => {
 
   const list = (anchor: Anchor) => (
     <Box
+      sx={{ pl: 2 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
