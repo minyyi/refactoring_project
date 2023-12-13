@@ -25,7 +25,7 @@ const Footer = () => {
 
           <Typography sx={{ fontSize: 20 }}>1234-1234</Typography>
           <Box sx={{ display: "flex", columnGap: 1 }}>
-            <Typography variant="footer">
+            <Typography sx={{ fontSize: { md: 14, xs: 10 } }}>
               10:00 ~ 17:00 (점심시간 12:00 ~ 13:00)
             </Typography>
             <Typography variant="footer">토/일/공휴일 휴무</Typography>
@@ -58,9 +58,9 @@ const Footer = () => {
               textDecoration: "none",
             }}
           >
-            <A href="#">개인정보처리방침</A>
-            <A href="#">이용약관</A>
-            <A href="#">가맹점 고지사항</A>
+            <p>개인정보처리방침</p>
+            <p>이용약관</p>
+            <p>가맹점 고지사항</p>
           </Box>
           <Box
             sx={{
