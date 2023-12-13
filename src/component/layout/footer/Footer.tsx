@@ -2,7 +2,6 @@ import { Box, Typography, Container } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub"; // import styled from "@emotion/styled";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import styled from "@emotion/styled";
 
 const Footer = () => {
   return (
@@ -25,10 +24,12 @@ const Footer = () => {
 
           <Typography sx={{ fontSize: 20 }}>1234-1234</Typography>
           <Box sx={{ display: "flex", columnGap: 1 }}>
-            <Typography sx={{ fontSize: { md: 14, xs: 10 } }}>
+            <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
               10:00 ~ 17:00 (점심시간 12:00 ~ 13:00)
             </Typography>
-            <Typography variant="footer">토/일/공휴일 휴무</Typography>
+            <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
+              토/일/공휴일 휴무
+            </Typography>
           </Box>
 
           {/* 계좌/주소 */}
@@ -39,11 +40,10 @@ const Footer = () => {
               columnGap: 2,
             }}
           >
-            {/* fo */}
-            <Typography variant="footer">
+            <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
               계좌정보:하나은행 309-9101-***
             </Typography>
-            <Typography variant="footer">
+            <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
               주소: 서울시 서초구 방배천로
             </Typography>
           </Box>
@@ -58,9 +58,15 @@ const Footer = () => {
               textDecoration: "none",
             }}
           >
-            <p>개인정보처리방침</p>
-            <p>이용약관</p>
-            <p>가맹점 고지사항</p>
+            <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
+              개인정보처리방침
+            </Typography>
+            <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
+              이용약관
+            </Typography>
+            <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
+              가맹점 고지사항
+            </Typography>
           </Box>
           <Box
             sx={{
@@ -69,7 +75,7 @@ const Footer = () => {
               alignItems: "center",
             }}
           >
-            <Typography variant="footer">
+            <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
               Copyright 2023. OfficeFinder. All right reserved
             </Typography>
           </Box>
@@ -91,9 +97,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-const A = styled.a`
-  text-decoration: none;
-  color: black;
-  opacity: 0.7;
-`;

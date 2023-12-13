@@ -15,21 +15,7 @@ export const theme = createTheme({
       // contrastText: main값을 통해 계산됨
     },
   },
-  typography: {
-    footer: {
-      fontSize: 12,
-    },
-  },
-  components: {
-    MuiTypography: {
-      defaultProps: {
-        variantMapping: {
-          // Map the new variant to render a <h1> by default
-          footer: "p",
-        },
-      },
-    },
-  },
+  typography: {},
 });
 
 declare module "@mui/material/styles" {
