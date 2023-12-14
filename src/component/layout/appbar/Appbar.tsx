@@ -1,8 +1,8 @@
 import { useTheme } from "@mui/material/styles";
 import { AppBar, Toolbar, Container, useMediaQuery } from "@mui/material";
-import WebAppbar from "./WebAppbar";
-import Profile from "./Profile";
-import MobileAppbar from "./Mobile";
+import WebAppbar from "./web/WebAppbar";
+import Profile from "./web/Profile";
+import MobileAppbar from "./mobile/MobileAppbar";
 
 function ResponsiveAppBar() {
   const theme = useTheme();
