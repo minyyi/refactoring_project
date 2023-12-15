@@ -83,7 +83,6 @@ const MobileAppbar = () => {
           setState(false);
         }}
       >
-        {/* {<List />} */}
         {list()}
       </Drawer>
     </>
