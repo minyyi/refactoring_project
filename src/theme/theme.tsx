@@ -14,25 +14,39 @@ export const theme = createTheme({
       dark: "#a5a1ac",
       // contrastText: main값을 통해 계산됨
     },
+    // mode: "dark",
   },
+
   typography: {},
 });
 
-declare module "@mui/material/styles" {
-  interface TypographyVariants {
-    footer: React.CSSProperties;
-  }
+// const getDesignTokens = (mode: PaletteMode) => ({
+//   palette: {
+//     mode,
+//     ...(mode === "light"
+//       ? {
+//           // palette values for light mode
+//           primary: amber,
+//           divider: amber[200],
+//           text: {
+//             primary: grey[900],
+//             secondary: grey[800],
+//           },
+//         }
+//       : {
+//           // palette values for dark mode
+//           primary: deepOrange,
+//           divider: deepOrange[700],
+//           background: {
+//             default: deepOrange[900],
+//             paper: deepOrange[900],
+//           },
+//           text: {
+//             primary: "#fff",
+//             secondary: grey[500],
+//           },
+//         }),
+//   },
+// });
 
-  // allow configuration using `createTheme`
-  interface TypographyVariantsOptions {
-    footer?: React.CSSProperties;
-  }
-}
-
-// Update the Typography's variant prop options
-declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides {
-    footer: true;
-  }
-}
 // dark: #001a28

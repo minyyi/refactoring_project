@@ -1,9 +1,20 @@
 import { Search } from "@mui/icons-material";
 import * as React from "react";
-import { IconButton, Drawer, Typography, Box } from "@mui/material";
+import {
+  IconButton,
+  Drawer,
+  Typography,
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Divider,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
-import SideBarMenu from "./SideBarMenu";
+import SideBarMenu from "@/component/layout/appbar/mobile/SideBarMenu";
+import { MobileMenuItemArray } from "@/utils/config";
 
 const MobileAppbar = () => {
   const navigate = useNavigate();
@@ -28,20 +39,6 @@ const MobileAppbar = () => {
 
     setState((prev) => !prev);
     console.log("toggleDrawer", path);
-  };
-
-  const list = () => {
-    const array = [
-      { title: "Profile", path: "/profile" },
-      { title: "Bookmark", path: "/bookmark" },
-      { title: "Reservation", path: "/reservation" },
-    ];
-
-    return (
-      <>
-        <SideBarMenu array={array} toggleDrawer={toggleDrawer} />
-      </>
-    );
   };
 
   return (
@@ -83,7 +80,20 @@ const MobileAppbar = () => {
           setState(false);
         }}
       >
-        {list()}
+        <List>
+          {MobileMenuItemArray.map((menu: any, idx: any) => (
+            <ListItem key={idx} disablePadding>
+              <ListItemButton
+                onClick={(event) => {
+                  toggleDrawer(event, menu?.path);
+                }}
+                // onKeyDown={toggleDrawer} //예외
+              >
+                <ListItemText primary={menu?.title} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
     </>
   );

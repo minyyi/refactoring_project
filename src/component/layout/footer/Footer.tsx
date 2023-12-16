@@ -2,6 +2,7 @@ import { Box, Typography, Container } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub"; // import styled from "@emotion/styled";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import { Rowing } from "@mui/icons-material";
 
 const Footer = () => {
   return (
@@ -23,7 +24,14 @@ const Footer = () => {
           {/* 전화번호 */}
 
           <Typography sx={{ fontSize: 20 }}>1234-1234</Typography>
-          <Box sx={{ display: "flex", columnGap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { sm: "row", xs: "column" },
+              columnGap: 1,
+              rowGap: 1,
+            }}
+          >
             <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
               10:00 ~ 17:00 (점심시간 12:00 ~ 13:00)
             </Typography>
@@ -36,8 +44,9 @@ const Footer = () => {
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
-              columnGap: 2,
+              flexDirection: { sm: "row", xs: "column" },
+              columnGap: 1,
+              rowGap: 1,
             }}
           >
             <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
@@ -51,9 +60,9 @@ const Footer = () => {
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
-              columnGap: 2,
-              fontSize: 12,
+              flexDirection: { sm: "row", xs: "column" },
+              columnGap: 1,
+              rowGap: 1,
               color: "black",
               textDecoration: "none",
             }}
