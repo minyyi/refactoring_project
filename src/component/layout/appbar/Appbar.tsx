@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Container, useMediaQuery } from "@mui/material";
 import WebAppbar from "./web/WebAppbar";
 import Profile from "./web/Profile";
 import MobileAppbar from "./mobile/MobileAppbar";
+import DarkmodeButton from "./common/DarkmodeButton";
 
 function ResponsiveAppBar() {
   const theme = useTheme();
@@ -25,6 +26,7 @@ function ResponsiveAppBar() {
           {!matches && (
             <>
               <WebAppbar />
+              <DarkmodeButton />
               <Profile />
             </>
           )}

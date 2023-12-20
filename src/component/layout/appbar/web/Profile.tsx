@@ -5,7 +5,6 @@ import {
   Typography,
   Menu,
   Avatar,
-  Tooltip,
   MenuItem,
 } from "@mui/material";
 

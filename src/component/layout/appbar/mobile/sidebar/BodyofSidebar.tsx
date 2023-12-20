@@ -4,28 +4,27 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Divider,
 } from "@mui/material";
 
 interface Toggle {
-  toggleDrawer: any;
-  array: any;
+  MobileMenuItemArray: any;
+  toggleDrawer: (event: any, path?: string) => void;
 }
 
-const SideBarMenu = (props: Toggle) => {
+const SidebarMenu = (props: Toggle) => {
   return (
     <Box
-      sx={{ pl: 2 }}
+      sx={{ pl: 1, flexGrow: 1 }}
       role="presentation"
       // onClick={toggleDrawer(anchor, false)}
       // onKeyDown={toggleDrawer} //예외
     >
       <List>
-        {props.array.map((menu: any, idx: any) => (
+        {props?.MobileMenuItemArray?.map((menu: any, idx: any) => (
           <ListItem key={idx} disablePadding>
             <ListItemButton
               onClick={(event) => {
-                props.toggleDrawer(event, menu?.path);
+                props?.toggleDrawer(event, menu?.path);
               }}
               // onKeyDown={toggleDrawer} //예외
             >
@@ -34,22 +33,8 @@ const SideBarMenu = (props: Toggle) => {
           </ListItem>
         ))}
       </List>
-
-      <Divider />
-
-      <List>
-        <ListItem disablePadding>
-          <ListItemButton
-            onClick={(event) => {
-              props?.toggleDrawer(event);
-            }}
-          >
-            <ListItemText>Logout</ListItemText>
-          </ListItemButton>
-        </ListItem>
-      </List>
     </Box>
   );
 };
 
-export default SideBarMenu;
+export default SidebarMenu;

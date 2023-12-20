@@ -1,22 +1,23 @@
 import { Search } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
+import { createContext, useContext } from "react";
+
 import * as React from "react";
-import {
-  IconButton,
-  Drawer,
-  Typography,
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Divider,
-} from "@mui/material";
+import { IconButton, Drawer, Typography, Box } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
-import SideBarMenu from "@/component/layout/appbar/mobile/SideBarMenu";
+import SidebarHeader from "@/component/layout/appbar/mobile/sidebar/HeaderofSidebar";
+import SidebarMenu from "@/component/layout/appbar/mobile/sidebar/BodyofSidebar";
+import SidebarFooter from "./sidebar/FooterofSidebar";
 import { MobileMenuItemArray } from "@/utils/config";
+import DarkmodeButton from "../common/DarkmodeButton";
+
+const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const MobileAppbar = () => {
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
+
   const navigate = useNavigate();
   const [state, setState] = React.useState(false);
 
@@ -66,35 +67,41 @@ const MobileAppbar = () => {
           OfficeFinder
         </Typography>
       </Box>
-      <IconButton
-        onClick={(event) => toggleDrawer(event)}
-        size="large"
-        aria-label="sidebar menu"
-      >
-        <MenuIcon />
-      </IconButton>
-      <Drawer
-        anchor={"right"}
-        open={state}
-        onClose={() => {
-          setState(false);
+      <Box
+        sx={{
+          display: "flex",
         }}
       >
-        <List>
-          {MobileMenuItemArray.map((menu: any, idx: any) => (
-            <ListItem key={idx} disablePadding>
-              <ListItemButton
-                onClick={(event) => {
-                  toggleDrawer(event, menu?.path);
-                }}
-                // onKeyDown={toggleDrawer} //예외
-              >
-                <ListItemText primary={menu?.title} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
+        <DarkmodeButton />
+        <IconButton
+          onClick={(event) => toggleDrawer(event)}
+          size="large"
+          aria-label="sidebar menu"
+        >
+          <MenuIcon />
+        </IconButton>
+        <Drawer
+          sx={{
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: { sm: 240, xs: "100%" },
+            },
+            // width: 250,
+          }}
+          anchor={"right"}
+          open={state}
+          onClose={() => {
+            setState(false);
+          }}
+        >
+          <SidebarHeader toggleDrawer={toggleDrawer} />
+          <SidebarMenu
+            MobileMenuItemArray={MobileMenuItemArray}
+            toggleDrawer={toggleDrawer}
+          />
+          <SidebarFooter />
+        </Drawer>
+      </Box>
     </>
   );
 };

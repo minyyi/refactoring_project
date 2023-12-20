@@ -1,7 +1,6 @@
-import { useState, useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainPage from "./page/MainPage";
-import Layout from "./component/layout/Layout";
+import { Layout } from "./component/layout/Layout";
 // import { ThemeProvider } from "./theme/Context";
 // import { createTheme } from "@mui/material";
 

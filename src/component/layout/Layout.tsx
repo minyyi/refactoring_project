@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
+
 import styled from "@emotion/styled";
 import Footer from "./footer/Footer";
 import Appbar from "./appbar/Appbar";
 
-const Layout = (props: { children: ReactNode }) => {
+export const Layout = (props: { children: ReactNode }) => {
   return (
     <>
       <LayoutContainer>
@@ -14,8 +15,6 @@ const Layout = (props: { children: ReactNode }) => {
     </>
   );
 };
-
-export default Layout;
 
 const LayoutContainer = styled.div`
   display: flex;
