@@ -1,25 +1,22 @@
-import React, { ReactNode } from "react";
-import styled from "@emotion/styled";
-import Footer from "./Footer";
-import Appbar from "./Appbar";
+import { ReactNode } from "react";
 
-const Layout = (props: { children: ReactNode }) => {
+import styled from "@emotion/styled";
+import Footer from "./footer/Footer";
+import Appbar from "./appbar/Appbar";
+
+export const Layout = (props: { children: ReactNode }) => {
   return (
     <>
-      <Container>
+      <LayoutContainer>
         <Appbar />
-        <Body>
-          <BodyDiv>{props.children}</BodyDiv>
-        </Body>
+        <Body>{props.children}</Body>
         <Footer />
-      </Container>
+      </LayoutContainer>
     </>
   );
 };
 
-export default Layout;
-
-const Container = styled.div`
+const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -28,12 +25,4 @@ const Container = styled.div`
 const Body = styled.div`
   flex-grow: 1;
   background-color: white;
-  margin: 20px;
-`;
-
-const BodyDiv = styled.div`
-  margin: 0 auto;
-`;
-const Div = styled.div`
-  border: 2px solid gray;
 `;

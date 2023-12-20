@@ -1,23 +1,19 @@
-import React from "react";
 import * as ReactDOM from "react-dom/client";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { theme } from "./theme/theme";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import MainPage from "./page/MainPage";
+import { BrowserRouter } from "react-router-dom";
+import ColorModeContextProvider from "./theme/Provider";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainPage />,
-  },
-]);
+import Router from "./router";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
+  <ColorModeContextProvider>
     <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
       <CssBaseline />
     </ThemeProvider>
-  </React.StrictMode>
+  </ColorModeContextProvider>
 );

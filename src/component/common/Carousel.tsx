@@ -21,10 +21,13 @@ const CarouselComponent = () => {
   return (
     <>
       <Carousel
-        sx={{
-          display: { sm: "flex", md: "flex" },
-          justifyContent: "center",
-        }}
+        sx={
+          {
+            // display: { sm: "flex", md: "flex" },
+            // justifyContent: "center",
+            // flexWrap: "wrap",
+          }
+        }
       >
         {carouselImg.map((item) => (
           <Paper key={item.id}>
