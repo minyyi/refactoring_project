@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { useColorModeContext } from "@/theme/Provider";
+import { useColorModeContext } from "@/provider/darkmode/DarkmodeProvider";
 
 const DarkmodeButton = () => {
   const context = useColorModeContext();
