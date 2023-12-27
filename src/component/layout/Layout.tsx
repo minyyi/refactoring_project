@@ -1,28 +1,27 @@
 import { ReactNode } from "react";
-
-import styled from "@emotion/styled";
+import { Box, useTheme } from "@mui/material";
 import Footer from "./footer/Footer";
 import Appbar from "./appbar/Appbar";
 
 export const Layout = (props: { children: ReactNode }) => {
+  const theme = useTheme();
+
   return (
     <>
-      <LayoutContainer>
+      <Box sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh', 
+      }}>
         <Appbar />
-        <Body>{props.children}</Body>
+        <Box sx={{
+            py: 2,       
+            flexGrow: 1,
+            // backgroundColor: {'#d6d6d6'},
+        }}>{props.children}</Box>
         <Footer />
-      </LayoutContainer>
+      </Box>
     </>
   );
 };
 
-const LayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
-
-const Body = styled.div`
-  flex-grow: 1;
-  background-color: white;
-`;

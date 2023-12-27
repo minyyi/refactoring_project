@@ -26,7 +26,7 @@ const SidebarHeader = ({
           }}
         >
           <Profile />
-          <Typography noWrap>이름이름이름이름dl</Typography>
+          <Typography noWrap>이름이름이름이름이름이름dl</Typography>
         </Box>
         <IconButton
           onClick={(event) => toggleDrawer(event)}

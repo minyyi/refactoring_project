@@ -11,7 +11,7 @@ function ResponsiveAppBar() {
   console.log(matches);
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{backgroundColor: 'primary.main'}}>
       <Container>
         <Toolbar
           disableGutters

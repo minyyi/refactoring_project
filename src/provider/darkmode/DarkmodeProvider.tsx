@@ -1,7 +1,7 @@
 import { useState, useMemo, ReactNode, createContext, useContext } from "react";
-
+import { PaletteMode } from "@mui/material";
 const ColorModeContext = createContext<{
-  mode: string;
+  mode: PaletteMode;
   handleColorMode: any;
 }>({ mode: "light", handleColorMode: () => {} });
 
@@ -12,10 +12,10 @@ export const useColorModeContext = () => {
 };
 
 function ColorModeContextProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const [mode, setMode] = useState<PaletteMode>("light");
   const handleColorMode = useMemo(
     () => () =>
-      setMode((prevMode) => (prevMode === "light" ? "dark" : "light")),
+      setMode((prevMode:PaletteMode) => (prevMode === "light" ? "dark" : "light")),
     []
   );
 

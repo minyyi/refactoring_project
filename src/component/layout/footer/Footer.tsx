@@ -4,9 +4,13 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
 const Footer = () => {
+  
   return (
     <>
-      <Box sx={{ backgroundColor: "primary.main", fontSize: 1 }}>
+      <Box sx={{ 
+        backgroundColor: 'primary.main', 
+        boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
+}}>
         <Container
           sx={{
             minHeight: 80,
@@ -62,7 +66,6 @@ const Footer = () => {
               flexDirection: { sm: "row", xs: "column" },
               columnGap: 1,
               rowGap: 1,
-              color: "black",
               textDecoration: "none",
             }}
           >
