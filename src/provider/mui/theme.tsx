@@ -1,24 +1,26 @@
-import { createTheme } from "@mui/material/styles";
-// import { useMemo } from "react";
+import { PaletteMode } from '@mui/material';
 
-export const theme = createTheme({
+const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
-    primary: {
-      main: "#ecf6fd",
-      light: "#eff7fd",
-      dark: "#a5acb1",
-      // contrastText: main값을 통해 계산됨
-    },
-    secondary: {
-      main: "#ede7f6",
-      light: "#f0ebf7",
-      dark: "#a5a1ac",
-      // contrastText: main값을 통해 계산됨
-    },
+    mode,
+    ...(mode === 'light'
+      ? {
+          // palette values for light mode
+          primary:{ 
+            main: "#ecf6fd"},
+          // text: {
+          //   primary: 'inherit',
+          // }
+        }
+      : {
+          // palette values for dark mode
+          primary: {
+            main:'#001a28'},
+          background: {
+            default: '#717171'
+          }
+        }),
   },
 });
 
-
-// mode: "dark",
-
-// dark: #001a28
+export default getDesignTokens

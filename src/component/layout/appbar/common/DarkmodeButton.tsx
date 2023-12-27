@@ -13,7 +13,7 @@ const DarkmodeButton = () => {
         onClick={context.handleColorMode}
         color="inherit"
       >
-        {context.mode === "dark" ? <Brightness7Icon /> : <DarkModeIcon />}
+        {context.mode === "light" ?<DarkModeIcon /> : <Brightness7Icon />}
         {/* {theme.palette.mode === "dark" ? <Brightness7Icon /> : <DarkModeIcon />} */}
       </IconButton>
     </>
