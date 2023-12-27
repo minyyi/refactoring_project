@@ -10,7 +10,7 @@ const MainPage = () => {
         minWidth: '100%',
         border: 3,
       }}>
-        asdf
+       첫페이지에서 보이는 내용
       </Box>
      </Container>
     </>
