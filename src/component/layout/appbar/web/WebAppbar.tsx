@@ -1,20 +1,19 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button } from '@mui/material';
 // import MenuIcon from "@mui/icons-material/Menu";
-import { Search } from "@mui/icons-material";
+import { Search } from '@mui/icons-material';
 
-const pages = ["type", "name", "point"];
+const pages = ['type', 'name', 'point'];
 // const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
 
 const WebAppbar = () => {
-  
   return (
     <>
       <Box
         sx={{
-          display: "flex",
+          display: 'flex',
         }}
       >
-        <Search sx={{ display: "flex", mr: 0.5, mt: 0.5 }} />
+        <Search sx={{ display: 'flex', mr: 0.5, mt: 0.5 }} />
         <Typography
           variant="h5"
           noWrap
@@ -24,8 +23,8 @@ const WebAppbar = () => {
             mr: 2,
             fontWeight: 700,
             letterSpacing: 2,
-            color: "inherit",
-            textDecoration: "none",
+            color: 'inherit',
+            textDecoration: 'none',
           }}
         >
           OfficeFinder
@@ -35,8 +34,8 @@ const WebAppbar = () => {
       <Box
         sx={{
           flexGrow: 1,
-          display: "flex",
-          justifyContent: "flex-end",
+          display: 'flex',
+          justifyContent: 'flex-end',
         }}
       >
         {pages.map((page) => (
@@ -44,8 +43,8 @@ const WebAppbar = () => {
             key={page}
             sx={{
               my: 2,
-              color: "inherit",
-              display: "flex",
+              color: 'inherit',
+              display: 'flex',
             }}
           >
             {page}

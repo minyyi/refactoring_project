@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   IconButton,
@@ -7,22 +7,26 @@ import {
   Avatar,
   MenuItem,
   useMediaQuery,
-  useTheme
-} from "@mui/material";
+  useTheme,
+} from '@mui/material';
 
-
-const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
+const settings = ['Profile', 'Bookmark', 'Reservation', 'Logout'];
 
 const Profile = () => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
+    null,
   );
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
+    if (matches) {
+      //렌더링이 안됨!
+      return;
+    } else {
+      setAnchorElUser(event.currentTarget);
+    }
   };
   console.log(anchorElUser);
 
@@ -33,21 +37,25 @@ const Profile = () => {
     <>
       <Box>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
-          <Avatar sx={{color: 'inherit'}} alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <Avatar
+            sx={{ color: 'inherit' }}
+            alt="Remy Sharp"
+            src="/static/images/avatar/2.jpg"
+          />
         </IconButton>
-        {!matches ?
+        {!matches ? (
           <Menu
-            sx={{ mt: "45px" }}
+            sx={{ mt: '45px' }}
             id="menu-appbar"
             anchorEl={anchorElUser}
             anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
+              vertical: 'top',
+              horizontal: 'right',
             }}
             keepMounted
             transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
+              vertical: 'top',
+              horizontal: 'right',
             }}
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
@@ -58,9 +66,9 @@ const Profile = () => {
               </MenuItem>
             ))}
           </Menu>
-      
-        : ''}
-
+        ) : (
+          ''
+        )}
       </Box>
     </>
   );
