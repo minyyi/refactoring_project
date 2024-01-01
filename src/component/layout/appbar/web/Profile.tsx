@@ -17,7 +17,7 @@ const Profile = () => {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null,
+    null
   );
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
