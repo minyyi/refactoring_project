@@ -19,6 +19,7 @@ const CommonButton = ({
       sx={{ m: 1, ...sx }}
       variant={variant}
       onClick={onClick}
+      component="label"
     >
       {children}
     </Button>

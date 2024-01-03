@@ -1,7 +1,8 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Typography, TextField } from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
 import CommonButton from '@/component/common/Button';
-const MainPage = () => {
+import LoginPage from '@/page/Login';
+const Home = () => {
   return (
     <>
       <PageContainer>
@@ -18,12 +19,12 @@ const MainPage = () => {
             <CommonButton variant={'outlined'} sx={{ color: 'inherit' }}>
               원래 글자
             </CommonButton>
-            <CommonButton variant={'contained'}>버튼커스텀</CommonButton>
           </Box>
+          <LoginPage />
         </Container>
       </PageContainer>
     </>
   );
 };
 
-export default MainPage;
+export default Home;

@@ -14,11 +14,6 @@ const getDesignTokens = (mode: PaletteMode) => ({
             main: '#ede7f6',
             dark: '#b39ddb',
           },
-          typography: {
-            button: {
-              fontStyle: 'italic',
-            },
-          },
         }
       : {
           // palette values for dark mode
