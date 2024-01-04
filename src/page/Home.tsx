@@ -1,7 +1,7 @@
 import { Box, Container, Typography, TextField } from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
 import CommonButton from '@/component/common/Button';
-import LoginPage from '@/page/Login';
+
 const Home = () => {
   return (
     <>
@@ -20,7 +20,6 @@ const Home = () => {
               원래 글자
             </CommonButton>
           </Box>
-          <LoginPage />
         </Container>
       </PageContainer>
     </>

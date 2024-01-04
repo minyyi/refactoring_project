@@ -13,13 +13,24 @@ const LandingPage = () => {
         sx={{
           display: 'flex',
           flexGrow: 1,
+          justifyContent: 'center',
           minHeight: '100vh',
           minWidth: '1200',
         }}
       >
-        <img src="../../public/img1.avif" />
-        <Box sx={{ position: 'absolute', bottom: 20, left: '50%' }}>
-          <Typography>
+        <img src="/img1.avif" />
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '40%',
+            left: '47%',
+            backgroundColor: 'primary.main',
+            px: 2,
+            py: 1,
+            borderRadius: 15,
+          }}
+        >
+          <Typography sx={{ fontWeight: 700, fontSize: 20 }}>
             Login
             <IconButton onClick={clicktoLogin}>
               <Login />

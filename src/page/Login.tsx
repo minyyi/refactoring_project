@@ -1,6 +1,6 @@
 import CommonButton from '@/component/common/Button';
 import CommonInput from '@/component/common/Input';
-import { Box, InputAdornment } from '@mui/material';
+import { Box, InputAdornment, Link, Typography } from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
 import { VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -16,10 +16,12 @@ const LoginPage = () => {
     <PageContainer>
       <Box
         sx={{
-          //   mx: 'auto',
+          mx: 'auto',
           display: 'flex',
           flexDirection: 'column',
+          justifyContent: 'center',
           width: 300,
+          minHeight: 500,
         }}
       >
         <CommonInput id={'outlined-input'} type={'text'} label="Id" />
@@ -35,10 +37,18 @@ const LoginPage = () => {
             ),
           }}
         />
+        <CommonButton onClick={clickLogin} variant={'contained'}>
+          로그인
+        </CommonButton>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Typography sx={{ fontSize: 12, mr: 1 }}>
+            아직 회원이 아니신가요?
+          </Typography>
+          <Link href={'#'} sx={{ fontSize: 12, color: 'inherit' }}>
+            회원가입하러 가기
+          </Link>
+        </Box>
       </Box>
-      <CommonButton onClick={clickLogin} variant={'contained'}>
-        로그인
-      </CommonButton>
     </PageContainer>
   );
 };

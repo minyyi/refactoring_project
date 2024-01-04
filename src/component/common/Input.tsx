@@ -1,4 +1,4 @@
-import { TextField, OutlinedInput } from '@mui/material';
+import { TextField } from '@mui/material';
 
 const CommonInput = ({
   label,
@@ -6,6 +6,7 @@ const CommonInput = ({
   type,
   id,
   InputProps,
+  value,
 }: {
   label?: string;
   sx?: any;
@@ -13,6 +14,7 @@ const CommonInput = ({
   id: any;
   endAdornment?: any;
   InputProps?: any;
+  value?: any;
 }) => {
   return (
     <>
@@ -22,20 +24,12 @@ const CommonInput = ({
         InputProps={InputProps}
         type={type}
         id={id}
+        value={value}
         sx={{
           margin: 1,
           ...sx,
         }}
       />
-      {/* <OutlinedInput
-        label={label}
-        size="small"
-        inputProps={inputProps}
-        sx={{
-          margin: 1,
-          ...sx,
-        }} */}
-      {/* /> */}
     </>
   );
 };
