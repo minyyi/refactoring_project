@@ -37,9 +37,7 @@ const LoginPage = () => {
             ),
           }}
         />
-        <CommonButton onClick={clickLogin} variant={'contained'}>
-          로그인
-        </CommonButton>
+        <CommonButton onClick={clickLogin}>로그인</CommonButton>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Typography sx={{ fontSize: 12, mr: 1 }}>
             아직 회원이 아니신가요?

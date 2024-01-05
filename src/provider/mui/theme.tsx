@@ -29,6 +29,20 @@ const getDesignTokens = (mode: PaletteMode) => ({
           },
         }),
   },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '--TextField-brandBorderColor': '#E0E3E7',
+          '--TextField-brandBorderHoverColor':
+            mode === 'light' ? '#001a28' : '#fff',
+          '& label.Mui-focused': {
+            color: 'var(--TextField-brandBorderFocusedColor)',
+          },
+        },
+      },
+    },
+  },
 });
 
 export default getDesignTokens;
