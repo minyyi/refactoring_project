@@ -22,7 +22,7 @@ const LandingPage = () => {
         <Box
           sx={{
             position: 'absolute',
-            bottom: '40%',
+            bottom: '30%',
             left: '47%',
             backgroundColor: 'primary.main',
             px: 2,

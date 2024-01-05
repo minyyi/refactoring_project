@@ -7,6 +7,8 @@ const CommonInput = ({
   id,
   InputProps,
   value,
+  onChange,
+  others,
 }: {
   label?: string;
   sx?: any;
@@ -15,6 +17,8 @@ const CommonInput = ({
   endAdornment?: any;
   InputProps?: any;
   value?: any;
+  onChange?: any;
+  others?: any;
 }) => {
   return (
     <>
@@ -25,6 +29,8 @@ const CommonInput = ({
         type={type}
         id={id}
         value={value}
+        onChange={onChange}
+        // others={others}
         sx={{
           margin: 1,
           ...sx,
