@@ -2,8 +2,13 @@ import { Box, Typography, Container } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub'; // import styled from "@emotion/styled";
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const location = useLocation();
+  if (location.pathname === '/' || location.pathname === '/login') return null;
+  // 함수로 만들기 switch, array, customehook
+
   return (
     <>
       <Box

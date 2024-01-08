@@ -3,9 +3,12 @@ import WebAppbar from './web/WebAppbar';
 import Profile from './web/Profile';
 import MobileAppbar from './mobile/MobileAppbar';
 import DarkmodeButton from './common/DarkmodeButton';
+import { useLocation } from 'react-router-dom';
 
 function ResponsiveAppBar() {
   const matches = useMediaQuery((theme: any) => theme.breakpoints.down('md'));
+  const { pathname } = useLocation();
+  if (pathname === '/' || location.pathname === '/login') return null;
 
   return (
     <AppBar

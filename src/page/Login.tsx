@@ -1,6 +1,12 @@
 import CommonButton from '@/component/common/Button';
 import CommonInput from '@/component/common/Input';
-import { Box, InputAdornment, Link, Typography } from '@mui/material';
+import {
+  Box,
+  InputAdornment,
+  Link,
+  TextField,
+  Typography,
+} from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
 import { VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +31,7 @@ const LoginPage = () => {
         }}
       >
         <CommonInput id={'outlined-input'} type={'text'} label="Id" />
+        <TextField required type="text" />
         <CommonInput
           id="outlined-password-input"
           label="Password"

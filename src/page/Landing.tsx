@@ -9,35 +9,38 @@ const LandingPage = () => {
   };
   return (
     <>
+      {/* <Box
+        sx={{
+          // display: 'flex',
+          // flexGrow: 1,
+          // justifyContent: 'center',
+          height: '100%',
+          minWidth: '100%',
+        }}
+      > */}
+      <img
+        src="/img1.avif"
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      />
       <Box
         sx={{
-          display: 'flex',
-          flexGrow: 1,
-          justifyContent: 'center',
-          minHeight: '100vh',
-          minWidth: '1200',
+          position: 'absolute',
+          bottom: '30%',
+          left: '47%',
+          backgroundColor: 'primary.main',
+          px: 2,
+          py: 1,
+          borderRadius: 15,
         }}
       >
-        <img src="/img1.avif" />
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: '30%',
-            left: '47%',
-            backgroundColor: 'primary.main',
-            px: 2,
-            py: 1,
-            borderRadius: 15,
-          }}
-        >
-          <Typography sx={{ fontWeight: 700, fontSize: 20 }}>
-            Login
-            <IconButton onClick={clicktoLogin}>
-              <Login />
-            </IconButton>
-          </Typography>
-        </Box>
+        <Typography sx={{ fontWeight: 700, fontSize: 20 }}>
+          Login
+          <IconButton onClick={clicktoLogin}>
+            <Login />
+          </IconButton>
+        </Typography>
       </Box>
+      {/* </Box> */}
     </>
   );
 };

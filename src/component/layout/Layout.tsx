@@ -2,8 +2,11 @@ import { ReactNode } from 'react';
 import { Box } from '@mui/material';
 import Footer from './footer/Footer';
 import Appbar from './appbar/Appbar';
+import { useLocation } from 'react-router-dom';
 
 export const Layout = (props: { children: ReactNode }) => {
+  const location = useLocation();
+  console.log(location);
   return (
     <>
       <Box
@@ -18,6 +21,7 @@ export const Layout = (props: { children: ReactNode }) => {
           sx={{
             // py: 2,
             flexGrow: 1,
+            height: '100%',
           }}
         >
           {props.children}
