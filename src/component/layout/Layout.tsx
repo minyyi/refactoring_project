@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import Footer from './footer/Footer';
 import Appbar from './appbar/Appbar';
 import { useLocation } from 'react-router-dom';
@@ -19,9 +19,10 @@ export const Layout = (props: { children: ReactNode }) => {
         <Appbar />
         <Box
           sx={{
-            // py: 2,
             flexGrow: 1,
-            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            // height: '100%',
           }}
         >
           {props.children}

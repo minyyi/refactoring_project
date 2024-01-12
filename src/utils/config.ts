@@ -5,19 +5,19 @@ export const MobileMenuItemArray = [
   { title: 'Bookmark', path: '/bookmark' },
   { title: 'Reservation', path: '/reservation' },
 ];
-
+const [a, ...rest] = MobileMenuItemArray;
+console.log(a);
+console.log(rest);
 // if (location.pathname === '/' || location.pathname === '/login') return null;
 
-export const pathCase = () => {
-  const location = useLocation();
-  switch (location.pathname) {
+export const pathCase = ({ pathname }: { pathname: any }) => {
+  console.log(pathname);
+  switch (pathname) {
     case '/':
-      return null;
     case '/login':
-      return null;
     case '/signup':
-      return null;
+      return true;
     default:
+      return false;
   }
-  return;
 };

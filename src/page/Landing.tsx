@@ -9,38 +9,46 @@ const LandingPage = () => {
   };
   return (
     <>
-      {/* <Box
-        sx={{
-          // display: 'flex',
-          // flexGrow: 1,
-          // justifyContent: 'center',
-          height: '100%',
-          minWidth: '100%',
-        }}
-      > */}
-      <img
-        src="/img1.avif"
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
       <Box
         sx={{
-          position: 'absolute',
-          bottom: '30%',
-          left: '47%',
-          backgroundColor: 'primary.main',
-          px: 2,
-          py: 1,
-          borderRadius: 15,
+          display: 'flex',
+          flexGrow: 1,
+          flexDirection: 'column',
+          // justifyContent: 'center',
+          // backgroundColor: 'yellow',
+          // minWidth: '100%',
         }}
       >
-        <Typography sx={{ fontWeight: 700, fontSize: 20 }}>
-          Login
-          <IconButton onClick={clicktoLogin}>
-            <Login />
-          </IconButton>
-        </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            flexGrow: 1,
+            backgroundColor: 'blue',
+            position: 'relative',
+          }}
+        >
+          <img src="/img1.avif" style={{ width: '100%', objectFit: 'cover' }} />
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'primary.main',
+              px: 2,
+              py: 1,
+              borderRadius: 15,
+            }}
+          >
+            <Typography sx={{ fontWeight: 700, fontSize: 20 }}>
+              Login
+              <IconButton onClick={clicktoLogin}>
+                <Login />
+              </IconButton>
+            </Typography>
+          </Box>
+        </Box>
       </Box>
-      {/* </Box> */}
     </>
   );
 };
