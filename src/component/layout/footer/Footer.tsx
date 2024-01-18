@@ -3,11 +3,12 @@ import GitHubIcon from '@mui/icons-material/GitHub'; // import styled from "@emo
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useLocation } from 'react-router-dom';
+import { pathCase } from '@/utils/config';
 
 const Footer = () => {
-  const location = useLocation();
-  if (location.pathname === '/' || location.pathname === '/login') return null;
-  // 함수로 만들기 switch, array, customehook
+  const { pathname } = useLocation();
+  console.log(pathname);
+  if (pathCase({ pathname })) return null;
 
   return (
     <>

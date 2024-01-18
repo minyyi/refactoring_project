@@ -1,25 +1,19 @@
 import { TextField } from '@mui/material';
 
-const CommonInput = ({
-  label,
-  sx,
-  type,
-  id,
-  InputProps,
-  value,
-  onChange,
-  others,
-}: {
-  label?: string;
-  sx?: any;
-  type: any;
-  id: any;
-  endAdornment?: any;
-  InputProps?: any;
-  value?: any;
-  onChange?: any;
-  others?: any;
-}) => {
+const CommonInput = (
+  { label, sx, type, id, InputProps, value, onChange, ...others }: any
+  // {
+  //   label?: string;
+  //   sx?: any;
+  //   type: any;
+  //   id: any;
+  //   endAdornment?: any;
+  //   InputProps?: any;
+  //   value?: any;
+  //   onChange?: any;
+  //   ...others?: any;
+  // }
+) => {
   return (
     <>
       <TextField
@@ -30,7 +24,7 @@ const CommonInput = ({
         id={id}
         value={value}
         onChange={onChange}
-        // others={others}
+        {...others}
         sx={{
           margin: 1,
           ...sx,
