@@ -3,7 +3,6 @@ import Home from './page/Home';
 import { Layout } from './component/layout/Layout';
 import LandingPage from './page/Landing';
 import LoginPage from './page/Login';
-import test from 'node:test';
 
 const Router = () => {
   return (

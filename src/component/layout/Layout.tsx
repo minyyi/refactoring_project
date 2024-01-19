@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import Footer from './footer/Footer';
 import Appbar from './appbar/Appbar';
 import { useLocation } from 'react-router-dom';

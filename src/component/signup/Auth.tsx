@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CommonButton from '../common/Button';
 import CommonInput from '../common/Input';
 import PageContainer from '@/component/common/PageContainer';
-import { Box, InputAdornment } from '@mui/material';
+import { Box, IconButton, InputAdornment } from '@mui/material';
 import Title from '../common/Title';
 import { VisibilityOff } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -92,13 +92,22 @@ export const AuthCard = ({
         alignItems: 'center',
       }}
     >
-      <CommonButton onClick={() => clickBack('')}>
-        <ArrowBackIosNewIcon />
-      </CommonButton>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Title>
-          {process === 'agency' ? '임대인' : '일반회원'} {title}
-        </Title>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <IconButton onClick={() => clickBack('')}>
+            <ArrowBackIosNewIcon />
+          </IconButton>
+          <Title sx={{ padding: 0 }}>
+            {process === 'agency' ? '임대인' : '일반회원'} {title}
+          </Title>
+          <Box sx={{ pl: 4 }}></Box>
+        </Box>
 
         <CommonInput
           label={'이메일'}

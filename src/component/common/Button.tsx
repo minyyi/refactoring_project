@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 
-const CommonButton = ({ children, sx, size, ...others }: any) => {
+const CommonButton = ({ children, sx, ...others }: any) => {
   //   const theme = useTheme();
   console.log(others);
   return (
