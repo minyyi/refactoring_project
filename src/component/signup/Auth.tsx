@@ -153,15 +153,15 @@ export const AuthCard = ({
               label={'비밀번호 확인'}
               placeholder={'한 번 더 입력해주세요'}
               warning={
-                signup.password.trim()
-                  ? validatePassword(signup.password)
-                    ? '맞습니다'
-                    : '비밀번호를 다시 확인해주세요'
+                signup.passwordConfirm.trim()
+                  ? signup.password === signup.passwordConfirm
+                    ? '일치합니다.'
+                    : '비밀번호가 일치하지 않습니다'
                   : ''
               }
               type={'password'}
-              value={signup.password}
-              name={'password'}
+              value={signup.passwordConfirm}
+              name={'passwordConfirm'}
               onChange={handleFormData}
               InputProps={{
                 endAdornment: (
@@ -208,14 +208,14 @@ export const AuthCard = ({
         <hr style={{ width: '300px' }} />
 
         <CommonButton
-          //   clickHandler={() => clickSignupButton()}
-          disabled={
-            !validateName(signup.name) ||
-            !validateEmail(signup.email) ||
-            !validatePassword(signup.password) ||
-            signup.password !== signup.passwordConfirm ||
-            !validateBusinessNumber(signup.businessNumber)
-          }
+        //   clickHandler={() => clickSignupButton()}
+        // disabled={
+        //   !validateName(signup.name) ||
+        //   !validateEmail(signup.email) ||
+        //   !validatePassword(signup.password) ||
+        //   signup.password !== signup.passwordConfirm ||
+        //   !validateBusinessNumber(signup.businessNumber)
+        // }
         >
           로그인
         </CommonButton>
