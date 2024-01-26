@@ -7,6 +7,8 @@ import { Box, IconButton, InputAdornment } from '@mui/material';
 import Title from '../common/Title';
 import { VisibilityOff } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { useNavigate } from 'react-router-dom';
+
 // import { getAgencyApi } from "../../fetch/get/main";
 // import { signupAgencyApi } from '../../fetch/post/main';
 // import { FcGoogle } from 'react-icons/fc';
@@ -40,7 +42,10 @@ export const AuthCard = ({
   //     },
   //   });
   // console.log({ data });
-
+  const navigate = useNavigate();
+  const clicktoLogin = () => {
+    navigate('/home');
+  };
   const [signup, setSignup] = useState<AgencyCardProps>({
     businessNumber: '',
     email: '',
@@ -208,14 +213,15 @@ export const AuthCard = ({
         <hr style={{ width: '300px' }} />
 
         <CommonButton
-        //   clickHandler={() => clickSignupButton()}
-        // disabled={
-        //   !validateName(signup.name) ||
-        //   !validateEmail(signup.email) ||
-        //   !validatePassword(signup.password) ||
-        //   signup.password !== signup.passwordConfirm ||
-        //   !validateBusinessNumber(signup.businessNumber)
-        // }
+          onClick={clicktoLogin}
+          //   clickHandler={() => clickSignupButton()}
+          // disabled={
+          //   !validateName(signup.name) ||
+          //   !validateEmail(signup.email) ||
+          //   !validatePassword(signup.password) ||
+          //   signup.password !== signup.passwordConfirm ||
+          //   !validateBusinessNumber(signup.businessNumber)
+          // }
         >
           로그인
         </CommonButton>

@@ -100,7 +100,7 @@ const LandingPage = () => {
                         color: 'white',
                       }}
                     >
-                      {matches ? text.mobileTitle : text.webTitle}
+                      {text.mobileTitle}
                     </Typography>
                   </Box>
                 );

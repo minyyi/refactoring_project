@@ -7,7 +7,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { AuthCard } from '@/component/signup/Auth';
 
 const Authpage = ({ title }: any) => {
-  //authpage
   const navigate = useNavigate();
   const [process, setProcess] = useState('');
   console.log(process);
