@@ -23,7 +23,7 @@ interface AgencyCardProps {
   businessNumber: string;
 }
 
-export const AuthCard = ({
+export const AuthForm = ({
   title,
   clickBack,
   process,
@@ -43,8 +43,28 @@ export const AuthCard = ({
   //   });
   // console.log({ data });
   const navigate = useNavigate();
-  const clicktoLogin = () => {
-    navigate('/home');
+  const clicktoLogin = ({
+    title,
+    process,
+  }: {
+    title: string;
+    process: string;
+  }) => {
+    if (title === '로그인') {
+      let body: any = { a: 1, b: 2, c: 3 };
+      if (process === 'agency') {
+        delete body.c;
+      }
+
+      JSON.stringify(body);
+      fetch('www.', {
+        method: 'POST',
+        body,
+      });
+      // navigate('/home');
+    } else {
+      navigate('/login');
+    }
   };
   const [signup, setSignup] = useState<AgencyCardProps>({
     businessNumber: '',
@@ -152,7 +172,7 @@ export const AuthCard = ({
           }}
         />
         {/* 회원가입일 때만 */}
-        {title === '로그인' ? null : (
+        {title === '회원가입' && (
           <>
             <CommonInput
               label={'비밀번호 확인'}
@@ -193,7 +213,7 @@ export const AuthCard = ({
             />
           </>
         )}
-        {title === '로그인' || process === 'customer' ? null : (
+        {title === '회원가입' && process === 'agency' && (
           <CommonInput
             value={signup.businessNumber}
             name={'businessNumber'}
@@ -223,7 +243,7 @@ export const AuthCard = ({
           //   !validateBusinessNumber(signup.businessNumber)
           // }
         >
-          로그인
+          {title}
         </CommonButton>
       </Box>
     </PageContainer>

@@ -4,7 +4,7 @@ import { Box, Typography, Paper } from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
 import Title from '@/component/common/Title';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { AuthCard } from '@/component/signup/Auth';
+import { AuthForm } from '@/component/auth/AuthForm';
 
 const Authpage = ({ title }: any) => {
   const navigate = useNavigate();
@@ -40,7 +40,13 @@ const Authpage = ({ title }: any) => {
           width: '100%',
         }}
       >
-        {process ? null : (
+        {process ? (
+          <AuthForm
+            title={title}
+            clickBack={handleSetProcess}
+            process={process}
+          />
+        ) : (
           <>
             <Title>{title}</Title>
             <Box
@@ -113,36 +119,39 @@ const Authpage = ({ title }: any) => {
                 </Typography>
               </Box>
             </Box>
-            {title === '회원가입' ? null : (
-              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                <Typography sx={{ fontSize: 14, mr: 1 }}>
-                  아직 회원이 아니신가요?
-                </Typography>
-                <Box
-                  onClick={clickSignup}
-                  sx={{ fontSize: 14, color: 'inherit', cursor: 'pointer' }}
-                >
-                  회원가입하러 가기
-                </Box>
+            {/* {title === '로그인' && ( */}
+            <Box
+              sx={{
+                display: 'flex',
+                visibility: title === '회원가입' ? 'hidden' : 'visible',
+                justifyContent: 'center',
+                mt: 2,
+              }}
+            >
+              <Typography sx={{ fontSize: 14, mr: 1 }}>
+                아직 회원이 아니신가요?
+              </Typography>
+              <Box
+                onClick={clickSignup}
+                sx={{ fontSize: 14, color: 'inherit', cursor: 'pointer' }}
+              >
+                회원가입하러 가기
               </Box>
-            )}
+            </Box>
+            {/* )} */}
           </>
         )}
-        {title === '회원가입' && process === 'agency' && (
-          <AuthCard
-            title={'회원가입'}
-            clickBack={handleSetProcess}
-            process="agency"
-          />
-        )}
-        {title === '로그인' && process === 'agency' && (
+        {/* {title === '회원가입' && process === 'agency' && ( */}
+
+        {/* )} */}
+        {/* {title === '로그인' && process === 'agency' && (
           <AuthCard
             title={'로그인'}
             clickBack={handleSetProcess}
             process="agency"
           />
-        )}
-        {title === '회원가입' && process === 'customer' && (
+        )} */}
+        {/* {title === '회원가입' && process === 'customer' && (
           <AuthCard
             title={'회원가입'}
             clickBack={handleSetProcess}
@@ -155,7 +164,7 @@ const Authpage = ({ title }: any) => {
             clickBack={handleSetProcess}
             process="customer"
           />
-        )}
+        )} */}
       </Paper>
     </PageContainer>
   );
