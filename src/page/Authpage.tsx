@@ -64,14 +64,18 @@ const Authpage = ({ title }: any) => {
                 onClick={() => handleSetProcess('agency')}
                 sx={{
                   position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                   width: { sm: '250px', xs: '100%' },
                   minHeight: 300,
                   border: 1,
                   borderRadius: 10,
-                  backgroundImage: 'url(12461_3.png)',
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
+                  // backgroundImage: 'url(free-icon-rent-2590468.png)',
+                  // backgroundSize: 'contain',
+                  // backgroundPosition: 'center',
+                  // backgroundRepeat: 'no-repeat',
                   cursor: 'pointer',
                 }}
               >
@@ -88,6 +92,10 @@ const Authpage = ({ title }: any) => {
                     sx={{ fontSize: 12, textAlign: 'center' }}
                   />
                 </Typography>
+                <img
+                  src="/public/free-icon-rent-2590468.png"
+                  style={{ width: 200, alignItems: 'center' }}
+                />
               </Box>
               <Box
                 onClick={() => handleSetProcess('customer')}
