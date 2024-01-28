@@ -1,27 +1,36 @@
-import { Box, Typography, Container } from "@mui/material";
-import GitHubIcon from "@mui/icons-material/GitHub"; // import styled from "@emotion/styled";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import InstagramIcon from "@mui/icons-material/Instagram";
+import { Box, Typography, Container } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub'; // import styled from "@emotion/styled";
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import { useLocation } from 'react-router-dom';
+import { pathCase } from '@/utils/config';
 
 const Footer = () => {
-  
+  const { pathname } = useLocation();
+  console.log(pathname);
+  if (pathCase({ pathname })) return null;
+
   return (
     <>
-      <Box sx={{ 
-        backgroundColor: 'primary.main', 
-        boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
-}}>
+      <Box
+        sx={{
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'light' ? '#fff' : '#121212',
+          boxShadow:
+            '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
+        }}
+      >
         <Container
           sx={{
             minHeight: 80,
             py: 2,
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             rowGap: 1,
           }}
         >
           {/* 로고, 시간 */}
-          <Box sx={{ display: "flex" }}>
+          <Box sx={{ display: 'flex' }}>
             <Typography>OfficeFinder</Typography>
           </Box>
           {/* 전화번호 */}
@@ -29,8 +38,8 @@ const Footer = () => {
           <Typography sx={{ fontSize: 20 }}>1234-1234</Typography>
           <Box
             sx={{
-              display: "flex",
-              flexDirection: { sm: "row", xs: "column" },
+              display: 'flex',
+              flexDirection: { sm: 'row', xs: 'column' },
               columnGap: 1,
               rowGap: 1,
             }}
@@ -46,8 +55,8 @@ const Footer = () => {
           {/* 계좌/주소 */}
           <Box
             sx={{
-              display: "flex",
-              flexDirection: { sm: "row", xs: "column" },
+              display: 'flex',
+              flexDirection: { sm: 'row', xs: 'column' },
               columnGap: 1,
               rowGap: 1,
             }}
@@ -62,11 +71,11 @@ const Footer = () => {
           {/* 개인정보처리/이용약관/가맹점 */}
           <Box
             sx={{
-              display: "flex",
-              flexDirection: { sm: "row", xs: "column" },
+              display: 'flex',
+              flexDirection: { sm: 'row', xs: 'column' },
               columnGap: 1,
               rowGap: 1,
-              textDecoration: "none",
+              textDecoration: 'none',
             }}
           >
             <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
@@ -81,9 +90,9 @@ const Footer = () => {
           </Box>
           <Box
             sx={{
-              display: "flex",
-              fontSize: "large",
-              alignItems: "center",
+              display: 'flex',
+              fontSize: 'large',
+              alignItems: 'center',
             }}
           >
             <Typography sx={{ fontSize: { md: 14, xs: 12 } }}>
@@ -93,7 +102,7 @@ const Footer = () => {
           {/* sns링크 */}
           <Box
             sx={{
-              display: "flex",
+              display: 'flex',
               columnGap: 2,
             }}
           >

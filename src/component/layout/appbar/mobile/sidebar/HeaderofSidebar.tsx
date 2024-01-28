@@ -1,6 +1,6 @@
-import { Box, Divider, IconButton, Typography } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import Profile from "../../web/Profile";
+import { Box, Divider, IconButton, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import Profile from '../../web/Profile';
 
 const SidebarHeader = ({
   toggleDrawer,
@@ -11,18 +11,18 @@ const SidebarHeader = ({
     <>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
+          display: 'flex',
+          justifyContent: 'space-between',
           px: 1,
           minWidth: 10,
-          alignItems: "center",
+          alignItems: 'center',
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            overflow: "hidden",
+            display: 'flex',
+            alignItems: 'center',
+            overflow: 'hidden',
           }}
         >
           <Profile />
@@ -31,7 +31,7 @@ const SidebarHeader = ({
         <IconButton
           onClick={(event) => toggleDrawer(event)}
           sx={{
-            width: "fit-content",
+            width: 'fit-content',
           }}
         >
           <CloseIcon />
