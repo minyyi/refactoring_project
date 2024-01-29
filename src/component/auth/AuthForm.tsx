@@ -122,13 +122,13 @@ export const AuthForm = ({
         <CommonInput
           label={'이메일'}
           placeholder={'이메일을 입력해 주세요'}
-          warning={
-            signup.email.trim()
-              ? validateEmail(signup.email)
-                ? ''
-                : '이메일 형식이 아닙니다'
-              : ''
-          }
+          // warning={
+          //   signup.email.trim()
+          //     ? validateEmail(signup.email)
+          //       ? ''
+          //       : '이메일 형식이 아닙니다'
+          //     : ''
+          // }
           type={'email'}
           value={signup.email}
           name={'email'}
@@ -137,13 +137,13 @@ export const AuthForm = ({
         <CommonInput
           label={'비밀번호'}
           placeholder={'10~20자리의 비밀번호를 입력해주세요'}
-          warning={
-            signup.password.trim()
-              ? validatePassword(signup.password)
-                ? ''
-                : '10~20자리로 입력해주세요'
-              : ''
-          }
+          // warning={
+          //   signup.password.trim()
+          //     ? validatePassword(signup.password)
+          //       ? ''
+          //       : '10~20자리로 입력해주세요'
+          //     : ''
+          // }
           type={'password'}
           value={signup.password}
           name={'password'}
@@ -162,13 +162,13 @@ export const AuthForm = ({
             <CommonInput
               label={'비밀번호 확인'}
               placeholder={'한 번 더 입력해주세요'}
-              warning={
-                signup.passwordConfirm.trim()
-                  ? signup.password === signup.passwordConfirm
-                    ? '일치합니다.'
-                    : '비밀번호가 일치하지 않습니다'
-                  : ''
-              }
+              // warning={
+              //   signup.passwordConfirm.trim()
+              //     ? signup.password === signup.passwordConfirm
+              //       ? '일치합니다.'
+              //       : '비밀번호가 일치하지 않습니다'
+              //     : ''
+              // }
               type={'password'}
               value={signup.passwordConfirm}
               name={'passwordConfirm'}
@@ -184,13 +184,13 @@ export const AuthForm = ({
             <CommonInput
               label={'닉네임'}
               placeholder={'닉네임을 입력해주세요'}
-              warning={
-                signup.name.trim()
-                  ? validateName(signup.name)
-                    ? ''
-                    : '두 글자 이상 작성해주세요'
-                  : ''
-              }
+              // warning={
+              //   signup.name.trim()
+              //     ? validateName(signup.name)
+              //       ? ''
+              //       : '두 글자 이상 작성해주세요'
+              //     : ''
+              // }
               type={'text'}
               value={signup.name}
               name={'name'}
@@ -204,13 +204,13 @@ export const AuthForm = ({
             name={'businessNumber'}
             label={'사업자 등록 번호'}
             placeholder={'사업자 등록번호 10자리를 입력해주세요'}
-            warning={
-              signup.businessNumber.trim()
-                ? validateBusinessNumber(signup.businessNumber)
-                  ? ''
-                  : '10자리로 입력해주세요'
-                : ''
-            }
+            // warning={
+            //   signup.businessNumber.trim()
+            //     ? validateBusinessNumber(signup.businessNumber)
+            //       ? ''
+            //       : '10자리로 입력해주세요'
+            //     : ''
+            // }
             type={'text'}
             onChange={handleFormData}
           />
@@ -218,15 +218,15 @@ export const AuthForm = ({
         <hr style={{ width: '300px' }} />
 
         <CommonButton
-          onClick={clicktoLogin}
-          //   clickHandler={() => clickSignupButton()}
-          // disabled={
-          //   !validateName(signup.name) ||
-          //   !validateEmail(signup.email) ||
-          //   !validatePassword(signup.password) ||
-          //   signup.password !== signup.passwordConfirm ||
-          //   !validateBusinessNumber(signup.businessNumber)
-          // }
+        // onClick={clicktoLogin}
+        //   clickHandler={() => clickSignupButton()}
+        // disabled={
+        //   !validateName(signup.name) ||
+        //   !validateEmail(signup.email) ||
+        //   !validatePassword(signup.password) ||
+        //   signup.password !== signup.passwordConfirm ||
+        //   !validateBusinessNumber(signup.businessNumber)
+        // }
         >
           {title}
         </CommonButton>
