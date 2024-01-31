@@ -35,7 +35,9 @@ const Home = () => {
         <Container sx={{ display: 'flex', justifyContent: 'flex-start' }}>
           <Title>오피스</Title>
         </Container>
-        <Container></Container>
+        <Container>
+          <OfficeCard />
+        </Container>
       </PageContainer>
     </>
   );
