@@ -7,31 +7,18 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 
-const CommonSelect = ({
-  children,
-  label,
-  value,
-}: {
-  children: ReactNode;
-  label?: string;
-  value?: any;
-}) => {
-  const [address, setAddress] = useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAddress(event.target.value as string);
-  };
-
+const CommonSelect = ({ children, label, value, onChange, ...others }: any) => {
   return (
     <>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         color="secondary"
-        value={address}
+        value={value}
         label={label}
-        onChange={handleChange}
-        sx={{ width: 100 }}
+        onChange={onChange}
+        sx={{ width: 200 }}
+        {...others}
       >
         {children}
       </Select>

@@ -1,15 +1,7 @@
 import { Button } from '@mui/material';
 import { ReactNode } from 'react';
 
-const CommonButton = ({
-  children,
-  sx,
-  ...others
-}: {
-  children: ReactNode;
-  sx?: any;
-  others?: any;
-}) => {
+const CommonButton = ({ children, sx, ...others }: any) => {
   //   const theme = useTheme();
   console.log(others);
   return (
@@ -19,7 +11,6 @@ const CommonButton = ({
       sx={{
         m: 1,
         maxWidth: 600,
-        // color: others.variant === 'contained' ? '' : 'inherit',
         ...sx,
       }}
       {...others}

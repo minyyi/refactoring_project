@@ -8,6 +8,12 @@ import Title from '../common/Title';
 import { VisibilityOff } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useNavigate } from 'react-router-dom';
+import {
+  validateName,
+  validateEmail,
+  validatePassword,
+  validateBusinessNumber,
+} from '@/utils/validate';
 
 // import { getAgencyApi } from "../../fetch/get/main";
 // import { signupAgencyApi } from '../../fetch/post/main';
@@ -218,15 +224,21 @@ export const AuthForm = ({
         <hr style={{ width: '300px' }} />
 
         <CommonButton
-        // onClick={clicktoLogin}
-        //   clickHandler={() => clickSignupButton()}
-        // disabled={
-        //   !validateName(signup.name) ||
-        //   !validateEmail(signup.email) ||
-        //   !validatePassword(signup.password) ||
-        //   signup.password !== signup.passwordConfirm ||
-        //   !validateBusinessNumber(signup.businessNumber)
-        // }
+          // onClick={clicktoLogin}
+          //   clickHandler={() => clickSignupButton()}
+          disabled={
+            //함수로 바꾸기 chatGPT
+            title === '로그인'
+              ? !validateEmail(signup.email) ||
+                !validatePassword(signup.password)
+              : !validateEmail(signup.email) ||
+                !validatePassword(signup.password) ||
+                // signup.password !== signup.passwordConfirm ||
+                !validateName(signup.name) ||
+                (process === 'agency'
+                  ? !validateBusinessNumber(signup.businessNumber)
+                  : false)
+          }
         >
           {title}
         </CommonButton>

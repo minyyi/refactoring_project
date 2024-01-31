@@ -157,30 +157,6 @@ const Authpage = ({ title }: any) => {
             {/* )} */}
           </>
         )}
-        {/* {title === '회원가입' && process === 'agency' && ( */}
-
-        {/* )} */}
-        {/* {title === '로그인' && process === 'agency' && (
-          <AuthCard
-            title={'로그인'}
-            clickBack={handleSetProcess}
-            process="agency"
-          />
-        )} */}
-        {/* {title === '회원가입' && process === 'customer' && (
-          <AuthCard
-            title={'회원가입'}
-            clickBack={handleSetProcess}
-            process="customer"
-          />
-        )}
-        {title === '로그인' && process === 'customer' && (
-          <AuthCard
-            title={'로그인'}
-            clickBack={handleSetProcess}
-            process="customer"
-          />
-        )} */}
       </Paper>
     </PageContainer>
   );

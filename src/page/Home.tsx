@@ -15,6 +15,8 @@ import CommonInput from '@/component/common/Input';
 import CommonSelect from '@/component/common/Select';
 import { selectLegion } from '@/utils/config';
 import Search from '@/component/search/Search';
+import OfficeCard from '@/component/common/OfficeCard';
+import Title from '@/component/common/Title';
 
 const Home = () => {
   const [address, setAddress] = useState('');
@@ -30,6 +32,10 @@ const Home = () => {
         >
           <Search />
         </Container>
+        <Container sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <Title>오피스</Title>
+        </Container>
+        <Container></Container>
       </PageContainer>
     </>
   );
