@@ -64,21 +64,25 @@ const Authpage = ({ title }: any) => {
                 onClick={() => handleSetProcess('agency')}
                 sx={{
                   position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                   width: { sm: '250px', xs: '100%' },
                   minHeight: 300,
                   border: 1,
                   borderRadius: 10,
-                  backgroundImage: 'url(12461_3.png)',
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
+                  // backgroundImage: 'url(free-icon-rent-2590468.png)',
+                  // backgroundSize: 'contain',
+                  // backgroundPosition: 'center',
+                  // backgroundRepeat: 'no-repeat',
                   cursor: 'pointer',
                 }}
               >
                 <Typography
                   sx={{
                     position: 'absolute',
-                    top: { sm: '14%', xs: '7%' },
+                    top: '17%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                   }}
@@ -88,26 +92,34 @@ const Authpage = ({ title }: any) => {
                     sx={{ fontSize: 12, textAlign: 'center' }}
                   />
                 </Typography>
+                <img
+                  src="/public/free-icon-rent-2590468.png"
+                  style={{ width: 150, alignItems: 'center', paddingTop: 40 }}
+                />
               </Box>
               <Box
                 onClick={() => handleSetProcess('customer')}
                 sx={{
                   position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                   width: { sm: '250px', xs: '100%' },
                   minHeight: 300,
                   border: 1,
                   borderRadius: 10,
-                  backgroundImage: 'url(urban-20230109104922091058.jpg)',
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
+                  // backgroundImage: 'url(urban-20230109104922091058.jpg)',
+                  // backgroundSize: 'contain',
+                  // backgroundPosition: 'center',
+                  // backgroundRepeat: 'no-repeat',
                   cursor: 'pointer',
                 }}
               >
                 <Typography
                   sx={{
                     position: 'absolute',
-                    top: '14%',
+                    top: '17%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                   }}
@@ -117,6 +129,10 @@ const Authpage = ({ title }: any) => {
                     sx={{ fontSize: 12, textAlign: 'center' }}
                   />
                 </Typography>
+                <img
+                  src="/public/free-icon-building-4257899.png"
+                  style={{ width: 150, alignItems: 'center', paddingTop: 40 }}
+                />
               </Box>
             </Box>
             {/* {title === '로그인' && ( */}
@@ -141,30 +157,6 @@ const Authpage = ({ title }: any) => {
             {/* )} */}
           </>
         )}
-        {/* {title === '회원가입' && process === 'agency' && ( */}
-
-        {/* )} */}
-        {/* {title === '로그인' && process === 'agency' && (
-          <AuthCard
-            title={'로그인'}
-            clickBack={handleSetProcess}
-            process="agency"
-          />
-        )} */}
-        {/* {title === '회원가입' && process === 'customer' && (
-          <AuthCard
-            title={'회원가입'}
-            clickBack={handleSetProcess}
-            process="customer"
-          />
-        )}
-        {title === '로그인' && process === 'customer' && (
-          <AuthCard
-            title={'로그인'}
-            clickBack={handleSetProcess}
-            process="customer"
-          />
-        )} */}
       </Paper>
     </PageContainer>
   );
