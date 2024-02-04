@@ -33,7 +33,12 @@ const Home = () => {
         >
           <Search />
         </Container>
-        <Container sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+        <Container
+          sx={{
+            display: 'flex',
+            justifyContent: { sm: 'flex-start', xs: 'center' },
+          }}
+        >
           <Title>오피스 목록</Title>
         </Container>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>

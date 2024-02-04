@@ -16,9 +16,10 @@ const OfficeCard = () => {
       <Container
         sx={{
           display: 'flex',
-          gap: 1,
+          columnGap: 2,
+          rowGap: { sm: 0, xs: 1 },
           flexWrap: 'wrap',
-          // justifyContent: 'center',
+          justifyContent: { sm: 'flex-start', xs: 'center' },
         }}
       >
         {list?.map((card) => {
@@ -27,24 +28,29 @@ const OfficeCard = () => {
               key={card?.id}
               sx={{
                 display: 'flex',
-                flexWrap: 'wrap',
                 justifyContent: 'center',
-                width: 280,
+                flexDirection: 'column',
+                rowGap: 1,
+
+                width: { lg: 270, md: 260, sm: 260, xs: '100%' },
+                height: 250,
                 cursor: 'pointer',
                 // backgroundColor: 'gray',
               }}
             >
-              <img
-                src={card?.image}
-                // src="/img1.avif"
-                style={{
-                  width: 250,
-                  height: 230,
-                  borderRadius: 5,
-                  margin: 8,
-                }}
-              />
-              <Box>
+              <Box sx={{ height: 160, overflow: 'hidden' }}>
+                <img
+                  src={card?.image}
+                  style={{
+                    objectFit: 'cover',
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 5,
+                  }}
+                />
+              </Box>
+
+              <Box sx={{}}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Typography>{card?.officeName}</Typography>
                   <Typography>{card?.grade}</Typography>
