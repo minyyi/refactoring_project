@@ -4,7 +4,8 @@ import { PaletteMode } from '@mui/material';
 const ColorModeContext = createContext<{
   mode: PaletteMode;
   handleColorMode: any;
-}>({ mode: 'light', handleColorMode: () => {} });
+  setMode: any;
+}>({ mode: 'light', handleColorMode: () => {}, setMode: () => {} });
 
 export const useColorModeContext = () => {
   const context = useContext(ColorModeContext);
@@ -23,19 +24,8 @@ function ColorModeContextProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  //   const handleColorMode = useMemo(
-  //     () => () =>
-  //       { return (
-  //       setMode((prevMode: PaletteMode) =>
-  //         prevMode === 'light' ? 'dark' : 'light'
-  //       ),
-  //       )}
-  // ,[]
-  //   );
-  //useEffect
-
   return (
-    <ColorModeContext.Provider value={{ mode, handleColorMode }}>
+    <ColorModeContext.Provider value={{ mode, handleColorMode, setMode }}>
       {children}
     </ColorModeContext.Provider>
   );

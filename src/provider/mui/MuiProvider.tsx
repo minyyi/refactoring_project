@@ -9,7 +9,6 @@ const MuiProvider = ({ children }: { children: ReactNode }) => {
     () => createTheme(getDesignTokens(modeContext?.mode)),
     [modeContext?.mode]
   );
-  console.log(theme);
 
   return (
     <ThemeProvider theme={theme}>

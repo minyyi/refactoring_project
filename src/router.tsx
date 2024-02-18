@@ -4,8 +4,16 @@ import { Layout } from './component/layout/Layout';
 import LandingPage from './page/Landing';
 import Authpage from './page/Authpage';
 import Reservation from './page/Reservation';
+import { useEffect } from 'react';
+import { useColorModeContext } from './provider/darkmode/DarkmodeProvider';
 
 const Router = () => {
+  const context = useColorModeContext();
+  useEffect(() => {
+    const mode = localStorage.getItem('mode');
+    console.log('router', mode);
+    context.setMode(mode);
+  }, []);
   return (
     <BrowserRouter>
       <Layout>

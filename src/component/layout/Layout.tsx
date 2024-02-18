@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 
 export const Layout = (props: { children: ReactNode }) => {
   const location = useLocation();
-  console.log(location);
   return (
     <>
       <Box

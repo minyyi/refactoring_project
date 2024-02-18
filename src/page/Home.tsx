@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -25,6 +25,13 @@ const Home = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setAddress(event.target.value as string);
   };
+
+  useEffect(() => {
+    console.log('mount');
+    return () => {
+      console.log('unmount');
+    };
+  }, []);
   return (
     <>
       <PageContainer>

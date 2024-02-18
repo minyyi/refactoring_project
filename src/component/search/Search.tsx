@@ -10,11 +10,12 @@ import CommonInput from '../common/Input';
 const Search = () => {
   const [selected, setSelected] = useState('');
   const [city, setCity] = useState('');
+  const [town, setTown] = useState('');
 
-  const [test, setTest] = useState({
-    legion: '',
-    city: '',
-  });
+  // const [test, setTest] = useState({
+  //   legion: '',
+  //   city: '',
+  // });
 
   //여러개 ? 하나의 함수 안에서 조건으로 => todo하던거
   const handleSelect1 = (e: any) => {
@@ -22,6 +23,20 @@ const Search = () => {
   };
   const handleSelect2 = (e: any) => {
     setCity(e.target.value);
+  };
+
+  const handleFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let { name, value } = e.target;
+    console.log({ name, value });
+    // setTown(() => {
+    //   return [{ name, value }];
+    // });
+  };
+
+  const handleReset = () => {
+    setSelected('');
+    setCity('');
+    setTown('');
   };
 
   console.log(selected);
@@ -52,6 +67,10 @@ const Search = () => {
             value={selected}
             sx={{}}
           >
+            <MenuItem aria-label="None" value="">
+              선택안함
+            </MenuItem>
+
             {selectLegion.map((address: any, idx: any) => (
               <MenuItem key={idx} value={address.legion}>
                 {address.legion}
@@ -68,10 +87,11 @@ const Search = () => {
             label="시/군/구"
             onChange={handleSelect2}
             disabled={!selected}
+            value={city}
           >
-            {selectCity?.[selected]?.map((address: any, idx: any) => (
-              <MenuItem key={idx} value={address}>
-                {address}
+            {selectCity?.[selected]?.map((city: any, idx: any) => (
+              <MenuItem key={idx} value={city}>
+                {city}
               </MenuItem>
             ))}
           </CommonSelect>
@@ -79,10 +99,17 @@ const Search = () => {
 
         <CommonInput
           sx={{ display: 'flex', width: { md: 200, sm: 100, xs: '100%' } }}
-          placeholder="읍/면/동/리"
           size="normal"
+          label={'읍/면/동/리'}
+          type="text"
+          // name="town"
+          value={town}
+          onChange={handleFormData}
         />
         <CommonButton size={'medium'}>검색</CommonButton>
+        <CommonButton size={'medium'} onClick={handleReset}>
+          초기화
+        </CommonButton>
       </Box>
     </>
   );
