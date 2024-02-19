@@ -25,18 +25,18 @@ const Search = () => {
     setCity(e.target.value);
   };
 
-  const handleFormData = (e: any) => {
-    let { name, value } = e.target;
-    console.log({ name, value });
-    // setTown((prev) => {
-    //   return [...prev, { name, value }];
-    // });
-  };
+  // const handleFormData = (e: any) => {
+  //   let { name, value } = e.target;
+  //   console.log({ name, value });
+  //   setTown((prev) => {
+  //     return [...prev, { name, value }];
+  //   });
+  // };
 
   const handleReset = () => {
     setSelected('');
     setCity('');
-    setTown('');
+    // setTown('');
   };
 
   console.log(selected);
@@ -104,7 +104,7 @@ const Search = () => {
           type="text"
           // name="town"
           value={town}
-          onChange={handleFormData}
+          // onChange={handleFormData}
         />
         <CommonButton size={'medium'}>검색</CommonButton>
         <CommonButton size={'medium'} onClick={handleReset}>

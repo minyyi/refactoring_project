@@ -128,7 +128,11 @@ const Reservation = () => {
                 >
                   <CommonInputLabel>1~11개월까지 선택 가능</CommonInputLabel>
                   <CommonSelect label={'1~11개월까지 선택 가능'}>
-                    <MenuItem></MenuItem>
+                    <MenuItem>1개월</MenuItem>
+                    <MenuItem>2개월</MenuItem>
+                    <MenuItem>3개월</MenuItem>
+                    <MenuItem>4개월</MenuItem>
+                    <MenuItem>5개월</MenuItem>
                   </CommonSelect>
                 </FormControl>
                 <Typography>사용할 인원을 선택해주세요.</Typography>
@@ -142,7 +146,9 @@ const Reservation = () => {
                 >
                   <CommonInputLabel>1~10명까지 선택 가능</CommonInputLabel>
                   <CommonSelect label={'1~10명까지 선택 가능'}>
-                    <MenuItem></MenuItem>
+                    <MenuItem>1명</MenuItem>
+                    <MenuItem>2명</MenuItem>
+                    <MenuItem>3명</MenuItem>
                   </CommonSelect>
                 </FormControl>
               </Box>
