@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Box, MenuItem, FormControl } from '@mui/material';
 
-import CommonSelect from '../common/Select';
+import CommonSelect from '../common/CommonSelect';
 import { selectLegion, selectCity } from '@/utils/config';
-import CommonButton from '../common/Button';
-import CommonInputLabel from '../common/InputLabel';
-import CommonInput from '../common/Input';
+import CommonButton from '../common/CommonButton';
+import CommonInputLabel from '../common/CommonInputLabel';
+import CommonInput from '../common/CommonInput';
 
 const Search = () => {
   const [selected, setSelected] = useState('');
@@ -25,11 +25,11 @@ const Search = () => {
     setCity(e.target.value);
   };
 
-  const handleFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormData = (e: any) => {
     let { name, value } = e.target;
     console.log({ name, value });
-    // setTown(() => {
-    //   return [{ name, value }];
+    // setTown((prev) => {
+    //   return [...prev, { name, value }];
     // });
   };
 

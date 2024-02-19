@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // import { useMutation } from 'react-query';
-import CommonButton from '../common/Button';
-import CommonInput from '../common/Input';
+import CommonButton from '../common/CommonButton';
+import CommonInput from '../common/CommonInput';
 import PageContainer from '@/component/common/PageContainer';
 import { Box, IconButton, InputAdornment } from '@mui/material';
 import Title from '../common/Title';

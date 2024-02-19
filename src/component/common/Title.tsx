@@ -6,8 +6,9 @@ const Title = ({ children, sx }: { children: ReactNode; sx?: any }) => {
     <>
       <Typography
         sx={{
-          textAlign: 'center',
-          padding: 2,
+          textAlign: 'flex-start',
+          py: 2,
+          px: 3,
           fontWeight: 600,
           fontSize: 20,
           ...sx,

@@ -1,7 +1,7 @@
 import { Container, Box, Typography } from '@mui/material';
 
-const OfficeCard = () => {
-  const list = Array.from({ length: 26 }, (_, i) => {
+const OfficeCard = ({ sx, ...others }: any) => {
+  const list = Array.from({ length: 1 }, (_, i) => {
     return {
       id: i,
       image: '/img1.avif',
@@ -20,7 +20,9 @@ const OfficeCard = () => {
           rowGap: { sm: 0, xs: 1 },
           flexWrap: 'wrap',
           justifyContent: { sm: 'flex-start', xs: 'center' },
+          ...sx,
         }}
+        {...others}
       >
         {list?.map((card) => {
           return (
