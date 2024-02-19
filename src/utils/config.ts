@@ -3,10 +3,6 @@ export const MobileMenuItemArray = [
   { title: 'Bookmark', path: '/bookmark' },
   { title: 'Reservation', path: '/reservation' },
 ];
-const [a, ...rest] = MobileMenuItemArray;
-console.log(a);
-console.log(rest);
-// if (location.pathname === '/' || location.pathname === '/login') return null;
 
 export const pathCase = ({ pathname }: { pathname: any }) => {
   console.log(pathname);
@@ -21,6 +17,7 @@ export const pathCase = ({ pathname }: { pathname: any }) => {
 };
 
 export const selectLegion = [
+  // { legion: '' },
   { legion: '서울특별시' },
   { legion: '부산광역시' },
   { legion: '대구광역시' },

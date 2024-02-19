@@ -7,7 +7,14 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 
-const CommonSelect = ({ children, label, value, onChange, ...others }: any) => {
+const CommonSelect = ({
+  children,
+  label,
+  value,
+  onChange,
+  sx,
+  ...others
+}: any) => {
   return (
     <>
       <Select
@@ -17,7 +24,7 @@ const CommonSelect = ({ children, label, value, onChange, ...others }: any) => {
         value={value}
         label={label}
         onChange={onChange}
-        sx={{ width: 200 }}
+        sx={{ width: '100%', ...sx }}
         {...others}
       >
         {children}

@@ -9,7 +9,6 @@ import { pathCase } from '@/utils/config';
 function ResponsiveAppBar() {
   const matches = useMediaQuery((theme: any) => theme.breakpoints.down('md'));
   const { pathname } = useLocation();
-  console.log(pathname);
   if (pathCase({ pathname })) return null;
 
   return (

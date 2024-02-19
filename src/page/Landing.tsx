@@ -2,7 +2,7 @@ import { Box, Typography, useMediaQuery } from '@mui/material';
 import CommentIcon from '@mui/icons-material/Comment';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
-import CommonButton from '@/component/common/Button';
+import CommonButton from '@/component/common/CommonButton';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 const LandingPage = () => {
