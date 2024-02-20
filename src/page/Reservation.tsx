@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CommonButton from '@/component/common/CommonButton';
 import PageContainer from '@/component/common/PageContainer';
 import CommonSelect from '@/component/common/CommonSelect';
@@ -16,10 +17,15 @@ import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 import 'react-day-picker/dist/style.css';
 import OfficeCard from '@/component/common/OfficeCard';
+import Option from '@/component/common/Option';
 
 const Reservation = () => {
+  const navigate = useNavigate();
   const [selectedDay, setSelectedDay] = useState<Date>();
 
+  const clickOtherOffice = () => {
+    navigate('/home');
+  };
   const css = `
   .my-selected:not([disabled]) { 
     font-weight: bold; 
@@ -55,6 +61,7 @@ const Reservation = () => {
           >
             <OfficeCard sx={{ width: 310, height: 352 }} />
             <CommonButton
+              onClick={clickOtherOffice}
               sx={{ width: 250, backgroundColor: 'secondary.main' }}
             >
               다른 오피스 보기
@@ -158,13 +165,25 @@ const Reservation = () => {
         </Box>
       </Container>
       <Container>
-        <Box sx={{ width: '100%', height: 400, backgroundColor: 'info.main' }}>
+        <Box sx={{ width: '100%', height: 400, backgroundColor: 'gray' }}>
           지도
         </Box>
       </Container>
       <Container>
-        <Box>옵션</Box>
-        <Box>리뷰</Box>
+        <Box sx={{ padding: 2, borderBottom: 0.5 }}>
+          <Typography sx={{ color: '#A7AAB3', fontWeight: 'bold', mb: 1 }}>
+            옵션
+          </Typography>
+          <Typography sx={{ fontSize: 14 }}>에어컨</Typography>
+          <Typography sx={{ fontSize: 14 }}>커피머신</Typography>
+        </Box>
+        <Box sx={{ padding: 2 }}>
+          {' '}
+          <Typography sx={{ color: '#A7AAB3', fontWeight: 'bold', mb: 1 }}>
+            리뷰
+          </Typography>
+          <Typography>어쩌고 저쩌고</Typography>
+        </Box>
       </Container>
     </PageContainer>
   );
