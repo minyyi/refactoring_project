@@ -11,7 +11,9 @@ import Option from '../common/Option';
 const Search = () => {
   const [selected, setSelected] = useState('');
   const [city, setCity] = useState('');
-  const [town, setTown] = useState('');
+  const [town, setTown] = useState<any>({
+    town: '',
+  });
 
   // const [test, setTest] = useState({
   //   legion: '',
@@ -26,18 +28,16 @@ const Search = () => {
     setCity(e.target.value);
   };
 
-  // const handleFormData = (e: any) => {
-  //   let { name, value } = e.target;
-  //   console.log({ name, value });
-  //   setTown((prev) => {
-  //     return [...prev, { name, value }];
-  //   });
-  // };
+  const handleFormData = (e: any) => {
+    let { name, value } = e.target;
+    console.log({ name, value });
+    setTown({ [name]: value });
+  };
 
   const handleReset = () => {
     setSelected('');
     setCity('');
-    // setTown('');
+    setTown({ town: '' });
   };
 
   console.log(selected);
@@ -111,9 +111,9 @@ const Search = () => {
             size="normal"
             label={'읍/면/동/리'}
             type="text"
-            // name="town"
-            value={town}
-            // onChange={handleFormData}
+            name="town"
+            value={town?.town}
+            onChange={handleFormData}
           />
           <CommonButton size={'medium'}>검색</CommonButton>
           <CommonButton size={'medium'} onClick={handleReset}>

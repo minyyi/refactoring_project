@@ -74,8 +74,9 @@ const Reservation = () => {
             sx={{
               flexGrow: 1,
               padding: 2,
-              display: 'flex',
-              flexDirection: 'column',
+              //   columnGap: 10,
+              //   display: 'flex',
+              //   flexDirection: 'column',
               //   justifyContent: 'center',
               //   alignItems: 'center',
             }}
@@ -83,17 +84,18 @@ const Reservation = () => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: { md: 'row', sm: 'column', xs: 'column' },
-                columnGap: 1,
-                justifyContent: 'center',
+                // flexDirection: { md: 'row', sm: 'column', xs: 'column' },
+                columnGap: 20,
+                // justifyContent: 'center',
               }}
             >
               <Box
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  flexGrow: 1,
-                  alignItems: 'center',
+                  //   display: 'flex',
+                  //   flexDirection: 'column',
+                  //   flexGrow: 1,
+                  //   alignItems: 'center',
+                  width: '100%',
                 }}
               >
                 <Typography sx={{ display: 'flex' }}>
@@ -121,7 +123,7 @@ const Reservation = () => {
                   //   width: 300,
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center',
+                  //   alignItems: 'center',
                 }}
               >
                 <Typography>이용 기간을 선택해주세요.</Typography>
