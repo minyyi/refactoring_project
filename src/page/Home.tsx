@@ -16,16 +16,16 @@ import CommonInput from '@/component/common/CommonInput';
 import CommonSelect from '@/component/common/CommonSelect';
 import { selectLegion } from '@/utils/config';
 import Search from '@/component/search/Search';
-import OfficeCard from '@/component/common/OfficeCard';
+import CardList from '@/component/list/CardList';
 import Title from '@/component/common/Title';
 import Pagination from '@/component/common/Pagination';
 
 const Home = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const clickCard = () => {
-    navigate('/reservation');
-  };
+  // const clickCard = () => {
+  //   navigate('/reservation');
+  // };
   const [address, setAddress] = useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -55,7 +55,7 @@ const Home = () => {
         <Container>
           <Title>오피스 목록</Title>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <OfficeCard onClick={clickCard} />
+            <CardList />
           </Box>
           <Pagination />
         </Container>

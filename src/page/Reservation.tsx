@@ -18,6 +18,8 @@ import { format } from 'date-fns';
 import 'react-day-picker/dist/style.css';
 import OfficeCard from '@/component/common/OfficeCard';
 import Option from '@/component/common/Option';
+import Calendar from '@/component/reservation/Calendar';
+import { month, people } from '@/utils/config';
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -59,7 +61,18 @@ const Reservation = () => {
               //   justifyContent: 'center',
             }}
           >
-            <OfficeCard sx={{ width: 310, height: 352 }} />
+            <Container
+              sx={{
+                display: 'flex',
+                columnGap: 2,
+                rowGap: { sm: 0, xs: 1 },
+                flexWrap: 'wrap',
+                justifyContent: { sm: 'flex-start', xs: 'center' },
+              }}
+            >
+              <OfficeCard sx={{ width: 310, height: 352 }} />
+            </Container>
+
             <CommonButton
               onClick={clickOtherOffice}
               sx={{ width: 250, backgroundColor: 'secondary.main' }}
@@ -75,52 +88,42 @@ const Reservation = () => {
               flexGrow: 1,
               padding: 2,
               //   columnGap: 10,
-              //   display: 'flex',
-              //   flexDirection: 'column',
+              display: 'flex',
+              flexDirection: 'column',
               //   justifyContent: 'center',
-              //   alignItems: 'center',
+              alignItems: 'center',
             }}
           >
             <Box
               sx={{
                 display: 'flex',
-                // flexDirection: { md: 'row', sm: 'column', xs: 'column' },
-                columnGap: 20,
+                flexDirection: { md: 'row', sm: 'column', xs: 'column' },
+                columnGap: 2,
                 // justifyContent: 'center',
               }}
             >
+              {/* 달력 */}
               <Box
                 sx={{
-                  //   display: 'flex',
-                  //   flexDirection: 'column',
+                  display: 'flex',
+                  flexDirection: 'column',
                   //   flexGrow: 1,
-                  //   alignItems: 'center',
-                  width: '100%',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+
+                  width: { md: '50%', sm: '100%' },
                 }}
               >
-                <Typography sx={{ display: 'flex' }}>
-                  시작 날짜를 선택해주세요.
-                </Typography>
-
-                <style>{css}</style>
-                <DayPicker
-                  mode="single"
-                  selected={selectedDay}
-                  onSelect={setSelectedDay}
-                  showOutsideDays
-                  modifiersClassNames={{
-                    selected: 'my-selected',
-                    today: 'my-today',
-                  }}
-                  modifiersStyles={{
-                    disabled: { fontSize: '75%' },
-                  }}
-                ></DayPicker>
+                <Typography>시작 날짜를 선택해주세요.</Typography>
+                <Calendar />
               </Box>
+              {/* select */}
               <Box
                 sx={{
-                  flexGrow: 1,
-                  //   width: 300,
+                  //   flexGrow: 1,
+                  width: 350,
+                  //   width: { md: '50%', sm: '100%' },
+
                   display: 'flex',
                   flexDirection: 'column',
                   //   alignItems: 'center',
@@ -137,11 +140,11 @@ const Reservation = () => {
                 >
                   <CommonInputLabel>1~11개월까지 선택 가능</CommonInputLabel>
                   <CommonSelect label={'1~11개월까지 선택 가능'}>
-                    <MenuItem>1개월</MenuItem>
-                    <MenuItem>2개월</MenuItem>
-                    <MenuItem>3개월</MenuItem>
-                    <MenuItem>4개월</MenuItem>
-                    <MenuItem>5개월</MenuItem>
+                    {month.map((month: any, idx: any) => (
+                      <MenuItem key={idx} value={month?.term}>
+                        {month?.term}
+                      </MenuItem>
+                    ))}
                   </CommonSelect>
                 </FormControl>
                 <Typography>사용할 인원을 선택해주세요.</Typography>
@@ -155,14 +158,16 @@ const Reservation = () => {
                 >
                   <CommonInputLabel>1~10명까지 선택 가능</CommonInputLabel>
                   <CommonSelect label={'1~10명까지 선택 가능'}>
-                    <MenuItem>1명</MenuItem>
-                    <MenuItem>2명</MenuItem>
-                    <MenuItem>3명</MenuItem>
+                    {people.map((people: any, idx: any) => (
+                      <MenuItem key={idx} value={people?.number}>
+                        {people?.number}
+                      </MenuItem>
+                    ))}
                   </CommonSelect>
                 </FormControl>
               </Box>
             </Box>
-            <CommonButton>예약하기</CommonButton>
+            <CommonButton sx={{ width: '100%' }}>예약하기</CommonButton>
           </Paper>
         </Box>
       </Container>

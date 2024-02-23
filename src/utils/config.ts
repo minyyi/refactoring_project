@@ -203,3 +203,29 @@ export const optionInfo = [
   { name: '샤워시설', key: 'haveShowerBooth' },
   { name: '창고', key: 'haveStorage' },
 ];
+
+export const month = [
+  { term: '1개월' },
+  { term: '2개월' },
+  { term: '3개월' },
+  { term: '4개월' },
+  { term: '5개월' },
+  { term: '6개월' },
+  { term: '7개월' },
+  { term: '8개월' },
+  { term: '9개월' },
+  { term: '10개월' },
+  { term: '11개월' },
+];
+export const people = [
+  { number: '1명' },
+  { number: '2명' },
+  { number: '3명' },
+  { number: '4명' },
+  { number: '5명' },
+  { number: '6명' },
+  { number: '7명' },
+  { number: '8명' },
+  { number: '9명' },
+  { number: '10명' },
+];
