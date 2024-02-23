@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CommonButton from '@/component/common/CommonButton';
 import PageContainer from '@/component/common/PageContainer';
 import CommonSelect from '@/component/common/CommonSelect';
@@ -16,10 +17,17 @@ import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 import 'react-day-picker/dist/style.css';
 import OfficeCard from '@/component/common/OfficeCard';
+import Option from '@/component/common/Option';
+import Calendar from '@/component/reservation/Calendar';
+import { month, people } from '@/utils/config';
 
 const Reservation = () => {
+  const navigate = useNavigate();
   const [selectedDay, setSelectedDay] = useState<Date>();
 
+  const clickOtherOffice = () => {
+    navigate('/home');
+  };
   const css = `
   .my-selected:not([disabled]) { 
     font-weight: bold; 
@@ -53,8 +61,20 @@ const Reservation = () => {
               //   justifyContent: 'center',
             }}
           >
-            <OfficeCard sx={{ width: 310, height: 352 }} />
+            <Container
+              sx={{
+                display: 'flex',
+                columnGap: 2,
+                rowGap: { sm: 0, xs: 1 },
+                flexWrap: 'wrap',
+                justifyContent: { sm: 'flex-start', xs: 'center' },
+              }}
+            >
+              <OfficeCard sx={{ width: 310, height: 352 }} />
+            </Container>
+
             <CommonButton
+              onClick={clickOtherOffice}
               sx={{ width: 250, backgroundColor: 'secondary.main' }}
             >
               다른 오피스 보기
@@ -67,54 +87,46 @@ const Reservation = () => {
             sx={{
               flexGrow: 1,
               padding: 2,
+              //   columnGap: 10,
               display: 'flex',
               flexDirection: 'column',
               //   justifyContent: 'center',
-              //   alignItems: 'center',
+              alignItems: 'center',
             }}
           >
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: { md: 'row', sm: 'column', xs: 'column' },
-                columnGap: 1,
-                justifyContent: 'center',
+                columnGap: 2,
+                // justifyContent: 'center',
               }}
             >
+              {/* 달력 */}
               <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  flexGrow: 1,
+                  //   flexGrow: 1,
                   alignItems: 'center',
+                  justifyContent: 'center',
+
+                  width: { md: '50%', sm: '100%' },
                 }}
               >
-                <Typography sx={{ display: 'flex' }}>
-                  시작 날짜를 선택해주세요.
-                </Typography>
-
-                <style>{css}</style>
-                <DayPicker
-                  mode="single"
-                  selected={selectedDay}
-                  onSelect={setSelectedDay}
-                  showOutsideDays
-                  modifiersClassNames={{
-                    selected: 'my-selected',
-                    today: 'my-today',
-                  }}
-                  modifiersStyles={{
-                    disabled: { fontSize: '75%' },
-                  }}
-                ></DayPicker>
+                <Typography>시작 날짜를 선택해주세요.</Typography>
+                <Calendar />
               </Box>
+              {/* select */}
               <Box
                 sx={{
-                  flexGrow: 1,
-                  //   width: 300,
+                  //   flexGrow: 1,
+                  width: 350,
+                  //   width: { md: '50%', sm: '100%' },
+
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center',
+                  //   alignItems: 'center',
                 }}
               >
                 <Typography>이용 기간을 선택해주세요.</Typography>
@@ -128,7 +140,11 @@ const Reservation = () => {
                 >
                   <CommonInputLabel>1~11개월까지 선택 가능</CommonInputLabel>
                   <CommonSelect label={'1~11개월까지 선택 가능'}>
-                    <MenuItem></MenuItem>
+                    {month.map((month: any, idx: any) => (
+                      <MenuItem key={idx} value={month?.term}>
+                        {month?.term}
+                      </MenuItem>
+                    ))}
                   </CommonSelect>
                 </FormControl>
                 <Typography>사용할 인원을 선택해주세요.</Typography>
@@ -142,23 +158,39 @@ const Reservation = () => {
                 >
                   <CommonInputLabel>1~10명까지 선택 가능</CommonInputLabel>
                   <CommonSelect label={'1~10명까지 선택 가능'}>
-                    <MenuItem></MenuItem>
+                    {people.map((people: any, idx: any) => (
+                      <MenuItem key={idx} value={people?.number}>
+                        {people?.number}
+                      </MenuItem>
+                    ))}
                   </CommonSelect>
                 </FormControl>
               </Box>
             </Box>
-            <CommonButton>예약하기</CommonButton>
+            <CommonButton sx={{ width: '100%' }}>예약하기</CommonButton>
           </Paper>
         </Box>
       </Container>
       <Container>
-        <Box sx={{ width: '100%', height: 400, backgroundColor: 'info.main' }}>
+        <Box sx={{ width: '100%', height: 400, backgroundColor: 'gray' }}>
           지도
         </Box>
       </Container>
       <Container>
-        <Box>옵션</Box>
-        <Box>리뷰</Box>
+        <Box sx={{ padding: 2, borderBottom: 0.5 }}>
+          <Typography sx={{ color: '#A7AAB3', fontWeight: 'bold', mb: 1 }}>
+            옵션
+          </Typography>
+          <Typography sx={{ fontSize: 14 }}>에어컨</Typography>
+          <Typography sx={{ fontSize: 14 }}>커피머신</Typography>
+        </Box>
+        <Box sx={{ padding: 2 }}>
+          {' '}
+          <Typography sx={{ color: '#A7AAB3', fontWeight: 'bold', mb: 1 }}>
+            리뷰
+          </Typography>
+          <Typography>어쩌고 저쩌고</Typography>
+        </Box>
       </Container>
     </PageContainer>
   );

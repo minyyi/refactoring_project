@@ -72,10 +72,6 @@ const Authpage = ({ title }: any) => {
                   minHeight: 300,
                   border: 1,
                   borderRadius: 10,
-                  // backgroundImage: 'url(free-icon-rent-2590468.png)',
-                  // backgroundSize: 'contain',
-                  // backgroundPosition: 'center',
-                  // backgroundRepeat: 'no-repeat',
                   cursor: 'pointer',
                 }}
               >
@@ -109,10 +105,6 @@ const Authpage = ({ title }: any) => {
                   minHeight: 300,
                   border: 1,
                   borderRadius: 10,
-                  // backgroundImage: 'url(urban-20230109104922091058.jpg)',
-                  // backgroundSize: 'contain',
-                  // backgroundPosition: 'center',
-                  // backgroundRepeat: 'no-repeat',
                   cursor: 'pointer',
                 }}
               >
