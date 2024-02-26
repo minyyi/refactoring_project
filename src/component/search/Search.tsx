@@ -94,9 +94,9 @@ const Search = () => {
               value={search}
               sx={{}}
             >
-              <MenuItem aria-label="None" value="">
+              {/* <MenuItem aria-label="None" value="">
                 선택안함
-              </MenuItem>
+              </MenuItem> */}
 
               {selectLegion.map((address: any, idx: any) => (
                 <MenuItem key={idx} value={address.legion}>

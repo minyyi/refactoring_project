@@ -33,44 +33,7 @@ const CardList = ({ sx, ...others }: any) => {
         {...others}
       >
         {Array.from({ length: 20 }, (list, idx) => {
-          return (
-            <OfficeCard key={idx} list={list} />
-            // <Box
-            //   key={card?.id}
-            //   sx={{
-            //     display: 'flex',
-            //     justifyContent: 'center',
-            //     flexDirection: 'column',
-            //     rowGap: 1,
-
-            //     width: { lg: 270, md: 260, sm: 260, xs: '100%' },
-            //     height: 250,
-            //     cursor: 'pointer',
-            //     // backgroundColor: 'gray',
-            //   }}
-            // >
-            //   <Box sx={{ height: 160, overflow: 'hidden' }}>
-            //     <img
-            //       src={card?.image}
-            //       style={{
-            //         objectFit: 'cover',
-            //         width: '100%',
-            //         height: '100%',
-            //         borderRadius: 5,
-            //       }}
-            //     />
-            //   </Box>
-
-            //   <Box sx={{}}>
-            //     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            //       <Typography>{card?.officeName}</Typography>
-            //       <Typography>{card?.grade}</Typography>
-            //     </Box>
-            //     <Typography>{card?.address}</Typography>
-            //     <Typography>{card?.price}</Typography>
-            //   </Box>
-            // </Box>
-          );
+          return <OfficeCard key={idx} list={list} />;
         })}
       </Container>
     </>
