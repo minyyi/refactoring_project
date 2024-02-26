@@ -32,9 +32,9 @@ const CardList = ({ sx, ...others }: any) => {
         }}
         {...others}
       >
-        {Array.from({ length: 20 }, (list) => {
+        {Array.from({ length: 20 }, (list, idx) => {
           return (
-            <OfficeCard list={list} />
+            <OfficeCard key={idx} list={list} />
             // <Box
             //   key={card?.id}
             //   sx={{
