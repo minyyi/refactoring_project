@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import CommonButton from '@/component/common/CommonButton';
 import PageContainer from '@/component/common/PageContainer';
 import CommonSelect from '@/component/common/CommonSelect';
@@ -22,27 +22,13 @@ import Calendar from '@/component/reservation/Calendar';
 import { month, people } from '@/utils/config';
 
 const Reservation = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [selectedDay, setSelectedDay] = useState<Date>();
 
   const clickOtherOffice = () => {
     navigate('/home');
   };
-  const css = `
-  .my-selected:not([disabled]) { 
-    font-weight: bold; 
-    border: 2px solid currentColor;
-  }
-  .my-selected:hover:not([disabled]) { 
-    // border-color: 'primary.main';
-    // color: 'primary.main';
-  }
-  .my-today { 
-    font-weight: bold;
-    font-size: 120%; 
-    text-decoration : underline;
-  }
-`;
+  console.log(id);
   return (
     <PageContainer sx={{ display: 'flex', flexDirection: 'column', rowGap: 4 }}>
       <Container

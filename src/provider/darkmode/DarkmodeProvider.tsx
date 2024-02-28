@@ -19,7 +19,6 @@ function ColorModeContextProvider({ children }: { children: ReactNode }) {
   const handleColorMode = () => {
     setMode((prevMode: PaletteMode) => {
       localStorage.setItem('mode', prevMode === 'light' ? 'dark' : 'light');
-      //useEffect
       return prevMode === 'light' ? 'dark' : 'light';
     });
   };

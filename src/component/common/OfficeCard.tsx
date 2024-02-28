@@ -1,26 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 
-const OfficeCard = ({ sx, ...others }: any) => {
-  const card = {
-    id: 1,
-    image: '/img1.avif',
-    officeName: '선릉 더 공간A',
-    grade: '⭐️4.91(21)',
-    address: '서울시 강남구 테헤란로70번길 14-10',
-    price: '월 500,000',
-  };
+const OfficeCard = ({ list, sx, ...others }: any) => {
   const navigate = useNavigate();
 
-  const clickCard = () => {
-    navigate('/reservation');
+  const clickCard = (id: any) => {
+    navigate(`/reservation/${id}`);
   };
-
+  console.log(list);
   return (
     <>
       <Box
-        key={card?.id}
-        onClick={clickCard}
+        key={list?.id}
+        onClick={() => clickCard(list?.id)}
         sx={{
           display: 'flex',
           justifyContent: 'center',
@@ -35,7 +27,7 @@ const OfficeCard = ({ sx, ...others }: any) => {
       >
         <Box sx={{ height: 160, overflow: 'hidden' }}>
           <img
-            src={card?.image}
+            src={list?.image}
             style={{
               objectFit: 'cover',
               width: '100%',
@@ -47,11 +39,11 @@ const OfficeCard = ({ sx, ...others }: any) => {
 
         <Box sx={{}}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography>{card?.officeName}</Typography>
-            <Typography>{card?.grade}</Typography>
+            <Typography>{list?.officeName}</Typography>
+            <Typography>{list?.grade}</Typography>
           </Box>
-          <Typography>{card?.address}</Typography>
-          <Typography>{card?.price}</Typography>
+          <Typography>{list?.address}</Typography>
+          <Typography>{list?.price}</Typography>
         </Box>
       </Box>
     </>

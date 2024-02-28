@@ -6,6 +6,7 @@ import Authpage from './page/Authpage';
 import Reservation from './page/Reservation';
 import { useEffect } from 'react';
 import { useColorModeContext } from './provider/darkmode/DarkmodeProvider';
+import NotiMsg from './page/NotiMsg';
 
 const Router = () => {
   const context = useColorModeContext();
@@ -22,7 +23,8 @@ const Router = () => {
           <Route path="/login" element={<Authpage title={'로그인'} />} />
           <Route path="/signup" element={<Authpage title={'회원가입'} />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/reservation" element={<Reservation />} />
+          <Route path="/reservation/:id" element={<Reservation />} />
+          <Route path="/noti" element={<NotiMsg />} />
         </Routes>
       </Layout>
     </BrowserRouter>
