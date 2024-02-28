@@ -9,6 +9,7 @@ import {
   MenuItem,
   SelectChangeEvent,
   FormControl,
+  Pagination,
 } from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
 import CommonButton from '@/component/common/CommonButton';
@@ -18,9 +19,13 @@ import { selectLegion } from '@/utils/config';
 import Search from '@/component/search/Search';
 import CardList from '@/component/list/CardList';
 import Title from '@/component/common/Title';
-import Pagination from '@/component/common/Pagination';
+import { useRecoilState } from 'recoil';
+import { homeData } from '@/lib/recoil/homeDataAtom';
 
 const Home = () => {
+  const [text, setText] = useRecoilState(homeData);
+  const filterdData = [...text];
+
   // const navigate = useNavigate();
 
   // const clickCard = () => {
@@ -32,15 +37,18 @@ const Home = () => {
     setAddress(event.target.value as string);
   };
 
-  useEffect(() => {
-    console.log('mount');
-    return () => {
-      console.log('unmount');
-    };
-  }, []);
+  // useEffect(() => {
+  //   console.log('mount');
+  //   return () => {
+  //     console.log('unmount');
+  //   };
+  // }, []);
+  console.log(text);
   return (
     <>
-      <PageContainer>
+      <PageContainer
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      >
         <Container
           sx={{ display: 'flex', flexGrow: 1, justifyContent: 'center' }}
         >
@@ -57,8 +65,8 @@ const Home = () => {
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <CardList />
           </Box>
-          <Pagination />
         </Container>
+        <Pagination sx={{ mt: 3 }} />
       </PageContainer>
     </>
   );

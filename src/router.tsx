@@ -23,7 +23,7 @@ const Router = () => {
           <Route path="/login" element={<Authpage title={'로그인'} />} />
           <Route path="/signup" element={<Authpage title={'회원가입'} />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/reservation" element={<Reservation />} />
+          <Route path="/reservation/:id" element={<Reservation />} />
           <Route path="/noti" element={<NotiMsg />} />
         </Routes>
       </Layout>
