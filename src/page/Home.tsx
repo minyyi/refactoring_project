@@ -20,13 +20,13 @@ import Search from '@/component/search/Search';
 import CardList from '@/component/list/CardList';
 import Title from '@/component/common/Title';
 import { useRecoilState } from 'recoil';
-import { homeData } from '@/lib/recoil/homeDataAtom';
+import { cardList } from '@/lib/recoil/homeDataAtom';
 
 const Home = () => {
-  const [text, setText] = useRecoilState(homeData);
-  const filterdData = [...text];
+  const [card, setCard] = useRecoilState(cardList);
+  const filterdData = [...card];
 
-  // const navigate = useNavigate();
+  const navigator = useNavigate();
 
   // const clickCard = () => {
   //   navigate('/reservation');
@@ -37,13 +37,18 @@ const Home = () => {
     setAddress(event.target.value as string);
   };
 
+  //커스텀훅
   // useEffect(() => {
-  //   console.log('mount');
+  //   const id = localStorage.getItem('userid');
+  //   if (!id) {
+  //     navigator('/');
+  //   }
   //   return () => {
   //     console.log('unmount');
   //   };
   // }, []);
-  console.log(text);
+
+  console.log(card);
   return (
     <>
       <PageContainer

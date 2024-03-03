@@ -14,6 +14,8 @@ import {
   validatePassword,
   validateBusinessNumber,
 } from '@/utils/validate';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { userid } from '@/lib/recoil/authAtom';
 
 // import { getAgencyApi } from "../../fetch/get/main";
 // import { signupAgencyApi } from '../../fetch/post/main';
@@ -49,6 +51,8 @@ export const AuthForm = ({
   //   });
   // console.log({ data });
   const navigate = useNavigate();
+  const setId = useSetRecoilState(userid);
+
   const clicktoLogin = ({
     title,
     process,
@@ -62,12 +66,11 @@ export const AuthForm = ({
         delete body.c;
       }
 
-      JSON.stringify(body);
-      fetch('www.', {
-        method: 'POST',
-        body,
-      });
-      // navigate('/home');
+      navigate('/home');
+      setId('민영');
+      localStorage.setItem('userid', '민영');
+
+      console.log('클릭');
     } else {
       navigate('/login');
     }
@@ -96,7 +99,7 @@ export const AuthForm = ({
   //       password: signup?.password,
   //     });
   //   };
-
+  console.log(title);
   return (
     <PageContainer
       sx={{
@@ -108,7 +111,7 @@ export const AuthForm = ({
         alignItems: 'center',
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: 2 }}>
         <Box
           sx={{
             display: 'flex',
@@ -224,7 +227,12 @@ export const AuthForm = ({
         <hr style={{ width: '300px' }} />
 
         <CommonButton
-          // onClick={clicktoLogin}
+          onClick={() =>
+            clicktoLogin({
+              title,
+              process,
+            })
+          }
           //   clickHandler={() => clickSignupButton()}
           disabled={
             //함수로 바꾸기 chatGPT

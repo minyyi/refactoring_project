@@ -20,15 +20,21 @@ import OfficeCard from '@/component/common/OfficeCard';
 import Option from '@/component/common/Option';
 import Calendar from '@/component/reservation/Calendar';
 import { month, people } from '@/utils/config';
+import { useRecoilState, useRecoilValue, selector } from 'recoil';
+import { cardList } from '@/lib/recoil/homeDataAtom';
 
-const Reservation = () => {
+const Reservation = ({ clickCard }: any) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const clickOtherOffice = () => {
     navigate('/home');
   };
+  const list = useRecoilValue(cardList);
+  const findData = list?.find((card: any) => card?.id === id);
   console.log(id);
+  console.log(findData);
+
   return (
     <PageContainer sx={{ display: 'flex', flexDirection: 'column', rowGap: 4 }}>
       <Container
@@ -56,7 +62,10 @@ const Reservation = () => {
                 justifyContent: { sm: 'flex-start', xs: 'center' },
               }}
             >
-              <OfficeCard sx={{ width: 310, height: 352 }} />
+              <OfficeCard
+                cardData={findData}
+                sx={{ width: 310, height: 352 }}
+              />
             </Container>
 
             <CommonButton

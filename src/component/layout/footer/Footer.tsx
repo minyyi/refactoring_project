@@ -2,11 +2,16 @@ import { Box, Typography, Container } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub'; // import styled from "@emotion/styled";
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { pathCase } from '@/utils/config';
 
 const Footer = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const clickLogo = () => {
+    navigate('/home');
+  };
+
   console.log(pathname);
   if (pathCase({ pathname })) return null;
 
@@ -30,7 +35,7 @@ const Footer = () => {
           }}
         >
           {/* 로고, 시간 */}
-          <Box sx={{ display: 'flex' }}>
+          <Box onClick={clickLogo} sx={{ display: 'flex', cursor: 'pointer' }}>
             <Typography>OfficeFinder</Typography>
           </Box>
           {/* 전화번호 */}
