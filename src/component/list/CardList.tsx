@@ -1,24 +1,17 @@
 import { Container, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import OfficeCard from '../common/OfficeCard';
+import { useRecoilState } from 'recoil';
+import { cardList } from '@/lib/recoil/homeDataAtom';
 
 const CardList = ({ sx, ...others }: any) => {
-  //   const navigate = useNavigate();
+  const [card, setCard] = useRecoilState(cardList);
+  const navigator = useNavigate();
 
-  //   const clickCard = () => {
-  //     navigate('/reservation');
-  //   };
-
-  const list = Array.from({ length: 10 }, (_, i) => {
-    return {
-      id: i,
-      image: '/img1.avif',
-      officeName: '선릉 더 공간A',
-      grade: '⭐️4.91(21)',
-      address: '서울시 강남구 테헤란로70번길 14-10',
-      price: '월 500,000',
-    };
-  });
+  const clickCard = (id: any) => {
+    navigator(`/reservation/${id}`);
+    // console.log(cardData);
+  };
   return (
     <>
       <Container
@@ -32,12 +25,11 @@ const CardList = ({ sx, ...others }: any) => {
         }}
         {...others}
       >
-        {list?.map((list, idx) => {
-          return <OfficeCard key={idx} list={list} />;
+        {card?.map((cardData, idx) => {
+          return (
+            <OfficeCard key={idx} cardData={cardData} clickCard={clickCard} />
+          );
         })}
-        {/* {list?.map(list, idx) => {
-          return <OfficeCard key={idx} list={list} />;
-        }} */}
       </Container>
     </>
   );

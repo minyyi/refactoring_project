@@ -9,10 +9,18 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { userid } from '@/lib/recoil/authAtom';
 
-const settings = ['Profile', 'Bookmark', 'Reservation', 'Logout'];
+const settings = [
+  { title: 'Profile', path: '/home', type: 'profile' },
+  { title: 'Bookmark', path: '/home' },
+  { title: 'Reservation', path: '/home' },
+  { title: 'Logout', path: '/', type: 'logout' },
+];
 
 const Profile = () => {
+  const navigator = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -30,9 +38,15 @@ const Profile = () => {
   };
   console.log(anchorElUser);
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (setting: any) => {
     setAnchorElUser(null);
+    console.log(setting);
+    if (setting?.type === 'logout') {
+      localStorage.removeItem('userid');
+    }
+    navigator(setting?.path);
   };
+
   return (
     <>
       <Box>
@@ -61,8 +75,11 @@ const Profile = () => {
             onClose={handleCloseUserMenu}
           >
             {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
+              <MenuItem
+                key={setting?.title}
+                onClick={() => handleCloseUserMenu(setting)}
+              >
+                <Typography textAlign="center">{setting?.title}</Typography>
               </MenuItem>
             ))}
           </Menu>

@@ -1,18 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
+import { useRecoilState } from 'recoil';
+import { userid } from '@/lib/recoil/authAtom';
+// import { useRecoilState } from 'recoil';
+// import { cardList } from '@/lib/recoil/homeDataAtom';
 
-const OfficeCard = ({ list, sx, ...others }: any) => {
+const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
   const navigate = useNavigate();
+  const [id, setId] = useRecoilState(userid);
 
-  const clickCard = (id: any) => {
-    navigate(`/reservation/${id}`);
-  };
-  console.log(list);
+  console.log(cardData);
+  console.log(id);
   return (
     <>
       <Box
-        key={list?.id}
-        onClick={() => clickCard(list?.id)}
+        key={cardData?.id}
+        onClick={() => clickCard(cardData)}
         sx={{
           display: 'flex',
           justifyContent: 'center',
@@ -27,7 +30,7 @@ const OfficeCard = ({ list, sx, ...others }: any) => {
       >
         <Box sx={{ height: 160, overflow: 'hidden' }}>
           <img
-            src={list?.image}
+            src={cardData?.image}
             style={{
               objectFit: 'cover',
               width: '100%',
@@ -39,11 +42,11 @@ const OfficeCard = ({ list, sx, ...others }: any) => {
 
         <Box sx={{}}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography>{list?.officeName}</Typography>
-            <Typography>{list?.grade}</Typography>
+            <Typography>{cardData?.officeName}</Typography>
+            <Typography>{cardData?.grade}</Typography>
           </Box>
-          <Typography>{list?.address}</Typography>
-          <Typography>{list?.price}</Typography>
+          <Typography>{cardData?.address}</Typography>
+          {id ? <Typography>{cardData?.price}</Typography> : null}
         </Box>
       </Box>
     </>

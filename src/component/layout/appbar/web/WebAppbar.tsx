@@ -1,14 +1,20 @@
 import { Box, Typography, Button } from '@mui/material';
 // import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 const pages = ['type', 'name', 'point'];
 // const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
 
 const WebAppbar = () => {
+  const navigate = useNavigate();
+  const clickLogo = () => {
+    navigate('/home');
+  };
   return (
     <>
       <Box
+        onClick={clickLogo}
         sx={{
           display: 'flex',
         }}

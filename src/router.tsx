@@ -7,6 +7,7 @@ import Reservation from './page/Reservation';
 import { useEffect } from 'react';
 import { useColorModeContext } from './provider/darkmode/DarkmodeProvider';
 import NotiMsg from './page/NotiMsg';
+import Mypage from './page/Mypage';
 
 const Router = () => {
   const context = useColorModeContext();
@@ -15,6 +16,7 @@ const Router = () => {
     console.log('router', mode);
     context.setMode(mode);
   }, []);
+
   return (
     <BrowserRouter>
       <Layout>
@@ -25,6 +27,7 @@ const Router = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/reservation/:id" element={<Reservation />} />
           <Route path="/noti" element={<NotiMsg />} />
+          <Route path="/mypage" element={<Mypage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

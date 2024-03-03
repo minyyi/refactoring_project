@@ -48,7 +48,7 @@ const Authpage = ({ title }: any) => {
           />
         ) : (
           <>
-            <Title>{title}</Title>
+            <Title sx={{ margin: 'auto' }}>{title}</Title>
             <Box
               sx={{
                 mb: 1,
