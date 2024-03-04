@@ -13,9 +13,6 @@ import {
   MenuItem,
   FormControl,
 } from '@mui/material';
-import { DayPicker } from 'react-day-picker';
-import { format } from 'date-fns';
-import 'react-day-picker/dist/style.css';
 import OfficeCard from '@/component/common/OfficeCard';
 import Option from '@/component/common/Option';
 import Calendar from '@/component/reservation/Calendar';
@@ -32,6 +29,7 @@ const Reservation = ({ clickCard }: any) => {
   };
   const list = useRecoilValue(cardList);
   const findData = list?.find((card: any) => card?.id === id);
+  console.log(list);
   console.log(id);
   console.log(findData);
 
@@ -63,6 +61,7 @@ const Reservation = ({ clickCard }: any) => {
               }}
             >
               <OfficeCard
+                // key={findData?.id}
                 cardData={findData}
                 sx={{ width: 310, height: 352 }}
               />

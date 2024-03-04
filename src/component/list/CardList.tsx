@@ -8,8 +8,8 @@ const CardList = ({ sx, ...others }: any) => {
   const [card, setCard] = useRecoilState(cardList);
   const navigator = useNavigate();
 
-  const clickCard = (id: any) => {
-    navigator(`/reservation/${id}`);
+  const clickCard = (cardData: any) => {
+    navigator(`/reservation/${cardData?.id}`);
     // console.log(cardData);
   };
   return (
