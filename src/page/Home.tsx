@@ -21,6 +21,7 @@ import CardList from '@/component/list/CardList';
 import Title from '@/component/common/Title';
 import { useRecoilState } from 'recoil';
 import { cardList } from '@/lib/recoil/homeDataAtom';
+import { authHook } from '@/utils/authHook';
 
 const Home = () => {
   const [card, setCard] = useRecoilState(cardList);
@@ -36,6 +37,8 @@ const Home = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setAddress(event.target.value as string);
   };
+
+  // const getId = authHook();
 
   //커스텀훅
   // useEffect(() => {

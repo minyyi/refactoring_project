@@ -11,13 +11,13 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { userid } from '@/lib/recoil/authAtom';
+import { MobileMenuItemArray } from '@/utils/config';
 
-const settings = [
-  { title: 'Profile', path: '/home', type: 'profile' },
-  { title: 'Bookmark', path: '/home' },
-  { title: 'Reservation', path: '/home' },
-  { title: 'Logout', path: '/', type: 'logout' },
-];
+// const settings = [
+//   { title: 'Profile', path: '/home', type: 'profile' },
+//   { title: 'Bookmark', path: '/home' },
+//   { title: 'Reservation', path: '/home' },
+// ];
 
 const Profile = () => {
   const navigator = useNavigate();
@@ -74,12 +74,12 @@ const Profile = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {settings.map((setting) => (
+            {MobileMenuItemArray.map((menu) => (
               <MenuItem
-                key={setting?.title}
-                onClick={() => handleCloseUserMenu(setting)}
+                key={menu?.title}
+                onClick={() => handleCloseUserMenu(menu)}
               >
-                <Typography textAlign="center">{setting?.title}</Typography>
+                <Typography textAlign="center">{menu?.title}</Typography>
               </MenuItem>
             ))}
           </Menu>

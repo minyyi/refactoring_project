@@ -1,7 +1,8 @@
 export const MobileMenuItemArray = [
-  { title: 'Profile', path: '/profile' },
+  { title: 'Mypage', path: '/mypage' },
   { title: 'Bookmark', path: '/bookmark' },
   { title: 'Reservation', path: '/reservation' },
+  { title: 'Logout', path: '/', type: 'logout' },
 ];
 
 export const pathCase = ({ pathname }: { pathname: any }) => {
