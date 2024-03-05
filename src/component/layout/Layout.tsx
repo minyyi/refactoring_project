@@ -5,16 +5,19 @@ import Appbar from './appbar/Appbar';
 import { useLocation } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { userid } from '@/lib/recoil/authAtom';
+import { authHook } from '@/utils/authHook';
 
 export const Layout = (props: { children: ReactNode }) => {
   const location = useLocation();
-  const setId = useSetRecoilState<any>(userid);
+  const getId = authHook();
 
-  useEffect(() => {
-    const id = localStorage.getItem('userid');
-    setId(id);
-    console.log('layout', id);
-  }, []);
+  // const setId = useSetRecoilState<any>(userid);
+
+  // useEffect(() => {
+  //   const id = localStorage.getItem('userid');
+  //   setId(id);
+  //   console.log('layout', id);
+  // }, []);
 
   return (
     <>

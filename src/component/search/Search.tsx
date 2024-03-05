@@ -124,15 +124,18 @@ const Search = () => {
             </CommonSelect>
           </FormControl>
 
-          {/* <CommonInput
+          <CommonInput
             sx={{ display: 'flex', width: { md: 200, sm: 100, xs: '100%' } }}
             size="normal"
             label={'읍/면/동/리'}
             type="text"
             name="town"
-            value={town?.town}
-            onChange={handleFormData}
-          /> */}
+            // onChange={handleSearch}
+            // value={search}
+
+            // value={town?.town}
+            // onChange={handleFormData}
+          />
           <CommonButton size={'medium'}>검색</CommonButton>
           <CommonButton size={'medium'} onClick={handleReset}>
             초기화
