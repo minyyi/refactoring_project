@@ -43,6 +43,7 @@ const Profile = () => {
     console.log(setting);
     if (setting?.type === 'logout') {
       localStorage.removeItem('userid');
+      // localStorage.removeItem('mode');
     }
     navigator(setting?.path);
   };

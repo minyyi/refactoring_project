@@ -6,7 +6,7 @@ export const MobileMenuItemArray = [
 ];
 
 export const pathCase = ({ pathname }: { pathname: any }) => {
-  console.log(pathname);
+  // console.log(pathname);
   switch (pathname) {
     case '/':
     case '/login':
