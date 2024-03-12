@@ -36,8 +36,8 @@ export const arrayTest = [
     price: '월 300,000',
   },
 ];
-export const cardList = atom({
-  key: 'cardList',
+export const cardData = atom({
+  key: 'cardData',
   default: arrayTest,
 });
 

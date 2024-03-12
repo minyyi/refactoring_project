@@ -1,18 +1,30 @@
+import { Co2Sharp } from '@mui/icons-material';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { pathCase } from './config';
+// import { useColorModeContext } from '@/provider/darkmode/DarkmodeProvider';
 
 export const authHook = () => {
   const navigate = useNavigate();
-  //커스텀훅
+  const { pathname } = useLocation();
+
+  //   const context = useColorModeContext();
+  const id = localStorage.getItem('userid');
+  //   const mode = localStorage.getItem('mode');
   useEffect(() => {
-    const id = localStorage.getItem('userid');
+    console.log('훅');
+
+    if (pathCase({ pathname })) {
+      return;
+    }
     if (!id) {
       navigate('/');
+      //   context.setMode();
     }
     return () => {
       console.log('unmount');
     };
-  }, []);
-
+  }, [pathname]);
+  //   console.log(location);
   return <></>;
 };

@@ -1,12 +1,12 @@
 export const MobileMenuItemArray = [
   { title: 'Mypage', path: '/mypage' },
   { title: 'Bookmark', path: '/bookmark' },
-  { title: 'Reservation', path: '/reservation' },
+  { title: 'Reservation', path: '/myreservation' },
   { title: 'Logout', path: '/', type: 'logout' },
 ];
 
 export const pathCase = ({ pathname }: { pathname: any }) => {
-  console.log(pathname);
+  // console.log(pathname);
   switch (pathname) {
     case '/':
     case '/login':

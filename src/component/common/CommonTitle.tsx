@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Typography } from '@mui/material';
 
-const Title = ({ children, sx }: { children: ReactNode; sx?: any }) => {
+const CommonTitle = ({ children, sx }: { children: ReactNode; sx?: any }) => {
   return (
     <>
       <Typography
@@ -20,4 +20,4 @@ const Title = ({ children, sx }: { children: ReactNode; sx?: any }) => {
   );
 };
 
-export default Title;
+export default CommonTitle;

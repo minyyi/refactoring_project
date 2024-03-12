@@ -12,6 +12,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { userid } from '@/lib/recoil/authAtom';
 import { MobileMenuItemArray } from '@/utils/config';
+import { useColorModeContext } from '@/provider/darkmode/DarkmodeProvider';
+import ColorModeContextProvider from '@/provider/darkmode/DarkmodeProvider';
 
 // const settings = [
 //   { title: 'Profile', path: '/home', type: 'profile' },
@@ -27,6 +29,7 @@ const Profile = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const context = useColorModeContext();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     if (matches) {
@@ -43,7 +46,9 @@ const Profile = () => {
     console.log(setting);
     if (setting?.type === 'logout') {
       localStorage.removeItem('userid');
-    }
+      localStorage.setItem('mode', 'light');
+      // setMode('light')
+    } //'mode', prevMode === 'light' ? 'dark' : 'light'
     navigator(setting?.path);
   };
 

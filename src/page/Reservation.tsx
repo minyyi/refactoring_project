@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import CommonButton from '@/component/common/CommonButton';
 import PageContainer from '@/component/common/PageContainer';
 import CommonSelect from '@/component/common/CommonSelect';
-import Title from '@/component/common/Title';
+import CommonTitle from '@/component/common/CommonTitle';
 import CommonInputLabel from '@/component/common/CommonInputLabel';
 import {
   Box,
@@ -18,8 +18,8 @@ import Option from '@/component/common/Option';
 import Calendar from '@/component/reservation/Calendar';
 import { month, people } from '@/utils/config';
 import { useRecoilState, useRecoilValue, selector } from 'recoil';
-import { cardList } from '@/lib/recoil/homeDataAtom';
-import SelectforReservation from '@/component/reservation/selectforReservation';
+import { cardData } from '@/lib/recoil/homeDataAtom';
+import SelectforReservation from '@/component/reservation/SelectforReservation';
 
 const Reservation = ({ clickCard }: any) => {
   const { id } = useParams();
@@ -28,7 +28,7 @@ const Reservation = ({ clickCard }: any) => {
   const clickOtherOffice = () => {
     navigate('/home');
   };
-  const list = useRecoilValue(cardList);
+  const list = useRecoilValue(cardData);
   const findData = list?.find((card: any) => card?.id === id);
   console.log(list);
   console.log(id);
@@ -40,7 +40,7 @@ const Reservation = ({ clickCard }: any) => {
         sx={{ display: 'flex', flexDirection: 'column', rowGap: 2 }}
         id="schedule"
       >
-        <Title>예약하기</Title>
+        <CommonTitle>예약하기</CommonTitle>
         <Box
           sx={{ display: 'flex', flexDirection: { md: 'row', xs: 'column' } }}
         >

@@ -18,15 +18,28 @@ const MyInfo = () => {
     >
       <Box>
         <Typography>아이디</Typography>
-        <Typography>{data?.id}</Typography>
+
+        <CommonInput
+          disabled
+          defaultValue={data?.id}
+          InputProps={{
+            readOnly: true,
+          }}
+        />
       </Box>
       <Box>
         <Typography>닉네임</Typography>
-        <CommonInput>{data?.nickname}</CommonInput>
+        <CommonInput required defaultValue={data?.nickname} />
       </Box>
       <Box>
         <Typography>잔여 포인트</Typography>
-        <CommonInput>{data?.point}</CommonInput>
+        <CommonInput
+          disabled
+          defaultValue={data?.point}
+          InputProps={{
+            readOnly: true,
+          }}
+        />
       </Box>
     </Box>
   );

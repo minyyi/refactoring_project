@@ -4,7 +4,7 @@ import CommonButton from '../common/CommonButton';
 import CommonInput from '../common/CommonInput';
 import PageContainer from '@/component/common/PageContainer';
 import { Box, IconButton, InputAdornment } from '@mui/material';
-import Title from '../common/Title';
+import CommonTitle from '../common/CommonTitle';
 import { VisibilityOff } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useNavigate } from 'react-router-dom';
@@ -122,9 +122,9 @@ export const AuthForm = ({
           <IconButton onClick={() => clickBack('')}>
             <ArrowBackIosNewIcon />
           </IconButton>
-          <Title sx={{ padding: 0 }}>
+          <CommonTitle sx={{ padding: 0 }}>
             {process === 'agency' ? '임대인' : '일반회원'} {title}
-          </Title>
+          </CommonTitle>
           <Box sx={{ pl: 4 }}></Box>
         </Box>
 

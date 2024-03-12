@@ -18,15 +18,16 @@ import CommonSelect from '@/component/common/CommonSelect';
 import { selectLegion } from '@/utils/config';
 import Search from '@/component/search/Search';
 import CardList from '@/component/list/CardList';
-import Title from '@/component/common/Title';
+import CommonTitle from '@/component/common/CommonTitle';
 import { useRecoilState } from 'recoil';
-import { cardList } from '@/lib/recoil/homeDataAtom';
+import { cardData } from '@/lib/recoil/homeDataAtom';
 import { authHook } from '@/utils/authHook';
 
 const Home = () => {
-  const [card, setCard] = useRecoilState(cardList);
+  const [card, setCard] = useRecoilState(cardData);
   const filterdData = [...card];
-
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigator = useNavigate();
 
   // const clickCard = () => {
@@ -40,42 +41,57 @@ const Home = () => {
 
   // const getId = authHook();
 
-  //커스텀훅
-  // useEffect(() => {
-  //   const id = localStorage.getItem('userid');
-  //   if (!id) {
-  //     navigator('/');
-  //   }
-  //   return () => {
-  //     console.log('unmount');
-  //   };
-  // }, []);
+  useEffect(() => {
+    const testApi = () => {
+      let test = fetch('https://jsonplaceholder.typicode.com/users')
+        .then((res: any) => {
+          return res.json();
+        })
+        .then((res) => {
+          setData(res);
+          console.log('두번째then', res);
+          setLoading(false);
+          return res;
+        });
+      console.log(test);
+    };
+    testApi();
+  }, []);
 
+  console.log(data);
   console.log(card);
   return (
     <>
-      <PageContainer
-        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-      >
-        <Container
-          sx={{ display: 'flex', flexGrow: 1, justifyContent: 'center' }}
-        >
-          <Search />
-        </Container>
-        <Container
+      {loading ? (
+        <Typography>로딩중</Typography>
+      ) : (
+        <PageContainer
           sx={{
             display: 'flex',
-            justifyContent: { sm: 'flex-start', xs: 'center' },
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
-        ></Container>
-        <Container>
-          <Title>오피스 목록</Title>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <CardList />
-          </Box>
-        </Container>
-        <Pagination sx={{ mt: 3 }} />
-      </PageContainer>
+        >
+          <Container
+            sx={{ display: 'flex', flexGrow: 1, justifyContent: 'center' }}
+          >
+            <Search />
+          </Container>
+          <Container
+            sx={{
+              display: 'flex',
+              justifyContent: { sm: 'flex-start', xs: 'center' },
+            }}
+          ></Container>
+          <Container>
+            <CommonTitle>오피스 목록</CommonTitle>
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              <CardList />
+            </Box>
+          </Container>
+          <Pagination sx={{ mt: 3 }} />
+        </PageContainer>
+      )}
     </>
   );
 };

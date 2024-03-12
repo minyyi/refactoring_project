@@ -2,10 +2,10 @@ import { Container, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import OfficeCard from '../common/OfficeCard';
 import { useRecoilState } from 'recoil';
-import { cardList } from '@/lib/recoil/homeDataAtom';
+import { cardData } from '@/lib/recoil/homeDataAtom';
 
 const CardList = ({ sx, ...others }: any) => {
-  const [card, setCard] = useRecoilState(cardList);
+  const [card, setCard] = useRecoilState(cardData);
   const navigator = useNavigate();
 
   const clickCard = (cardData: any) => {

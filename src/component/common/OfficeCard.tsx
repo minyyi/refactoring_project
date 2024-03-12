@@ -9,8 +9,8 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
   const navigate = useNavigate();
   const [id, setId] = useRecoilState(userid);
 
-  console.log(cardData);
-  console.log(id);
+  // console.log(cardData);
+  // console.log(id);
   return (
     <>
       <Box

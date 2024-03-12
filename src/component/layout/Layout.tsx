@@ -9,16 +9,9 @@ import { authHook } from '@/utils/authHook';
 
 export const Layout = (props: { children: ReactNode }) => {
   const location = useLocation();
-  const getId = authHook();
+  authHook();
 
-  // const setId = useSetRecoilState<any>(userid);
-
-  // useEffect(() => {
-  //   const id = localStorage.getItem('userid');
-  //   setId(id);
-  //   console.log('layout', id);
-  // }, []);
-
+  console.log('레이아웃');
   return (
     <>
       <Box
