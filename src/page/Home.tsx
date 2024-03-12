@@ -18,13 +18,13 @@ import CommonSelect from '@/component/common/CommonSelect';
 import { selectLegion } from '@/utils/config';
 import Search from '@/component/search/Search';
 import CardList from '@/component/list/CardList';
-import Title from '@/component/common/Title';
+import CommonTitle from '@/component/common/CommonTitle';
 import { useRecoilState } from 'recoil';
-import { cardList } from '@/lib/recoil/homeDataAtom';
+import { cardData } from '@/lib/recoil/homeDataAtom';
 import { authHook } from '@/utils/authHook';
 
 const Home = () => {
-  const [card, setCard] = useRecoilState(cardList);
+  const [card, setCard] = useRecoilState(cardData);
   const filterdData = [...card];
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -84,7 +84,7 @@ const Home = () => {
             }}
           ></Container>
           <Container>
-            <Title>오피스 목록</Title>
+            <CommonTitle>오피스 목록</CommonTitle>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <CardList />
             </Box>

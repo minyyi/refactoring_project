@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Paper } from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
-import Title from '@/component/common/Title';
+import CommonTitle from '@/component/common/CommonTitle';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { AuthForm } from '@/component/auth/AuthForm';
 
@@ -48,7 +48,7 @@ const Authpage = ({ title }: any) => {
           />
         ) : (
           <>
-            <Title sx={{ margin: 'auto' }}>{title}</Title>
+            <CommonTitle sx={{ margin: 'auto' }}>{title}</CommonTitle>
             <Box
               sx={{
                 mb: 1,
