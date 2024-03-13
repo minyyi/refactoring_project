@@ -11,9 +11,11 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { userid } from '@/lib/recoil/authAtom';
-import { MobileMenuItemArray } from '@/utils/config';
+import { customerMenuItemArray, agentMenuItemArray } from '@/utils/config';
 import { useColorModeContext } from '@/provider/darkmode/DarkmodeProvider';
 import ColorModeContextProvider from '@/provider/darkmode/DarkmodeProvider';
+import { useRecoilState } from 'recoil';
+import { userType } from '@/lib/recoil/authAtom';
 
 // const settings = [
 //   { title: 'Profile', path: '/home', type: 'profile' },
@@ -30,6 +32,7 @@ const Profile = () => {
     null
   );
   const context = useColorModeContext();
+  console.log(context);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     if (matches) {
@@ -40,6 +43,8 @@ const Profile = () => {
     }
   };
   console.log(anchorElUser);
+  const [process, setProcess] = useRecoilState(userType);
+  console.log(process);
 
   const handleCloseUserMenu = (setting: any) => {
     setAnchorElUser(null);
@@ -47,10 +52,13 @@ const Profile = () => {
     if (setting?.type === 'logout') {
       localStorage.removeItem('userid');
       localStorage.setItem('mode', 'light');
-      // setMode('light')
-    } //'mode', prevMode === 'light' ? 'dark' : 'light'
+      localStorage.removeItem('roll');
+      context?.setMode('light');
+    }
+    //'mode', prevMode === 'light' ? 'dark' : 'light'
     navigator(setting?.path);
   };
+  const roll = localStorage.getItem('roll');
 
   return (
     <>
@@ -79,14 +87,23 @@ const Profile = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {MobileMenuItemArray.map((menu) => (
-              <MenuItem
-                key={menu?.title}
-                onClick={() => handleCloseUserMenu(menu)}
-              >
-                <Typography textAlign="center">{menu?.title}</Typography>
-              </MenuItem>
-            ))}
+            {roll === 'agency'
+              ? agentMenuItemArray.map((menu) => (
+                  <MenuItem
+                    key={menu?.title}
+                    onClick={() => handleCloseUserMenu(menu)}
+                  >
+                    <Typography textAlign="center">{menu?.title}</Typography>
+                  </MenuItem>
+                ))
+              : customerMenuItemArray.map((menu) => (
+                  <MenuItem
+                    key={menu?.title}
+                    onClick={() => handleCloseUserMenu(menu)}
+                  >
+                    <Typography textAlign="center">{menu?.title}</Typography>
+                  </MenuItem>
+                ))}
           </Menu>
         ) : (
           ''

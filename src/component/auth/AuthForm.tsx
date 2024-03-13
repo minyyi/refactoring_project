@@ -15,7 +15,7 @@ import {
   validateBusinessNumber,
 } from '@/utils/validate';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { userid } from '@/lib/recoil/authAtom';
+import { userid, userType } from '@/lib/recoil/authAtom';
 
 // import { getAgencyApi } from "../../fetch/get/main";
 // import { signupAgencyApi } from '../../fetch/post/main';
@@ -40,16 +40,6 @@ export const AuthForm = ({
   title: string;
   process: string;
 }) => {
-  // const { data } = useQuery("data", getAgencyApi);
-  //   const postSignup = useMutation('signUP', signupAgencyApi, {
-  //     onSuccess: (res: any) => {
-  //       console.log('RES', res);
-  //     },
-  //     onError: (error: any) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // console.log({ data });
   const navigate = useNavigate();
   const setId = useSetRecoilState(userid);
 
@@ -61,14 +51,10 @@ export const AuthForm = ({
     process: string;
   }) => {
     if (title === '로그인') {
-      let body: any = { a: 1, b: 2, c: 3 };
-      if (process === 'agency') {
-        delete body.c;
-      }
-
       navigate('/home');
       setId('민영');
       localStorage.setItem('userid', '민영');
+      localStorage.setItem('roll', process);
 
       console.log('클릭');
     } else {
@@ -99,6 +85,7 @@ export const AuthForm = ({
   //       password: signup?.password,
   //     });
   //   };
+  console.log(process);
   console.log(title);
   return (
     <PageContainer

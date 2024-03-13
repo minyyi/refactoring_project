@@ -4,10 +4,10 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-} from "@mui/material";
+} from '@mui/material';
 
 interface Toggle {
-  MobileMenuItemArray: any;
+  customerMenuItemArray: any;
   toggleDrawer: (event: any, path?: string) => void;
 }
 
@@ -20,7 +20,7 @@ const SidebarMenu = (props: Toggle) => {
       // onKeyDown={toggleDrawer} //예외
     >
       <List>
-        {props?.MobileMenuItemArray?.map((menu: any, idx: any) => (
+        {props?.customerMenuItemArray?.map((menu: any, idx: any) => (
           <ListItem key={idx} disablePadding>
             <ListItemButton
               onClick={(event) => {

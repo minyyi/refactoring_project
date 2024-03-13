@@ -51,24 +51,6 @@ const MyReservation = () => {
         <Box sx={{ padding: 3 }}>
           <Typography>지난예약내역</Typography>
           <PastReservation />
-          {/* <Box>
-            {card?.map((cardData, idx) => {
-              return (
-                <Box
-                  sx={{ display: 'flex', alignItems: 'center', columnGap: 2 }}
-                >
-                  <OfficeCard
-                    key={idx}
-                    cardData={cardData}
-                    clickCard={clickCard}
-                  />
-                  <Box sx={{}}>
-                    <Typography>결제일: 2024.02.01</Typography>
-                  </Box>
-                </Box>
-              );
-            })}
-          </Box> */}
         </Box>
       </Container>
     </PageContainer>

@@ -57,6 +57,9 @@ const Search = () => {
     window.sessionStorage.setItem('search', search);
   }, [search]);
 
+  const clickedSearch = () => {
+    window.sessionStorage.setItem('search', search);
+  };
   console.log(search);
   // console.log(selected);
   // console.log(selectCity[selected]);
@@ -136,7 +139,9 @@ const Search = () => {
             // value={town?.town}
             // onChange={handleFormData}
           />
-          <CommonButton size={'medium'}>검색</CommonButton>
+          <CommonButton size={'medium'} onClick={clickedSearch}>
+            검색
+          </CommonButton>
           <CommonButton size={'medium'} onClick={handleReset}>
             초기화
           </CommonButton>

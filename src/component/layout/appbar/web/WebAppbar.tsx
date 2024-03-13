@@ -2,11 +2,12 @@ import { Box, Typography, Button } from '@mui/material';
 // import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-
-const pages = ['type', 'name', 'point'];
-// const settings = ["Profile", "Bookmark", "Reservation", "Logout"];
+import { userType } from '@/lib/recoil/authAtom';
+import { useRecoilValue } from 'recoil';
 
 const WebAppbar = () => {
+  const process = localStorage.getItem('roll');
+  const pages = [process, 'name', 'point'];
   const navigate = useNavigate();
   const clickLogo = () => {
     navigate('/home');
