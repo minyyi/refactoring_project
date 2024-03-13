@@ -16,20 +16,15 @@ export const useColorModeContext = () => {
 
 function ColorModeContextProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<PaletteMode>('light');
-  const id = localStorage.getItem('userid');
 
   const handleColorMode = () => {
-    if (!id) {
-      setMode((prevMode: PaletteMode) => {
-        localStorage.setItem('mode', prevMode === 'dark' ? 'light' : 'light');
-        return prevMode === 'dark' ? 'light' : 'light';
-      });
-    } else {
-      setMode((prevMode: PaletteMode) => {
-        localStorage.setItem('mode', prevMode === 'light' ? 'dark' : 'light');
-        return prevMode === 'light' ? 'dark' : 'light';
-      });
-    }
+    //동기적 업데이트
+    let mode;
+    setMode((prevMode: PaletteMode) => {
+      mode = prevMode;
+      return prevMode === 'light' ? 'dark' : 'light';
+    });
+    localStorage.setItem('mode', mode === 'light' ? 'dark' : 'light');
   };
 
   return (

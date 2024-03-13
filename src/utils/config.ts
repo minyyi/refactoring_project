@@ -1,7 +1,13 @@
-export const MobileMenuItemArray = [
+export const customerMenuItemArray = [
   { title: 'Mypage', path: '/mypage' },
   { title: 'Bookmark', path: '/bookmark' },
   { title: 'Reservation', path: '/myreservation' },
+  { title: 'Logout', path: '/', type: 'logout' },
+];
+export const agentMenuItemArray = [
+  { title: 'Mypage', path: '/mypage' },
+  { title: 'MyOffice', path: '/myOffice' },
+  { title: 'Reservation', path: '/reservationList' },
   { title: 'Logout', path: '/', type: 'logout' },
 ];
 

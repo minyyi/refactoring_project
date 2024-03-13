@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import SidebarHeader from '@/component/layout/appbar/mobile/sidebar/HeaderofSidebar';
 import SidebarMenu from '@/component/layout/appbar/mobile/sidebar/BodyofSidebar';
 import SidebarFooter from './sidebar/FooterofSidebar';
-import { MobileMenuItemArray } from '@/utils/config';
+import { customerMenuItemArray } from '@/utils/config';
 import DarkmodeButton from '../common/DarkmodeButton';
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
@@ -102,7 +102,7 @@ const MobileAppbar = () => {
         >
           <SidebarHeader toggleDrawer={toggleDrawer} />
           <SidebarMenu
-            MobileMenuItemArray={MobileMenuItemArray}
+            customerMenuItemArray={customerMenuItemArray}
             toggleDrawer={toggleDrawer}
           />
           <SidebarFooter />
