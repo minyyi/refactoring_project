@@ -9,6 +9,7 @@ import { useColorModeContext } from './provider/darkmode/DarkmodeProvider';
 import NotiMsg from './page/NotiMsg';
 import Mypage from './page/Mypage';
 import MyReservation from './page/MyReservation';
+import Bookmark from './page/Bookmark';
 
 const Router = () => {
   const context = useColorModeContext();
@@ -29,6 +30,7 @@ const Router = () => {
           <Route path="/noti" element={<NotiMsg />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/myreservation" element={<MyReservation />} />
+          <Route path="/bookmark" element={<Bookmark />} />
         </Routes>
       </Layout>
     </BrowserRouter>

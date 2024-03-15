@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { userid } from '@/lib/recoil/authAtom';
+import BookmakrButton from './BookmarkButton';
 // import { useRecoilState } from 'recoil';
 // import { cardList } from '@/lib/recoil/homeDataAtom';
 
@@ -28,7 +29,7 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
           // backgroundColor: 'gray',
         }}
       >
-        <Box sx={{ height: 160, overflow: 'hidden' }}>
+        <Box sx={{ height: 160, overflow: 'hidden', position: 'relative' }}>
           <img
             src={cardData?.image}
             style={{
@@ -38,6 +39,7 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
               borderRadius: 5,
             }}
           />
+          <BookmakrButton />
         </Box>
 
         <Box sx={{}}>
@@ -54,3 +56,9 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
 };
 
 export default OfficeCard;
+
+// const BookmakrButton = styled('div')({
+//   position: 'absolute',
+//   top: '5px',
+//   left: '5px',
+// });

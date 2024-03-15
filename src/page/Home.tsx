@@ -12,16 +12,13 @@ import {
   Pagination,
 } from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
-import CommonButton from '@/component/common/CommonButton';
-import CommonInput from '@/component/common/CommonInput';
-import CommonSelect from '@/component/common/CommonSelect';
-import { selectLegion } from '@/utils/config';
 import Search from '@/component/search/Search';
 import CardList from '@/component/list/CardList';
 import CommonTitle from '@/component/common/CommonTitle';
 import { useRecoilState } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { authHook } from '@/utils/authHook';
+import BookmakrButton from '@/component/common/BookmarkButton';
 
 const Home = () => {
   const [card, setCard] = useRecoilState(cardData);
@@ -85,7 +82,9 @@ const Home = () => {
           ></Container>
           <Container>
             <CommonTitle>오피스 목록</CommonTitle>
+
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              {/* <BookmakrButton /> */}
               <CardList />
             </Box>
           </Container>
