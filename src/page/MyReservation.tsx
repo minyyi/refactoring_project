@@ -6,6 +6,7 @@ import { cardData } from '@/lib/recoil/homeDataAtom';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import PastReservation from '@/component/myreservation/PastReservation';
+import DataofReservation from '@/component/myreservation/DataofReservation';
 
 const MyReservation = () => {
   const navigator = useNavigate();
@@ -24,33 +25,22 @@ const MyReservation = () => {
         alignItems: 'center',
       }}
     >
-      <Container sx={{ display: 'flex', flexDirection: 'column', rowGap: 2 }}>
+      <Container>
         <CommonTitle>예약 내역</CommonTitle>
-        <Box sx={{ padding: 3 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: 3,
+            rowGap: 2,
+          }}
+        >
           <Typography>현재 이용중</Typography>
-          <Box>
-            {card?.map((cardData, idx) => {
-              return (
-                <Box
-                  sx={{ display: 'flex', alignItems: 'center', columnGap: 2 }}
-                >
-                  <OfficeCard
-                    key={idx}
-                    cardData={cardData}
-                    clickCard={clickCard}
-                  />
-                  <Box sx={{}}>
-                    <Typography>결제일: 2024.03.01</Typography>
-                    <Typography>다음 결제일은 4월 1일 입니다.</Typography>
-                  </Box>
-                </Box>
-              );
-            })}
-          </Box>
+          <DataofReservation clickCard={clickCard} />
         </Box>
         <Box sx={{ padding: 3 }}>
           <Typography>지난예약내역</Typography>
-          <PastReservation />
+          <DataofReservation clickCard={clickCard} />
         </Box>
       </Container>
     </PageContainer>

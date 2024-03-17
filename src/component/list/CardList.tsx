@@ -10,8 +10,10 @@ const CardList = ({ sx, ...others }: any) => {
 
   const clickCard = (cardData: any) => {
     navigator(`/reservation/${cardData?.id}`);
-    // console.log(cardData);
   };
+  //   const clickHeart = (selected) => {
+
+  //   }
   return (
     <>
       <Container

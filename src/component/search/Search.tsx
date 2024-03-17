@@ -60,6 +60,7 @@ const Search = () => {
   const clickedSearch = () => {
     window.sessionStorage.setItem('search', search);
   };
+
   console.log(search);
   // console.log(selected);
   // console.log(selectCity[selected]);

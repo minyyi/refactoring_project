@@ -15,7 +15,6 @@ const Router = () => {
   const context = useColorModeContext();
   useEffect(() => {
     const mode = localStorage.getItem('mode');
-    console.log('router', mode);
     context.setMode(mode);
   }, []);
   return (

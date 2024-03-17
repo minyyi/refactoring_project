@@ -12,7 +12,6 @@ export const agentMenuItemArray = [
 ];
 
 export const pathCase = ({ pathname }: { pathname: any }) => {
-  // console.log(pathname);
   switch (pathname) {
     case '/':
     case '/login':
