@@ -12,7 +12,6 @@ const Footer = () => {
     navigate('/home');
   };
 
-  console.log(pathname);
   if (pathCase({ pathname })) return null;
 
   return (

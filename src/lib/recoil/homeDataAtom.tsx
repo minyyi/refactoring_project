@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const arrayTest = [
+export const cardMockData = [
   {
     id: '0',
     image: '/img1.avif',
@@ -116,7 +116,7 @@ export const arrayTest = [
     officeName: '트라이그라운드',
     grade: '⭐️4.31(284)',
     address: {
-      legion: '서울시',
+      legion: '서울특별시',
       city: '관악구',
       town: '남부순환로 1921-1 2층',
     },
@@ -139,7 +139,7 @@ export const arrayTest = [
     officeName: '이지코워크 인천소호사무실',
     grade: '⭐️3.91(91)',
     address: {
-      legion: '인천',
+      legion: '인천광역시',
       city: '남동구',
       town: '청능대로 559 논현메디컬센터 4층',
     },
@@ -162,5 +162,5 @@ export const arrayTest = [
 ];
 export const cardData = atom({
   key: 'cardData',
-  default: arrayTest,
+  default: cardMockData,
 });

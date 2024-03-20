@@ -10,6 +10,9 @@ import NotiMsg from './page/NotiMsg';
 import Mypage from './page/Mypage';
 import MyReservation from './page/MyReservation';
 import Bookmark from './page/Bookmark';
+import MyOffice from './page/agent/Myoffice';
+import AddOffice from './page/agent/AddOffice';
+import OfficeDatail from './page/agent/OfficeDatail';
 
 const Router = () => {
   const context = useColorModeContext();
@@ -30,6 +33,9 @@ const Router = () => {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/myreservation" element={<MyReservation />} />
           <Route path="/bookmark" element={<Bookmark />} />
+          <Route path="/myoffice" element={<MyOffice />} />
+          <Route path="/addoffice" element={<AddOffice />} />
+          <Route path="/officeDatail" element={<OfficeDatail />} />
         </Routes>
       </Layout>
     </BrowserRouter>

@@ -8,11 +8,11 @@ const CommonInput = ({ label, sx, value, onChange, ...others }: any) => {
         size="small"
         value={value}
         onChange={onChange}
-        {...others}
         sx={{
           // margin: 1,
           ...sx,
         }}
+        {...others}
       />
     </>
   );

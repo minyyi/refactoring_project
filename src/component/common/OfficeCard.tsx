@@ -29,6 +29,7 @@ const OfficeCard = ({
   };
   console.log(id);
   console.log('하트', heart);
+  console.log(clickCard);
   return (
     <>
       <Box
@@ -65,8 +66,8 @@ const OfficeCard = ({
             <Typography>{cardData?.grade}</Typography>
           </Box>
           <Typography>
-            {`${cardData?.address?.legion}\t`}
-            {`${cardData?.address?.city}\t`}
+            {`${cardData?.address?.legion} `}
+            {`${cardData?.address?.city} `}
             {cardData?.address?.town}
           </Typography>
           {id ? <Typography>{cardData?.price}</Typography> : null}
