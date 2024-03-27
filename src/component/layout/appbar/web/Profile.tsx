@@ -32,7 +32,6 @@ const Profile = () => {
     null
   );
   const context = useColorModeContext();
-  console.log(context);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     if (matches) {
@@ -42,9 +41,7 @@ const Profile = () => {
       setAnchorElUser(event.currentTarget);
     }
   };
-  console.log(anchorElUser);
   const [process, setProcess] = useRecoilState(userType);
-  console.log(process);
 
   const handleCloseUserMenu = (setting: any) => {
     setAnchorElUser(null);

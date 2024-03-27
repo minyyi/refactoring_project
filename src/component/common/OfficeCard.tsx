@@ -1,16 +1,35 @@
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 import { useRecoilState } from 'recoil';
-import { userid } from '@/lib/recoil/authAtom';
+import BookmarkButton from './BookmarkButton';
+import { favorite } from '@/lib/recoil/favoritAtom';
 // import { useRecoilState } from 'recoil';
 // import { cardList } from '@/lib/recoil/homeDataAtom';
 
-const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
-  const navigate = useNavigate();
-  // const [id, setId] = useRecoilState(userid);
+const OfficeCard = ({
+  // clickHeart = () => {},
+  clickCard = () => {},
+  cardData,
+  sx,
+  ...others
+}: any) => {
   const id = localStorage.getItem('userid');
-  // console.log(cardData);
+  const [heart, setHeart] = useRecoilState<any>(favorite);
+  const clickHeart = (cardData: any) => {
+    console.log(cardData);
+    setHeart((prev: any) => {
+      //map??
+      let checkTrue = prev?.find((heart: any) => cardData?.id === heart?.id);
+      if (checkTrue) {
+        return prev?.filter((heart: any) => cardData?.id !== heart?.id);
+      } else {
+        return [cardData, ...prev];
+      }
+    });
+  };
   console.log(id);
+  console.log('하트', heart);
+  console.log(clickCard);
   return (
     <>
       <Box
@@ -18,17 +37,17 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
         onClick={() => clickCard(cardData)}
         sx={{
           display: 'flex',
-          justifyContent: 'center',
+          // justifyContent: 'center',
           flexDirection: 'column',
           rowGap: 1,
 
           width: { lg: 260, md: 270, sm: 260, xs: '100%' },
-          height: 250,
+          height: 270,
           cursor: 'pointer',
           // backgroundColor: 'gray',
         }}
       >
-        <Box sx={{ height: 160, overflow: 'hidden' }}>
+        <Box sx={{ height: 160, overflow: 'hidden', position: 'relative' }}>
           <img
             src={cardData?.image}
             style={{
@@ -38,6 +57,7 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
               borderRadius: 5,
             }}
           />
+          <BookmarkButton clickHeart={clickHeart} cardData={cardData} />
         </Box>
 
         <Box sx={{}}>
@@ -45,7 +65,11 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
             <Typography>{cardData?.officeName}</Typography>
             <Typography>{cardData?.grade}</Typography>
           </Box>
-          <Typography>{cardData?.address}</Typography>
+          <Typography>
+            {`${cardData?.address?.legion} `}
+            {`${cardData?.address?.city} `}
+            {cardData?.address?.town}
+          </Typography>
           {id ? <Typography>{cardData?.price}</Typography> : null}
         </Box>
       </Box>
@@ -54,3 +78,9 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
 };
 
 export default OfficeCard;
+
+// const BookmakrButton = styled('div')({
+//   position: 'absolute',
+//   top: '5px',
+//   left: '5px',
+// });

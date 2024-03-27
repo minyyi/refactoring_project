@@ -2,8 +2,6 @@ import { Button } from '@mui/material';
 import { ReactNode } from 'react';
 
 const CommonButton = ({ children, sx, ...others }: any) => {
-  //   const theme = useTheme();
-  // console.log(others);
   return (
     <Button
       color="primary"

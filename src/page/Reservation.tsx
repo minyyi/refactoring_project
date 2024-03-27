@@ -22,12 +22,12 @@ import { cardData } from '@/lib/recoil/homeDataAtom';
 import SelectforReservation from '@/component/reservation/SelectforReservation';
 
 const Reservation = ({ clickCard }: any) => {
-  const { id } = useParams();
   const navigate = useNavigate();
 
   const clickOtherOffice = () => {
     navigate('/home');
   };
+  const { id } = useParams();
   const list = useRecoilValue(cardData);
   const findData = list?.find((card: any) => card?.id === id);
   console.log(list);

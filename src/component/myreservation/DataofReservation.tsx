@@ -6,18 +6,18 @@ import { useNavigate } from 'react-router-dom';
 import CommonButton from '../common/CommonButton';
 import { grey } from '@mui/material/colors';
 
-const PastReservation = () => {
-  const [card, setCard] = useRecoilState(cardData);
-  const navigator = useNavigate();
+const DataofReservation = ({ clickCard }: any) => {
+  const card = useRecoilValue(cardData);
+  //   const navigator = useNavigate();
   //   const list = useRecoilValue(cardData);
   //   const findData = list?.find((card: any) => card?.id === id);
 
-  const clickCard = (cardData: any) => {
-    navigator(`/reservation/${cardData?.id}`);
-  };
+  //   const clickCard = (cardData: any) => {
+  //     navigator(`/reservation/${cardData?.id}`);
+  //   };
 
   return (
-    <>
+    <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: 2 }}>
       {card?.map((cardData, idx) => {
         return (
           <Box sx={{ display: 'flex', columnGap: 4 }}>
@@ -42,13 +42,14 @@ const PastReservation = () => {
                 </Typography>
               </Box>
               <Box>
-                <CommonButton>리뷰작성하기</CommonButton>
+                {/* 사용기간 마지막 날 이후에 나타나도록  */}
+                {/* <CommonButton>리뷰작성하기</CommonButton> */}
               </Box>
             </Box>
           </Box>
         );
       })}
-    </>
+    </Box>
   );
 };
-export default PastReservation;
+export default DataofReservation;

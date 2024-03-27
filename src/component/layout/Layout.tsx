@@ -11,7 +11,6 @@ export const Layout = (props: { children: ReactNode }) => {
   const location = useLocation();
   authHook();
 
-  console.log('레이아웃');
   return (
     <>
       <Box

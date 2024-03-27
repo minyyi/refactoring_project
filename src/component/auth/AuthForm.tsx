@@ -85,8 +85,6 @@ export const AuthForm = ({
   //       password: signup?.password,
   //     });
   //   };
-  console.log(process);
-  console.log(title);
   return (
     <PageContainer
       sx={{
