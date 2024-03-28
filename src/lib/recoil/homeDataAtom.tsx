@@ -7,7 +7,7 @@ export const cardMockData = [
     officeName: '선릉 더 공간A',
     grade: '⭐️4.91(21)',
     address: {
-      legion: '서울시',
+      legion: '서울특별시',
       city: '강남구',
       town: '테헤란로70번길 14-10',
     },
@@ -25,7 +25,7 @@ export const cardMockData = [
     officeName: '서초 더 공간A',
     grade: '⭐️4.1(51)',
     address: {
-      legion: '서울시',
+      legion: '서울특별시',
       city: '서초구',
       town: '방배천로2길 5 성지빌딩 4~7층',
     },
@@ -45,7 +45,7 @@ export const cardMockData = [
     officeName: '강남패스트파이브',
     grade: '⭐️4.91(91)',
     address: {
-      legion: '서울시',
+      legion: '서울특별시',
       city: '서초구',
       town: '서초대로 398 BNK 디지털타워4-7층',
     },
@@ -76,7 +76,7 @@ export const cardMockData = [
     officeName: '작심스페이스 해운대신라스테이점',
     grade: '⭐️4.91(91)',
     address: {
-      legion: '부산시',
+      legion: '부산광역시',
       city: '해운대구',
       town: '우동 629-6 지하1층',
     },

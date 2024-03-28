@@ -40,24 +40,59 @@ export const mySelector = selector({
     let city = get(selectCity);
     // let town = get(inputTownAtom);
     let option: any = get(checkedOptionAtom);
-    let newArray = [...initialData]?.filter(
-      (data) => data?.address?.legion === legion
-    );
+    // let newArray = [...initialData]?.filter(
+    //   (data) => data?.address?.legion === legion
+    // );
     //검색필터
-    if (option && Object.values(option)?.some((boolean) => boolean === true)) {
-      newArray = [...initialData]?.filter(
-        (data) => data?.option?.some((optionData) => option[optionData?.key])
-      );
+    if (
+      legion &&
+      city &&
+      Object.values(option)?.some((boolean) => boolean === true)
+    ) {
+      let newArray = [...initialData]
+        ?.filter((data) => data?.address?.legion === legion)
+        ?.filter((data) => data?.address?.city === city)
+        ?.filter(
+          (data) => data?.option?.some((optionData) => option[optionData?.key])
+        );
+      console.log(newArray);
       return newArray;
     }
-    if (legion) {
-      newArray = [...initialData]?.filter(
-        (data) => data?.address?.legion === legion
+    if (legion && city) {
+      let newArray = [...initialData]
+        ?.filter((data) => data?.address?.legion === legion)
+        ?.filter((data) => data?.address?.city === city);
+      console.log(newArray);
+      return newArray;
+    }
+
+    if (legion && Object.values(option)?.some((boolean) => boolean === true)) {
+      let newArray = [...initialData]
+        ?.filter((data) => data?.address?.legion === legion)
+        ?.filter(
+          (data) => data?.option?.some((optionData) => option[optionData?.key])
+        );
+      console.log(newArray);
+      return newArray;
+    }
+    if (Object.values(option)?.some((boolean) => boolean === true)) {
+      let newArray = [...initialData]?.filter(
+        (data) => data?.option?.some((optionData) => option[optionData?.key])
       );
+      console.log(newArray);
 
       return newArray;
     }
-    console.log({ legion, city, option });
+
+    if (legion) {
+      let newArray = [...initialData]?.filter(
+        (data) => data?.address?.legion === legion
+      );
+      console.log(newArray);
+
+      return newArray;
+    }
+    // console.log({ legion, city, option });
     return initialData;
   },
 });

@@ -3,7 +3,7 @@ import CommonInputLabel from '../common/CommonInputLabel';
 import CommonSelect from '../common/CommonSelect';
 import { month, people } from '@/utils/config';
 
-const SelectforReservation = () => {
+const SelectforReservation = (bookData: any) => {
   return (
     <Box
       sx={{
@@ -25,7 +25,7 @@ const SelectforReservation = () => {
           mb: 5,
         }}
       >
-        <CommonInputLabel>1~11개월까지 선택 가능</CommonInputLabel>
+        {/* <CommonInputLabel>1~11개월까지 선택 가능</CommonInputLabel> */}
         <CommonSelect label={'1~11개월까지 선택 가능'}>
           {month.map((month: any, idx: any) => (
             <MenuItem key={idx} value={month?.term}>

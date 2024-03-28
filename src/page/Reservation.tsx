@@ -20,6 +20,7 @@ import { month, people } from '@/utils/config';
 import { useRecoilState, useRecoilValue, selector } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import SelectforReservation from '@/component/reservation/SelectforReservation';
+import { myReservation } from '@/lib/recoil/reservationAtom';
 
 const Reservation = ({ clickCard }: any) => {
   const navigate = useNavigate();
@@ -27,9 +28,35 @@ const Reservation = ({ clickCard }: any) => {
   const clickOtherOffice = () => {
     navigate('/home');
   };
+  const [book, setBook] = useRecoilState(myReservation);
+  const [bookData, setBookData] = useState<any>({
+    startDate: '',
+    endDate: '',
+    paymentDate: '',
+    people: '',
+    cardData: '',
+  });
   const { id } = useParams();
   const list = useRecoilValue(cardData);
   const findData = list?.find((card: any) => card?.id === id);
+
+  const handleDate = ({ name, value }: any) => {
+    setBookData((prev: any) => {
+      return { ...prev, [name]: value };
+    });
+  };
+  // const clickBooking = () => {
+  //   setBook((prev: any) => [
+  //     ...prev,
+  //     {
+  //       startDate,
+  //       endDate,
+  //       paymentDate,
+  //       people,
+  //       cardData,
+  //     },
+  //   ]);
+  // };
   console.log(list);
   console.log(id);
   console.log(findData);
@@ -110,10 +137,10 @@ const Reservation = ({ clickCard }: any) => {
                 }}
               >
                 <Typography>시작 날짜를 선택해주세요.</Typography>
-                <Calendar />
+                <Calendar handleDate={handleDate} />
               </Box>
               {/* select */}
-              <SelectforReservation />
+              <SelectforReservation bookData={bookData} />
             </Box>
             <CommonButton sx={{ width: '100%' }}>예약하기</CommonButton>
           </Paper>
