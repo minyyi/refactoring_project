@@ -297,17 +297,17 @@ export const optionInfo = [
 ];
 
 export const month = [
-  { term: '1개월' },
-  { term: '2개월' },
-  { term: '3개월' },
-  { term: '4개월' },
-  { term: '5개월' },
-  { term: '6개월' },
-  { term: '7개월' },
-  { term: '8개월' },
-  { term: '9개월' },
-  { term: '10개월' },
-  { term: '11개월' },
+  { term: '1개월', value: 1 },
+  { term: '2개월', value: 2 },
+  { term: '3개월', value: 3 },
+  { term: '4개월', value: 4 },
+  { term: '5개월', value: 5 },
+  { term: '6개월', value: 6 },
+  { term: '7개월', value: 7 },
+  { term: '8개월', value: 8 },
+  { term: '9개월', value: 9 },
+  { term: '10개월', value: 10 },
+  { term: '11개월', value: 11 },
 ];
 export const people = [
   { number: '1명' },

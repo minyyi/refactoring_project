@@ -28,10 +28,10 @@ const Option = ({ option, handleSetOption }: any) => {
     <>
       {/* {optionInfo.map((option: any, idx: any) => ( */}
       <FormControlLabel
-        label={option.name}
+        label={option?.name}
         control={
           <Checkbox
-            name={option.key}
+            name={option?.key}
             checked={checked}
             onChange={handleChange}
             color="default"

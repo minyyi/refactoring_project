@@ -7,7 +7,7 @@ export const validateEmail = (email: string) => {
   return emailPattern.test(email);
 };
 export const validatePassword = (password: string) => {
-  const passwordRegex = /^\S{10,20}$/;
+  const passwordRegex = /^\S{6,10}$/;
   return passwordRegex.test(password);
 };
 export const validateBusinessNumber = (businessNumber: string) => {

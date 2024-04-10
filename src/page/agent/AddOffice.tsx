@@ -10,9 +10,13 @@ import {
   Box,
   Typography,
   MenuItem,
+  Paper,
 } from '@mui/material';
 import { selectLegion, selectCity } from '@/utils/config';
 import Option from '@/component/common/Option';
+import { useRecoilState } from 'recoil';
+import { optionInfo } from '@/utils/config';
+import { checkedOptionAtom } from '@/lib/recoil/searchAtom';
 
 const AddOffice = () => {
   const [selected, setSelected] = useState('');
@@ -32,75 +36,95 @@ const AddOffice = () => {
     console.log({ name, value });
     setTown({ [name]: value });
   };
+  const [option, setOption] = useRecoilState<any>(checkedOptionAtom);
+  const handleSetOption = ({ name, value }: any) => {
+    setOption((prev: any) => {
+      return { ...prev, [name]: value };
+    });
+  };
 
   return (
     <PageContainer>
       <Container>
         <CommonTitle>오피스 추가하기</CommonTitle>
-        <Box
+        <Paper
+          elevation={3}
+          square={false}
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            rowGap: 2,
-            padding: 2,
+            my: 2,
           }}
         >
-          <Typography>이름</Typography>
-          <CommonInput
-            size="normal"
-            label={'오피스 이름'}
-            type="text"
-            sx={{ width: 400 }}
-          ></CommonInput>
-          <Typography>주소</Typography>
-          <FormControl sx={{ display: 'flex', width: 400 }}>
-            <CommonInputLabel>시/도</CommonInputLabel>
-            <CommonSelect
-              label="시/도"
-              onChange={handleSelect1}
-              value={selected}
-              //   sx={{ width: 400 }}
-            >
-              {selectLegion.map((address: any, idx: any) => (
-                <MenuItem key={idx} value={address.legion}>
-                  {address.legion}
-                </MenuItem>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              rowGap: 2,
+              padding: 2,
+            }}
+          >
+            <Typography>이름</Typography>
+            <CommonInput
+              size="normal"
+              label={'오피스 이름'}
+              type="text"
+              sx={{ width: 400 }}
+            ></CommonInput>
+            <Typography>주소</Typography>
+            <FormControl sx={{ display: 'flex', width: 400 }}>
+              <CommonInputLabel>시/도</CommonInputLabel>
+              <CommonSelect
+                label="시/도"
+                onChange={handleSelect1}
+                value={selected}
+                //   sx={{ width: 400 }}
+              >
+                {selectLegion.map((address: any, idx: any) => (
+                  <MenuItem key={idx} value={address.legion}>
+                    {address.legion}
+                  </MenuItem>
+                ))}
+              </CommonSelect>
+            </FormControl>
+
+            <FormControl sx={{ display: 'flex', width: 400 }}>
+              <CommonInputLabel>시/군/구</CommonInputLabel>
+              <CommonSelect
+                label="시/군/구"
+                onChange={handleSelect2}
+                disabled={!selected}
+                value={city}
+                //   sx={{ width: 400 }}
+              >
+                {selectCity?.[selected]?.map((city: any, idx: any) => (
+                  <MenuItem key={idx} value={city}>
+                    {city}
+                  </MenuItem>
+                ))}
+              </CommonSelect>
+            </FormControl>
+
+            <CommonInput
+              sx={{ display: 'flex', width: 400 }}
+              size="normal"
+              label={'읍/면/동/리'}
+              type="text"
+              name="town"
+              value={town?.town}
+              onChange={handleFormData}
+            />
+            <Box sx={{ width: 400 }}>
+              <Typography>옵션</Typography>
+              {optionInfo.map((option: any, idx: any) => (
+                <Option
+                  key={option?.name}
+                  option={option}
+                  handleSetOption={handleSetOption}
+                />
               ))}
-            </CommonSelect>
-          </FormControl>
-
-          <FormControl sx={{ display: 'flex', width: 400 }}>
-            <CommonInputLabel>시/군/구</CommonInputLabel>
-            <CommonSelect
-              label="시/군/구"
-              onChange={handleSelect2}
-              disabled={!selected}
-              value={city}
-              //   sx={{ width: 400 }}
-            >
-              {/* {selectCity?.[selected]?.map((city: any, idx: any) => (
-                <MenuItem key={idx} value={city}>
-                  {city}
-                </MenuItem>
-              ))} */}
-            </CommonSelect>
-          </FormControl>
-
-          <CommonInput
-            sx={{ display: 'flex', width: 400 }}
-            size="normal"
-            label={'읍/면/동/리'}
-            type="text"
-            name="town"
-            value={town?.town}
-            onChange={handleFormData}
-          />
-          <Box sx={{}}>
-            <Typography>옵션</Typography>
-            <Option />
+            </Box>
           </Box>
-        </Box>
+        </Paper>
       </Container>
     </PageContainer>
   );

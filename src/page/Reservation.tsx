@@ -21,45 +21,61 @@ import { useRecoilState, useRecoilValue, selector } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import SelectforReservation from '@/component/reservation/SelectforReservation';
 import { myReservation } from '@/lib/recoil/reservationAtom';
+import { format, addMonths } from 'date-fns';
 
 const Reservation = ({ clickCard }: any) => {
+  const { id } = useParams();
+  const list = useRecoilValue(cardData);
   const navigate = useNavigate();
 
   const clickOtherOffice = () => {
     navigate('/home');
   };
-  const [book, setBook] = useRecoilState(myReservation);
+  const [startDate, setStartDate] = useState<any>(null);
+  const [endDate, setEndDate] = useState<any>(null);
+  const [book, setBook] = useRecoilState<any>(myReservation);
   const [bookData, setBookData] = useState<any>({
-    startDate: '',
     endDate: '',
     paymentDate: '',
     people: '',
-    cardData: '',
   });
-  const { id } = useParams();
-  const list = useRecoilValue(cardData);
   const findData = list?.find((card: any) => card?.id === id);
 
-  const handleDate = ({ name, value }: any) => {
+  const handleCalendarDate = (date: any) => {
+    setStartDate(date);
+  };
+
+  const handleDate = (e: any) => {
+    let { name, value } = e.target;
+
     setBookData((prev: any) => {
       return { ...prev, [name]: value };
     });
   };
-  // const clickBooking = () => {
-  //   setBook((prev: any) => [
-  //     ...prev,
-  //     {
-  //       startDate,
-  //       endDate,
-  //       paymentDate,
-  //       people,
-  //       cardData,
-  //     },
-  //   ]);
-  // };
+  const clickBooking = () => {
+    let calEndDate: any;
+    if (startDate && bookData?.endDate && bookData?.people) {
+      calEndDate = addMonths(new Date(startDate), bookData?.endDate);
+    } else {
+      window.alert('모든 값을 선택해주세요');
+      return;
+    }
+    setBook((prev: any) => [
+      ...prev,
+      {
+        startDate,
+        endDate: calEndDate,
+        paymentDate: new Date(),
+        people: bookData?.people,
+        id,
+      },
+    ]);
+  };
   console.log(list);
   console.log(id);
   console.log(findData);
+  console.log(bookData);
+  console.log(book);
 
   return (
     <PageContainer sx={{ display: 'flex', flexDirection: 'column', rowGap: 4 }}>
@@ -137,12 +153,20 @@ const Reservation = ({ clickCard }: any) => {
                 }}
               >
                 <Typography>시작 날짜를 선택해주세요.</Typography>
-                <Calendar handleDate={handleDate} />
+                <Calendar
+                  handleDate={handleCalendarDate}
+                  // bookData={bookData?.startDate}
+                />
               </Box>
               {/* select */}
-              <SelectforReservation bookData={bookData} />
+              <SelectforReservation
+                handleDate={handleDate}
+                bookData={bookData}
+              />
             </Box>
-            <CommonButton sx={{ width: '100%' }}>예약하기</CommonButton>
+            <CommonButton sx={{ width: '100%' }} onClick={clickBooking}>
+              예약하기
+            </CommonButton>
           </Paper>
         </Box>
       </Container>

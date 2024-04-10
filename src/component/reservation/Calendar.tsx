@@ -6,7 +6,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useState } from 'react';
 
 const Calendar = ({ handleDate }: any) => {
-  const [startDate, setStartDate] = useState(null);
+  const [startDate, setStartDate] = useState<any>(null);
   console.log(startDate);
 
   return (
@@ -16,6 +16,9 @@ const Calendar = ({ handleDate }: any) => {
           value={startDate}
           onChange={(newValue) => {
             console.log(newValue);
+            let newDate = new Date(newValue);
+            console.log(newDate);
+            handleDate(newDate);
             setStartDate(newValue);
           }}
         />
