@@ -164,17 +164,27 @@ const Reservation = ({ clickCard }: any) => {
                 bookData={bookData}
               />
             </Box>
-            <CommonButton sx={{ width: '100%' }} onClick={clickBooking}>
-              예약하기
-            </CommonButton>
+            {startDate <= bookData?.endDate ? (
+              <CommonButton
+                color="warning"
+                sx={{ width: '100%' }}
+                onClick={clickBooking}
+              >
+                선택하신 기간에 사용중인 오피스가 있습니다.
+              </CommonButton>
+            ) : (
+              <CommonButton sx={{ width: '100%' }} onClick={clickBooking}>
+                예약하기
+              </CommonButton>
+            )}
           </Paper>
         </Box>
       </Container>
-      <Container>
+      {/* <Container>
         <Box sx={{ width: '100%', height: 400, backgroundColor: 'gray' }}>
           지도
         </Box>
-      </Container>
+      </Container> */}
       <Container>
         <Box sx={{ padding: 2, borderBottom: 0.5 }}>
           <Typography sx={{ color: '#A7AAB3', fontWeight: 'bold', mb: 1 }}>

@@ -49,13 +49,13 @@ const Profile = () => {
     if (setting?.type === 'logout') {
       localStorage.removeItem('userid');
       localStorage.setItem('mode', 'light');
-      localStorage.removeItem('roll');
+      localStorage.removeItem('role');
       context?.setMode('light');
     }
     //'mode', prevMode === 'light' ? 'dark' : 'light'
     navigator(setting?.path);
   };
-  const roll = localStorage.getItem('roll');
+  const role = localStorage.getItem('role');
 
   return (
     <>
@@ -84,7 +84,7 @@ const Profile = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {roll === 'agency'
+            {role === 'agency'
               ? agentMenuItemArray.map((menu) => (
                   <MenuItem
                     key={menu?.title}

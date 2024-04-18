@@ -5,7 +5,7 @@ import CommonInput from '../common/CommonInput';
 import PageContainer from '@/component/common/PageContainer';
 import { Box, IconButton, InputAdornment } from '@mui/material';
 import CommonTitle from '../common/CommonTitle';
-import { VisibilityOff } from '@mui/icons-material';
+import { PasswordTwoTone, VisibilityOff } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -16,6 +16,13 @@ import {
 } from '@/utils/validate';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userid, userType } from '@/lib/recoil/authAtom';
+// import { auth } from '@/';
+// import { auth } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, db, USER_COLLECTION } from '../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { firebaseErrorCase } from '@/lib/firebase/firebaseErrorCase';
+import { setDoc, doc, addDoc, collection } from 'firebase/firestore';
 
 // import { getAgencyApi } from "../../fetch/get/main";
 // import { signupAgencyApi } from '../../fetch/post/main';
@@ -43,24 +50,6 @@ export const AuthForm = ({
   const navigate = useNavigate();
   const setId = useSetRecoilState(userid);
 
-  const clicktoLogin = ({
-    title,
-    process,
-  }: {
-    title: string;
-    process: string;
-  }) => {
-    if (title === '로그인') {
-      navigate('/home');
-      setId('민영');
-      localStorage.setItem('userid', '민영');
-      localStorage.setItem('roll', process);
-
-      console.log('클릭');
-    } else {
-      navigate('/login');
-    }
-  };
   const [signup, setSignup] = useState<AgencyCardProps>({
     businessNumber: '',
     email: '',
@@ -69,6 +58,20 @@ export const AuthForm = ({
     passwordConfirm: '',
   });
 
+  const clicktoButton = ({
+    title,
+    process,
+  }: {
+    title: string;
+    process: string;
+  }) => {
+    if (title === '로그인') {
+      console.log('클릭');
+      login(signup?.email, signup?.password);
+    } else {
+      signUp();
+    }
+  };
   const handleFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
     console.log({ name, value });
@@ -77,6 +80,59 @@ export const AuthForm = ({
     });
   };
 
+  const cardsCollectionRef = collection(db, 'users');
+  const createCard = async (user: any) => {
+    await addDoc(cardsCollectionRef, {
+      ...user,
+      signup,
+    });
+  };
+
+  const signUp = () => {
+    createUserWithEmailAndPassword(auth, signup?.email, signup?.password)
+      .then((userCredential: any) => {
+        console.log(userCredential);
+        // setUserDoc(user);
+        const user = userCredential.user;
+        const additionalData = {
+          userid: user?.uid,
+          name: signup?.name,
+          role: process,
+          businessNumber: signup?.businessNumber,
+        };
+
+        createCard(additionalData);
+        navigate('/login');
+        setSignup({
+          businessNumber: '',
+          email: '',
+          name: '',
+          password: '',
+          passwordConfirm: '',
+        });
+
+        console.log('성공');
+      })
+      .catch((error: any) => {
+        console.log(error);
+        firebaseErrorCase(error);
+      });
+  };
+  const login = (email: any, password: any) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential: any) => {
+        console.log(userCredential);
+        setId(userCredential?.uid); //렌더링용
+        localStorage.setItem('userid', userCredential?.user?.uid);
+        localStorage.setItem('token', userCredential?.user?.accessToken);
+        localStorage.setItem('role', process);
+        navigate('/home');
+      })
+      .catch((error: any) => {
+        console.log(error);
+        firebaseErrorCase(error);
+      });
+  };
   //   const clickSignupButton = () => {
   //     postSignup.mutate({
   //       businessNumber: signup?.businessNumber,
@@ -116,13 +172,13 @@ export const AuthForm = ({
         <CommonInput
           label={'이메일'}
           placeholder={'이메일을 입력해 주세요'}
-          // warning={
-          //   signup.email.trim()
-          //     ? validateEmail(signup.email)
-          //       ? ''
-          //       : '이메일 형식이 아닙니다'
-          //     : ''
-          // }
+          warning={
+            signup.email.trim()
+              ? validateEmail(signup.email)
+                ? ''
+                : '이메일 형식이 아닙니다'
+              : ''
+          }
           type={'email'}
           value={signup.email}
           name={'email'}
@@ -130,14 +186,14 @@ export const AuthForm = ({
         />
         <CommonInput
           label={'비밀번호'}
-          placeholder={'10~20자리의 비밀번호를 입력해주세요'}
-          // warning={
-          //   signup.password.trim()
-          //     ? validatePassword(signup.password)
-          //       ? ''
-          //       : '10~20자리로 입력해주세요'
-          //     : ''
-          // }
+          placeholder={'6~10자리의 비밀번호를 입력해주세요'}
+          warning={
+            signup.password.trim()
+              ? validatePassword(signup.password)
+                ? ''
+                : '6~10자리로 입력해주세요'
+              : ''
+          }
           type={'password'}
           value={signup.password}
           name={'password'}
@@ -156,13 +212,13 @@ export const AuthForm = ({
             <CommonInput
               label={'비밀번호 확인'}
               placeholder={'한 번 더 입력해주세요'}
-              // warning={
-              //   signup.passwordConfirm.trim()
-              //     ? signup.password === signup.passwordConfirm
-              //       ? '일치합니다.'
-              //       : '비밀번호가 일치하지 않습니다'
-              //     : ''
-              // }
+              warning={
+                signup.passwordConfirm.trim()
+                  ? signup.password === signup.passwordConfirm
+                    ? '일치합니다.'
+                    : '비밀번호가 일치하지 않습니다'
+                  : ''
+              }
               type={'password'}
               value={signup.passwordConfirm}
               name={'passwordConfirm'}
@@ -178,13 +234,13 @@ export const AuthForm = ({
             <CommonInput
               label={'닉네임'}
               placeholder={'닉네임을 입력해주세요'}
-              // warning={
-              //   signup.name.trim()
-              //     ? validateName(signup.name)
-              //       ? ''
-              //       : '두 글자 이상 작성해주세요'
-              //     : ''
-              // }
+              warning={
+                signup.name.trim()
+                  ? validateName(signup.name)
+                    ? ''
+                    : '두 글자 이상 작성해주세요'
+                  : ''
+              }
               type={'text'}
               value={signup.name}
               name={'name'}
@@ -198,13 +254,13 @@ export const AuthForm = ({
             name={'businessNumber'}
             label={'사업자 등록 번호'}
             placeholder={'사업자 등록번호 10자리를 입력해주세요'}
-            // warning={
-            //   signup.businessNumber.trim()
-            //     ? validateBusinessNumber(signup.businessNumber)
-            //       ? ''
-            //       : '10자리로 입력해주세요'
-            //     : ''
-            // }
+            warning={
+              signup.businessNumber.trim()
+                ? validateBusinessNumber(signup.businessNumber)
+                  ? ''
+                  : '10자리로 입력해주세요'
+                : ''
+            }
             type={'text'}
             onChange={handleFormData}
           />
@@ -213,7 +269,7 @@ export const AuthForm = ({
 
         <CommonButton
           onClick={() =>
-            clicktoLogin({
+            clicktoButton({
               title,
               process,
             })

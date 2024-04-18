@@ -5,10 +5,25 @@ import MobileAppbar from './mobile/MobileAppbar';
 import DarkmodeButton from './common/DarkmodeButton';
 import { useLocation } from 'react-router-dom';
 import { pathCase } from '@/utils/config';
+import { useEffect } from 'react';
+import { getDocs, collection } from 'firebase/firestore';
+import { db, USER_COLLECTION } from '@/firebase';
 
 function ResponsiveAppBar() {
   const matches = useMediaQuery((theme: any) => theme.breakpoints.down('md'));
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    const id = localStorage.getItem('userid');
+    const getDetail = async () => {
+      const data = await getDocs(USER_COLLECTION);
+      const List = data.docs.map((doc) => ({ ...doc.data() }));
+      const find = List?.find((data) => data.userid === id);
+      console.log(find);
+    };
+
+    getDetail();
+  }, []);
   if (pathCase({ pathname })) return null;
 
   return (

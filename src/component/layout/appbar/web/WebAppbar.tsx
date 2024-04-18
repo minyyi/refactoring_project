@@ -6,7 +6,7 @@ import { userType } from '@/lib/recoil/authAtom';
 import { useRecoilValue } from 'recoil';
 
 const WebAppbar = () => {
-  const process = localStorage.getItem('roll');
+  const process = localStorage.getItem('role');
   const pages = [process, 'name', 'point'];
   const navigate = useNavigate();
   const clickLogo = () => {

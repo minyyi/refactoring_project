@@ -10,7 +10,7 @@ import NotiMsg from './page/NotiMsg';
 import Mypage from './page/Mypage';
 import MyReservation from './page/MyReservation';
 import Bookmark from './page/Bookmark';
-import MyOffice from './page/agent/Myoffice';
+import MyOffice from './page/agent/MyOffice';
 import AddOffice from './page/agent/AddOffice';
 import OfficeDatail from './page/agent/OfficeDatail';
 
