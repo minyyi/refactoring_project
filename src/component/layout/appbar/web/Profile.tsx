@@ -50,6 +50,7 @@ const Profile = () => {
       localStorage.removeItem('userid');
       localStorage.setItem('mode', 'light');
       localStorage.removeItem('role');
+      localStorage.removeItem('token');
       context?.setMode('light');
     }
     //'mode', prevMode === 'light' ? 'dark' : 'light'

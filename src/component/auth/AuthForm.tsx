@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CommonButton from '../common/CommonButton';
 import CommonInput from '../common/CommonInput';
 import PageContainer from '@/component/common/PageContainer';
-import { Box, IconButton, InputAdornment } from '@mui/material';
+import { Box, IconButton, InputAdornment, Typography } from '@mui/material';
 import CommonTitle from '../common/CommonTitle';
 import { PasswordTwoTone, VisibilityOff } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -19,10 +19,14 @@ import { userid, userType } from '@/lib/recoil/authAtom';
 // import { auth } from '@/';
 // import { auth } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, db, USER_COLLECTION } from '../../firebase';
+import {
+  auth,
+  useGetCollection,
+  USER_COLLECTION,
+} from '../../lib/firebase/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { firebaseErrorCase } from '@/lib/firebase/firebaseErrorCase';
-import { setDoc, doc, addDoc, collection } from 'firebase/firestore';
+import { setDoc, doc, addDoc, getDocs } from 'firebase/firestore';
 
 // import { getAgencyApi } from "../../fetch/get/main";
 // import { signupAgencyApi } from '../../fetch/post/main';
@@ -80,11 +84,21 @@ export const AuthForm = ({
     });
   };
 
-  const cardsCollectionRef = collection(db, 'users');
-  const createCard = async (user: any) => {
-    await addDoc(cardsCollectionRef, {
-      ...user,
-      signup,
+  // const userCollectionRef = collection(db, 'users');
+  const createUser = async ({
+    userid,
+    name,
+    role,
+    businessNumber,
+    email,
+  }: any) => {
+    await addDoc(useGetCollection('users'), {
+      userid: userid,
+      name,
+      role,
+      businessNumber,
+      email,
+      // ...user,
     });
   };
 
@@ -99,9 +113,10 @@ export const AuthForm = ({
           name: signup?.name,
           role: process,
           businessNumber: signup?.businessNumber,
+          email: signup?.email,
         };
 
-        createCard(additionalData);
+        createUser(additionalData);
         navigate('/login');
         setSignup({
           businessNumber: '',
@@ -118,14 +133,20 @@ export const AuthForm = ({
         firebaseErrorCase(error);
       });
   };
+
   const login = (email: any, password: any) => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential: any) => {
+      .then(async (userCredential: any) => {
         console.log(userCredential);
-        setId(userCredential?.uid); //렌더링용
+        const data = await getDocs(USER_COLLECTION);
+        const List = data.docs.map((doc) => ({ ...doc.data() }));
+        const find = List?.find((data) => data.userid === userCredential?.uid);
+
         localStorage.setItem('userid', userCredential?.user?.uid);
         localStorage.setItem('token', userCredential?.user?.accessToken);
-        localStorage.setItem('role', process);
+        localStorage.setItem('role', find?.role);
+        setId({ email: find?.email, name: find?.name, role: find?.role }); //렌더링용
+
         navigate('/home');
       })
       .catch((error: any) => {
@@ -168,22 +189,31 @@ export const AuthForm = ({
           </CommonTitle>
           <Box sx={{ pl: 4 }}></Box>
         </Box>
+        <Box sx={{ minHeight: 50 }}>
+          <CommonInput
+            fullWidth
+            label={'이메일'}
+            placeholder={'이메일을 입력해 주세요'}
+            error={signup.email && !validateEmail(signup.email)}
+            // helperText={
+            //   //스타일링   빼고 p태그로 대체하거나
+            //   signup.email.trim()
+            //     ? validateEmail(signup.email)
+            //       ? ''
+            //       : '이메일 형식이 아닙니다'
+            //     : ''
+            // }
+            type={'email'}
+            value={signup.email}
+            name={'email'}
+            onChange={handleFormData}
+          />
+          {signup.email && !validateEmail(signup.email) && (
+            //visibility
+            <Typography>이메일 형식이 아닙니다</Typography>
+          )}
+        </Box>
 
-        <CommonInput
-          label={'이메일'}
-          placeholder={'이메일을 입력해 주세요'}
-          warning={
-            signup.email.trim()
-              ? validateEmail(signup.email)
-                ? ''
-                : '이메일 형식이 아닙니다'
-              : ''
-          }
-          type={'email'}
-          value={signup.email}
-          name={'email'}
-          onChange={handleFormData}
-        />
         <CommonInput
           label={'비밀번호'}
           placeholder={'6~10자리의 비밀번호를 입력해주세요'}

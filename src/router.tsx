@@ -18,7 +18,7 @@ const Router = () => {
   const context = useColorModeContext();
   useEffect(() => {
     const mode = localStorage.getItem('mode');
-    context.setMode(mode);
+    context.setMode(mode || 'light');
   }, []);
   return (
     <BrowserRouter>

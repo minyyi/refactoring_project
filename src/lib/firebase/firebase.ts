@@ -27,6 +27,14 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const USER_COLLECTION = collection(db, 'users');
 
+export const useGetCollection = (dbname: any) => {
+  console.log(dbname);
+  return collection(db, dbname);
+};
+// export const useGetCollection2 = (object: any) => {
+//   return collection(db, object?.dbname);
+// };
+
 const user = auth.currentUser;
 
 console.log(user?.email); // 이메일
