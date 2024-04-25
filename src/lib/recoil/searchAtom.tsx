@@ -41,8 +41,8 @@ export const mySelector = selector({
     const option: any = get(checkedOptionAtom);
     const town: any = get(inputTownAtom);
     const townSplit: any = town ? town?.split('') : null;
-    console.log(town);
-    console.log(townSplit);
+    // console.log(town);
+    // console.log(townSplit);
 
     return initialData.filter((data: any) => {
       // legion과 city 조건을 체크합니다.
@@ -63,7 +63,7 @@ export const mySelector = selector({
           : true;
 
       //   const townMatch =
-      console.log(checkTown);
+      // console.log(checkTown);
       return legionMatch && cityMatch && optionMatch && checkTown;
     });
   },

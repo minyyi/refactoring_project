@@ -12,7 +12,7 @@ export const authHook = () => {
   const id = localStorage.getItem('userid');
   //   const mode = localStorage.getItem('mode');
   useEffect(() => {
-    console.log('훅');
+    // console.log('훅');
 
     if (pathCase({ pathname })) {
       return;
@@ -22,7 +22,7 @@ export const authHook = () => {
       //   context.setMode();
     }
     return () => {
-      console.log('unmount');
+      // console.log('unmount');
     };
   }, [pathname]);
   //   console.log(location);

@@ -4,7 +4,6 @@ import CommonSelect from '../common/CommonSelect';
 import { month, people } from '@/utils/config';
 
 const SelectforReservation = ({ handleDate, bookData }: any) => {
-  console.log;
   return (
     <Box
       sx={{

@@ -12,7 +12,7 @@ const CardList = ({ sx, ...others }: any) => {
   const clickCard = (cardData: any) => {
     navigator(`/reservation/${cardData?.id}`);
   };
-  console.log(searchFilter);
+  // console.log(searchFilter);
   return (
     <>
       <Container

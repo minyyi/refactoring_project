@@ -45,7 +45,7 @@ const Profile = () => {
 
   const handleCloseUserMenu = (setting: any) => {
     setAnchorElUser(null);
-    console.log(setting);
+    // console.log(setting);
     if (setting?.type === 'logout') {
       localStorage.removeItem('userid');
       localStorage.setItem('mode', 'light');

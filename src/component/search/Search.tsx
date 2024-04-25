@@ -38,7 +38,7 @@ const Search = () => {
 
   const handleFormData = (e: any) => {
     let { name, value } = e.target;
-    console.log({ name, value });
+    // console.log({ name, value });
     setTown(value);
   };
 
@@ -74,10 +74,10 @@ const Search = () => {
   // };
 
   // console.log(search);
-  console.log(selected);
-  console.log(city);
-  console.log(town);
-  console.log(option);
+  // console.log(selected);
+  // console.log(city);
+  // console.log(town);
+  // console.log(option);
   // console.log(selectCity[selected]);
   return (
     <>

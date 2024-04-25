@@ -33,7 +33,7 @@ const AddOffice = () => {
 
   const handleFormData = (e: any) => {
     let { name, value } = e.target;
-    console.log({ name, value });
+    // console.log({ name, value });
     setTown({ [name]: value });
   };
   const [option, setOption] = useRecoilState<any>(checkedOptionAtom);

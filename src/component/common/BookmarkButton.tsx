@@ -15,8 +15,8 @@ const BookmarkButton = ({ clickHeart, cardData }: any) => {
   //       color: '#ff3d47',
   //     },
   //   });
-  console.log(heart);
-  console.log(cardData);
+  // console.log(heart);
+  // console.log(cardData);
   return (
     <ToggleButton
       value="check"

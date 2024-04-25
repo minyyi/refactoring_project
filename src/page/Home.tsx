@@ -49,13 +49,13 @@ const Home = () => {
           setLoading(false);
           return res;
         });
-      console.log(test);
+      // console.log(test);
     };
     testApi();
   }, []);
 
-  console.log(data);
-  console.log(card);
+  // console.log(data);
+  // console.log(card);
   return (
     <>
       {loading ? (

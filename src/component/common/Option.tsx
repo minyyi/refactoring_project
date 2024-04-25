@@ -19,7 +19,7 @@ const Option = ({ option, handleSetOption }: any) => {
 
     setChecked(checked);
     handleSetOption({ name, value: checked });
-    console.log(name, checked);
+    // console.log(name, checked);
   };
 
   // console.log(checked);

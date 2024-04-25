@@ -11,8 +11,8 @@ const Bookmark = ({ selected }: any) => {
   const { id } = useParams();
   const bookmark = useRecoilValue(favorite);
   const findData = selected?.find((card: any) => card?.id === id);
-  console.log(findData);
-  console.log(bookmark);
+  // console.log(findData);
+  // console.log(bookmark);
 
   return (
     <PageContainer

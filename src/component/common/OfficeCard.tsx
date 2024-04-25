@@ -16,7 +16,7 @@ const OfficeCard = ({
   const id = localStorage.getItem('userid');
   const [heart, setHeart] = useRecoilState<any>(favorite);
   const clickHeart = (cardData: any) => {
-    console.log(cardData);
+    // console.log(cardData);
     setHeart((prev: any) => {
       //map??
       let checkTrue = prev?.find((heart: any) => cardData?.id === heart?.id);
@@ -27,9 +27,9 @@ const OfficeCard = ({
       }
     });
   };
-  console.log(id);
-  console.log('하트', heart);
-  console.log(clickCard);
+  // console.log(id);
+  // console.log('하트', heart);
+  // console.log(clickCard);
   return (
     <>
       <Box

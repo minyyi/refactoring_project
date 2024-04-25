@@ -71,11 +71,11 @@ const Reservation = ({ clickCard }: any) => {
       },
     ]);
   };
-  console.log(list);
-  console.log(id);
-  console.log(findData);
-  console.log(bookData);
-  console.log(book);
+  // console.log(list);
+  // console.log(id);
+  // console.log(findData);
+  // console.log(bookData);
+  // console.log(book);
 
   return (
     <PageContainer sx={{ display: 'flex', flexDirection: 'column', rowGap: 4 }}>
