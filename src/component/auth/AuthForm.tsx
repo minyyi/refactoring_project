@@ -133,15 +133,16 @@ export const AuthForm = ({
         firebaseErrorCase(error);
       });
   };
-
   const login = (email: any, password: any) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential: any) => {
         console.log(userCredential);
         const data = await getDocs(USER_COLLECTION);
         const List = data.docs.map((doc) => ({ ...doc.data() }));
-        const find = List?.find((data) => data.userid === userCredential?.uid);
-
+        const find = List?.find(
+          (data) => data.userid === userCredential?.user?.uid
+        );
+        console.log(find);
         localStorage.setItem('userid', userCredential?.user?.uid);
         localStorage.setItem('token', userCredential?.user?.accessToken);
         localStorage.setItem('role', find?.role);
@@ -173,7 +174,7 @@ export const AuthForm = ({
         alignItems: 'center',
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: 2 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: 1 }}>
         <Box
           sx={{
             display: 'flex',
@@ -195,8 +196,10 @@ export const AuthForm = ({
             label={'이메일'}
             placeholder={'이메일을 입력해 주세요'}
             error={signup.email && !validateEmail(signup.email)}
+            sx={{ mb: 0 }}
             // helperText={
             //   //스타일링   빼고 p태그로 대체하거나
+            // {
             //   signup.email.trim()
             //     ? validateEmail(signup.email)
             //       ? ''
@@ -208,10 +211,13 @@ export const AuthForm = ({
             name={'email'}
             onChange={handleFormData}
           />
-          {signup.email && !validateEmail(signup.email) && (
-            //visibility
-            <Typography>이메일 형식이 아닙니다</Typography>
-          )}
+
+          <Typography
+            visibility={!signup.email ? 'hidden' : 'visible'}
+            sx={{ margin: 0, padding: 0, fontSize: 12 }}
+          >
+            {!validateEmail(signup.email) ? '이메일 형식이 아닙니다' : ``}
+          </Typography>
         </Box>
 
         <CommonInput

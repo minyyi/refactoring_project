@@ -4,10 +4,14 @@ import { Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { userType } from '@/lib/recoil/authAtom';
 import { useRecoilValue } from 'recoil';
+import { userid } from '@/lib/recoil/authAtom';
 
 const WebAppbar = () => {
-  const process = localStorage.getItem('role');
-  const pages = [process, 'name', 'point'];
+  const getUserInfo = useRecoilValue<any>(userid);
+  console.log(getUserInfo);
+
+  const role = localStorage.getItem('role');
+  const pages = [role, getUserInfo?.name, 'point'];
   const navigate = useNavigate();
   const clickLogo = () => {
     navigate('/home');

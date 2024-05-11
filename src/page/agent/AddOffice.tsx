@@ -11,12 +11,15 @@ import {
   Typography,
   MenuItem,
   Paper,
+  styled,
 } from '@mui/material';
+
 import { selectLegion, selectCity } from '@/utils/config';
 import Option from '@/component/common/Option';
 import { useRecoilState } from 'recoil';
 import { optionInfo } from '@/utils/config';
 import { checkedOptionAtom } from '@/lib/recoil/searchAtom';
+import CommonButton from '@/component/common/CommonButton';
 
 const AddOffice = () => {
   const [selected, setSelected] = useState('');
@@ -42,6 +45,17 @@ const AddOffice = () => {
       return { ...prev, [name]: value };
     });
   };
+  const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+  });
 
   return (
     <PageContainer>
@@ -113,8 +127,14 @@ const AddOffice = () => {
               value={town?.town}
               onChange={handleFormData}
             />
-            <Box sx={{ width: 400 }}>
-              <Typography>옵션</Typography>
+            <Typography>옵션</Typography>
+            <Box
+              sx={{
+                width: 400,
+                // display: 'flex',
+                // alignItems: 'center',
+              }}
+            >
               {optionInfo.map((option: any, idx: any) => (
                 <Option
                   key={option?.name}
@@ -122,6 +142,30 @@ const AddOffice = () => {
                   handleSetOption={handleSetOption}
                 />
               ))}
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                columnGap: 2,
+              }}
+            >
+              <CommonButton sx={{ height: 40 }}>
+                사진 추가
+                <VisuallyHiddenInput type="file" />
+              </CommonButton>
+
+              <Box sx={{ borderColor: 'gray' }}>
+                <img
+                  src="/public/noProfile.png"
+                  style={{ width: 100, alignItems: 'center', paddingTop: 40 }}
+                />
+              </Box>
+            </Box>
+
+            <Box sx={{ width: 400, display: 'flex' }}>
+              <CommonButton fullWidth>오피스 등록하기</CommonButton>
             </Box>
           </Box>
         </Paper>

@@ -47,6 +47,19 @@ function ResponsiveAppBar() {
         console.log(user);
         console.log(user?.uid);
         console.log(setId);
+        fetch('http://localhost:5502/api/products', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        })
+          .then((res: any) => {
+            return res.json();
+          })
+          .then((res: any) => {
+            console.log(res);
+          });
       } else {
         console.log('유저없음');
       }
