@@ -18,7 +18,7 @@ const Option = ({ option, handleSetOption }: any) => {
     let { name, checked } = event.target;
 
     setChecked(checked);
-    handleSetOption({ name, value: checked });
+    handleSetOption(option);
     // console.log(name, checked);
   };
 

@@ -59,7 +59,16 @@ const Home = () => {
   return (
     <>
       {loading ? (
-        <Typography>로딩중</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh',
+          }}
+        >
+          <Typography sx={{ fontSize: 100 }}>로딩중</Typography>
+        </Box>
       ) : (
         <PageContainer
           sx={{

@@ -6,13 +6,13 @@ import { cardData } from '@/lib/recoil/homeDataAtom';
 import { mySelector } from '@/lib/recoil/searchAtom';
 
 const CardList = ({ sx, ...others }: any) => {
-  //   const [card, setCard] = useRecoilState(cardData);
+  // const card = useRecoilValue(cardData);
   const navigator = useNavigate();
   const searchFilter = useRecoilValue(mySelector);
+
   const clickCard = (cardData: any) => {
     navigator(`/reservation/${cardData?.id}`);
   };
-  // console.log(searchFilter);
   return (
     <>
       <Container
@@ -26,9 +26,9 @@ const CardList = ({ sx, ...others }: any) => {
         }}
         {...others}
       >
-        {searchFilter?.map((cardData, idx) => {
+        {searchFilter?.map((cardData: any, id: any) => {
           return (
-            <OfficeCard key={idx} cardData={cardData} clickCard={clickCard} />
+            <OfficeCard key={id} clickCard={clickCard} cardData={cardData} />
           );
         })}
       </Container>

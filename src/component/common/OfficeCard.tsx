@@ -6,14 +6,9 @@ import { favorite } from '@/lib/recoil/favoritAtom';
 // import { useRecoilState } from 'recoil';
 // import { cardList } from '@/lib/recoil/homeDataAtom';
 
-const OfficeCard = ({
-  // clickHeart = () => {},
-  clickCard = () => {},
-  cardData,
-  sx,
-  ...others
-}: any) => {
+const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
   const id = localStorage.getItem('userid');
+
   const [heart, setHeart] = useRecoilState<any>(favorite);
   const clickHeart = (cardData: any) => {
     // console.log(cardData);
@@ -27,9 +22,8 @@ const OfficeCard = ({
       }
     });
   };
-  // console.log(id);
-  // console.log('하트', heart);
-  // console.log(clickCard);
+
+  console.log(cardData);
   return (
     <>
       <Box
@@ -42,14 +36,14 @@ const OfficeCard = ({
           rowGap: 1,
 
           width: { lg: 260, md: 270, sm: 260, xs: '100%' },
-          height: 270,
+          height: 'auto',
           cursor: 'pointer',
           // backgroundColor: 'gray',
         }}
       >
-        <Box sx={{ height: 160, overflow: 'hidden', position: 'relative' }}>
+        <Box sx={{ minHeight: 160, overflow: 'hidden', position: 'relative' }}>
           <img
-            src={cardData?.image}
+            src="/img3.avif"
             style={{
               objectFit: 'cover',
               width: '100%',

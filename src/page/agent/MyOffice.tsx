@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import CommonTitle from '@/component/common/CommonTitle';
 import OfficeCard from '@/component/common/OfficeCard';
 import PageContainer from '@/component/common/PageContainer';
@@ -5,12 +6,16 @@ import { Container, Box } from '@mui/material';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { auth } from '@/lib/firebase/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 import CommonButton from '@/component/common/CommonButton';
 import { myOfficeData } from '@/lib/recoil/myOfficeAtom';
 
 const MyOffice = () => {
-  const card = useRecoilValue(myOfficeData);
   const navigator = useNavigate();
+  const card = useRecoilValue(cardData);
+  const userId = localStorage.getItem('userid');
+  const filteredData = card?.filter((data: any) => data?.userId === userId);
   const clickOffice = (cardData: any) => {
     navigator(`/officeDatail/${cardData?.id}`);
   };
@@ -18,6 +23,8 @@ const MyOffice = () => {
     navigator('/addOffice');
   };
 
+  console.log(card);
+  console.log(filteredData);
   return (
     <PageContainer>
       <Container>
@@ -32,10 +39,10 @@ const MyOffice = () => {
         <Box
           sx={{ display: 'flex', columnGap: 2, flexWrap: 'wrap', padding: 2 }}
         >
-          {card?.map((cardData, idx) => {
+          {filteredData?.map((cardData: any, id: any) => {
             return (
               <OfficeCard
-                key={idx}
+                key={id}
                 cardData={cardData}
                 clickCard={clickOffice}
               />

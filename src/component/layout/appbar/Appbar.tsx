@@ -9,15 +9,16 @@ import { useEffect } from 'react';
 import { getDocs, collection } from 'firebase/firestore';
 import { auth, db, USER_COLLECTION } from '@/lib/firebase/firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { userid } from '@/lib/recoil/authAtom';
+import { cardData } from '@/lib/recoil/homeDataAtom';
 
 function ResponsiveAppBar() {
   const matches = useMediaQuery((theme: any) => theme.breakpoints.down('md'));
   const { pathname } = useLocation();
   const setId = useSetRecoilState(userid);
   const getUserInfo = useRecoilValue(userid);
-  console.log(getUserInfo);
+  const setOfficeData = useSetRecoilState(cardData);
   // useEffect(() => {
   //   const id = localStorage.getItem('userid');
   //   const getDetail = async () => {
@@ -47,23 +48,26 @@ function ResponsiveAppBar() {
         console.log(user);
         console.log(user?.uid);
         console.log(setId);
-        fetch('http://localhost:5502/api/products', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        })
-          .then((res: any) => {
-            return res.json();
-          })
-          .then((res: any) => {
-            console.log(res);
-          });
       } else {
         console.log('유저없음');
       }
     });
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:5502/api/products', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res: any) => {
+        return res.json();
+      })
+      .then((res: any) => {
+        console.log(res);
+        setOfficeData(res);
+      });
   }, []);
 
   if (pathCase({ pathname })) return null;

@@ -17,16 +17,22 @@ import {
 import { selectLegion, selectCity } from '@/utils/config';
 import Option from '@/component/common/Option';
 import { useRecoilState } from 'recoil';
+import { myOfficeData } from '@/lib/recoil/myOfficeAtom';
 import { optionInfo } from '@/utils/config';
 import { checkedOptionAtom } from '@/lib/recoil/searchAtom';
 import CommonButton from '@/component/common/CommonButton';
 
 const AddOffice = () => {
+  const [card, setCard] = useRecoilState(myOfficeData);
+
+  const [officeName, setOfficeName] = useState<any>('');
+  const [price, setPrice] = useState<any>('');
   const [selected, setSelected] = useState('');
   const [city, setCity] = useState('');
   const [town, setTown] = useState<any>({
     town: '',
   });
+  const userId = localStorage.getItem('userId');
   const handleSelect1 = (e: any) => {
     setSelected(e.target.value);
   };
@@ -34,29 +40,57 @@ const AddOffice = () => {
     setCity(e.target.value);
   };
 
+  const handleOfficeName = (e: any) => {
+    let { name, value } = e.target;
+    // console.log({ name, value });
+    setOfficeName({ [name]: value });
+  };
   const handleFormData = (e: any) => {
     let { name, value } = e.target;
     // console.log({ name, value });
     setTown({ [name]: value });
   };
-  const [option, setOption] = useRecoilState<any>(checkedOptionAtom);
-  const handleSetOption = ({ name, value }: any) => {
+  const handlePrice = (e: any) => {
+    let { name, value } = e.target;
+    // console.log({ name, value });
+    setPrice({ [name]: value });
+  };
+  const [option, setOption] = useState<any>([]);
+  const handleSetOption = (option: any) => {
     setOption((prev: any) => {
-      return { ...prev, [name]: value };
+      return [...prev, option];
     });
   };
-  const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-  });
 
+  const clickSaveOffice = () => {
+    fetch('http://localhost:5502/api/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: userId,
+        officeName: officeName,
+        address: {
+          legion: selected,
+          city: city,
+          town: town,
+        },
+        price: price,
+        option: [],
+        img: '',
+      }),
+    })
+      .then((res: any) => {
+        return res.json();
+      })
+      .then((res: any) => {
+        console.log(res);
+        setCard(res);
+      });
+  };
+  console.log({ officeName, price, selected, city, town, userId });
+  console.log(option);
   return (
     <PageContainer>
       <Container>
@@ -81,8 +115,11 @@ const AddOffice = () => {
             <CommonInput
               size="normal"
               label={'오피스 이름'}
+              name="officeName"
+              value={officeName?.officeName}
               type="text"
               sx={{ width: 400 }}
+              onChange={handleOfficeName}
             ></CommonInput>
             <Typography>주소</Typography>
             <FormControl sx={{ display: 'flex', width: 400 }}>
@@ -117,7 +154,6 @@ const AddOffice = () => {
                 ))}
               </CommonSelect>
             </FormControl>
-
             <CommonInput
               sx={{ display: 'flex', width: 400 }}
               size="normal"
@@ -127,6 +163,17 @@ const AddOffice = () => {
               value={town?.town}
               onChange={handleFormData}
             />
+            <Typography>가격</Typography>
+            <CommonInput
+              sx={{ display: 'flex', width: 400 }}
+              size="normal"
+              label={'가격'}
+              type="text"
+              name="price"
+              value={price?.price}
+              onChange={handlePrice}
+            />
+
             <Typography>옵션</Typography>
             <Box
               sx={{
@@ -139,6 +186,7 @@ const AddOffice = () => {
                 <Option
                   key={option?.name}
                   option={option}
+                  // handleSetOption={() => handleSetOption(option)}
                   handleSetOption={handleSetOption}
                 />
               ))}
@@ -174,3 +222,15 @@ const AddOffice = () => {
   );
 };
 export default AddOffice;
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
