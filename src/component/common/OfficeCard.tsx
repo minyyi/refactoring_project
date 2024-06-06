@@ -7,16 +7,17 @@ import { favorite } from '@/lib/recoil/favoritAtom';
 // import { cardList } from '@/lib/recoil/homeDataAtom';
 
 const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
-  const id = localStorage.getItem('userid');
-
+  // const id = localStorage.getItem('userid');
+  const id = cardData?._id;
+  console.log(id);
   const [heart, setHeart] = useRecoilState<any>(favorite);
   const clickHeart = (cardData: any) => {
     // console.log(cardData);
     setHeart((prev: any) => {
       //map??
-      let checkTrue = prev?.find((heart: any) => cardData?.id === heart?.id);
+      let checkTrue = prev?.find((heart: any) => id === heart?.id);
       if (checkTrue) {
-        return prev?.filter((heart: any) => cardData?.id !== heart?.id);
+        return prev?.filter((heart: any) => id !== heart?.id);
       } else {
         return [cardData, ...prev];
       }
@@ -43,7 +44,8 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
       >
         <Box sx={{ minHeight: 160, overflow: 'hidden', position: 'relative' }}>
           <img
-            src="/img3.avif"
+            // src="/img3.avif"
+            src={cardData?.image}
             style={{
               objectFit: 'cover',
               width: '100%',
@@ -57,14 +59,14 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
         <Box sx={{}}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography>{cardData?.officeName}</Typography>
-            <Typography>{cardData?.grade}</Typography>
+            <Typography>⭐️{cardData?.grade}</Typography>
           </Box>
           <Typography>
             {`${cardData?.address?.legion} `}
             {`${cardData?.address?.city} `}
             {cardData?.address?.town}
           </Typography>
-          {id ? <Typography>{cardData?.price}</Typography> : null}
+          {id ? <Typography>월 {cardData?.price}원</Typography> : null}
         </Box>
       </Box>
     </>

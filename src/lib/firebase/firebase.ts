@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 // import { getAnalytics } from 'firebase/analytics';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,12 +26,19 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
+
 export const USER_COLLECTION = collection(db, 'users');
+export const IMAGE = collection(db, 'img');
 
 export const useGetCollection = (dbname: any) => {
   console.log(dbname);
   return collection(db, dbname);
 };
+// export const useGetImage = (url: any) => {
+//   console.log(url);
+//   return collection(db, url);
+// };
 // export const useGetCollection2 = (object: any) => {
 //   return collection(db, object?.dbname);
 // };
@@ -38,5 +46,5 @@ export const useGetCollection = (dbname: any) => {
 const user = auth.currentUser;
 
 console.log(user?.email); // 이메일
-console.log(user?.displayName); // 표시 이름
+// console.log(user?.name); // 표시 이름
 console.log(user?.emailVerified); // 이메일 인증 여부(boolean)

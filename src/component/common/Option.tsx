@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, FormControlLabel, Checkbox } from '@mui/material';
 import { optionInfo } from '@/utils/config';
-const Option = ({ option, handleSetOption }: any) => {
+const Option = ({ option, handleSetOption, defaultChecked }: any) => {
   // const defaultObject = optionInfo
   //메서드 체이닝
   // ?.map((optionObject) => {
@@ -13,7 +13,7 @@ const Option = ({ option, handleSetOption }: any) => {
   //     [cur]: false,
   //   };
   // }, {});
-  const [checked, setChecked] = useState<any>(false);
+  const [checked, setChecked] = useState<any>(defaultChecked || false);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { name, checked } = event.target;
 
@@ -21,9 +21,13 @@ const Option = ({ option, handleSetOption }: any) => {
     handleSetOption(option);
     // console.log(name, checked);
   };
-
+  useEffect(() => {
+    if (defaultChecked) {
+      setChecked(defaultChecked);
+    }
+  }, [defaultChecked]);
   // console.log(checked);
-  // console.log(defaultObject);
+  // console.log(defaultChecked);
   return (
     <>
       {/* {optionInfo.map((option: any, idx: any) => ( */}

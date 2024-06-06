@@ -12,6 +12,7 @@ import MyReservation from './page/MyReservation';
 import Bookmark from './page/Bookmark';
 import MyOffice from './page/agent/MyOffice';
 import AddOffice from './page/agent/AddOffice';
+import OfficeEdit from './page/agent/OfficeEdit';
 import OfficeDatail from './page/agent/OfficeDatail';
 
 const Router = () => {
@@ -35,6 +36,7 @@ const Router = () => {
           <Route path="/bookmark" element={<Bookmark />} />
           <Route path="/myoffice" element={<MyOffice />} />
           <Route path="/addoffice" element={<AddOffice />} />
+          <Route path="/officeEdit/:id" element={<OfficeEdit />} />
           <Route path="/officeDatail" element={<OfficeDatail />} />
         </Routes>
       </Layout>

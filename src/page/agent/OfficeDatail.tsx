@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router-dom';
 import Option from '@/component/common/Option';
 import { useRecoilState } from 'recoil';
-import { optionInfo } from '@/utils/config';
+import {} from '@/utils/config';
 import { checkedOptionAtom } from '@/lib/recoil/searchAtom';
 
 const OfficeDatail = ({ clickCard }: any) => {
@@ -30,7 +30,7 @@ const OfficeDatail = ({ clickCard }: any) => {
           <Typography>{findData?.address?.city}</Typography>
         </Box>
         <Box>
-          {optionInfo.map((option: any, idx: any) => (
+          {.map((option: any, idx: any) => (
             <Option
               key={option?.name}
               option={option}

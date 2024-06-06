@@ -30,7 +30,7 @@ const MyPhoto = () => {
       >
         사진 변경
         <VisuallyHiddenInput type="file" />
-      </CommonButton>{' '}
+      </CommonButton>
     </Box>
   );
 };

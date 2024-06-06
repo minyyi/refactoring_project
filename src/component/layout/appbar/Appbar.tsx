@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Container, useMediaQuery } from '@mui/material';
+import { AppBar, Toolbar, Container, useMediaQuery, List } from '@mui/material';
 import WebAppbar from './web/WebAppbar';
 import Profile from './web/Profile';
 import MobileAppbar from './mobile/MobileAppbar';
@@ -6,8 +6,13 @@ import DarkmodeButton from './common/DarkmodeButton';
 import { useLocation } from 'react-router-dom';
 import { pathCase } from '@/utils/config';
 import { useEffect } from 'react';
-import { getDocs, collection } from 'firebase/firestore';
-import { auth, db, USER_COLLECTION } from '@/lib/firebase/firebase';
+import { getDocs, collection, addDoc } from 'firebase/firestore';
+import {
+  auth,
+  USER_COLLECTION,
+  IMAGE,
+  // useGetImage,
+} from '@/lib/firebase/firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { userid } from '@/lib/recoil/authAtom';
@@ -38,6 +43,7 @@ function ResponsiveAppBar() {
         localStorage.setItem('userid', user?.uid); //id 안바뀐다는 전제
         localStorage.setItem('token', user?.accessToken);
         const data = await getDocs(USER_COLLECTION);
+        const images = await getDocs(IMAGE);
         const List = data.docs.map((doc) => ({ ...doc.data() }));
         const find = List?.find((data) => data.userid === user?.uid);
         setId({ name: find?.name, role: find?.role });
@@ -72,6 +78,13 @@ function ResponsiveAppBar() {
 
   if (pathCase({ pathname })) return null;
 
+  // const getImage = async ({}: any) => {
+  //   await addDoc(useGetImage('users'), {
+  //     // ...user,
+  //   });
+  // };
+
+  console.log(List);
   return (
     <AppBar
       position="static"

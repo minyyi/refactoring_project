@@ -17,11 +17,16 @@ const MyOffice = () => {
   const userId = localStorage.getItem('userid');
   const filteredData = card?.filter((data: any) => data?.userId === userId);
   const clickOffice = (cardData: any) => {
-    navigator(`/officeDatail/${cardData?.id}`);
+    navigator(`/officeEdit/${cardData?._id}`);
   };
+
   const clickAddOffice = () => {
     navigator('/addOffice');
   };
+
+  // useEffect(() => {
+
+  // }, [cardData]);
 
   console.log(card);
   console.log(filteredData);

@@ -25,7 +25,6 @@ import { format, addMonths } from 'date-fns';
 
 const Reservation = ({ clickCard }: any) => {
   const { id } = useParams();
-  const list = useRecoilValue(cardData);
   const navigate = useNavigate();
 
   const clickOtherOffice = () => {
@@ -39,8 +38,11 @@ const Reservation = ({ clickCard }: any) => {
     paymentDate: '',
     people: '',
   });
-  const findData = list?.find((card: any) => card?.id === id);
 
+  const list = useRecoilValue<any>(cardData);
+  // const id = list?._id;
+
+  const findData = list?.find((card: any) => id === card?._id);
   const handleCalendarDate = (date: any) => {
     setStartDate(date);
   };
@@ -67,13 +69,13 @@ const Reservation = ({ clickCard }: any) => {
         endDate: calEndDate,
         paymentDate: new Date(),
         people: bookData?.people,
-        id,
+        // id,
       },
     ]);
   };
-  // console.log(list);
-  // console.log(id);
-  // console.log(findData);
+  console.log(list);
+  console.log(id);
+  console.log(findData);
   // console.log(bookData);
   // console.log(book);
 
@@ -105,7 +107,6 @@ const Reservation = ({ clickCard }: any) => {
               }}
             >
               <OfficeCard
-                // key={findData?.id}
                 cardData={findData}
                 sx={{ width: 310, height: 352 }}
               />

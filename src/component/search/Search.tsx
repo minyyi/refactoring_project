@@ -31,6 +31,7 @@ const Search = () => {
   //여러개 ? 하나의 함수 안에서 조건으로 => todo하던거
   const handleSelect1 = (e: any) => {
     setSelected(e.target.value);
+    setCity('');
   };
   const handleSelect2 = (e: any) => {
     setCity(e.target.value);
@@ -42,9 +43,9 @@ const Search = () => {
     setTown(value);
   };
 
-  const handleSetOption = ({ name, value }: any) => {
+  const handleSetOption = ({ name, key }: any) => {
     setOption((prev: any) => {
-      return { ...prev, [name]: value };
+      return { ...prev, [key]: !prev[key] };
     });
   };
   // const handleSearch = (e: any) => {
@@ -74,8 +75,8 @@ const Search = () => {
   // };
 
   // console.log(search);
-  // console.log(selected);
-  // console.log(city);
+  console.log(selected);
+  console.log(city);
   // console.log(town);
   // console.log(option);
   // console.log(selectCity[selected]);

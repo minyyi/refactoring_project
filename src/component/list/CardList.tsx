@@ -6,13 +6,21 @@ import { cardData } from '@/lib/recoil/homeDataAtom';
 import { mySelector } from '@/lib/recoil/searchAtom';
 
 const CardList = ({ sx, ...others }: any) => {
-  // const card = useRecoilValue(cardData);
+  const card = useRecoilValue<any>(cardData);
+  console.log(card);
   const navigator = useNavigate();
+  const role = localStorage.getItem('role');
   const searchFilter = useRecoilValue(mySelector);
+  const filteredData = card?.filter((data: any) => data?._id === card?._id);
 
   const clickCard = (cardData: any) => {
-    navigator(`/reservation/${cardData?.id}`);
+    {
+      role === 'customer'
+        ? navigator(`/reservation/${cardData?._id}`)
+        : navigator(`/officeEdit/${cardData?._id}`);
+    }
   };
+  console.log(card?.image);
   return (
     <>
       <Container

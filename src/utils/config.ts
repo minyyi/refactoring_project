@@ -36,6 +36,7 @@ export const selectLegion = [
   { legion: '강원특별자치도' },
   { legion: '충청북도' },
   { legion: '충청남도' },
+  { legion: '제주특별자치도' },
 ];
 
 export const selectCity: { [key: string]: string[] } = {
@@ -69,6 +70,7 @@ export const selectCity: { [key: string]: string[] } = {
   부산광역시: [
     '강서구',
     '금정구',
+    '기장군',
     '남구',
     '동구',
     '동래구',
