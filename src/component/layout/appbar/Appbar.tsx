@@ -24,17 +24,6 @@ function ResponsiveAppBar() {
   const setId = useSetRecoilState(userid);
   const getUserInfo = useRecoilValue(userid);
   const setOfficeData = useSetRecoilState(cardData);
-  // useEffect(() => {
-  //   const id = localStorage.getItem('userid');
-  //   const getDetail = async () => {
-  //     const data = await getDocs(USER_COLLECTION);
-  //     const List = data.docs.map((doc) => ({ ...doc.data() }));
-  //     const find = List?.find((data) => data.userid === id);
-  //     console.log(find);
-  //   };
-
-  //   getDetail();
-  // }, []);
 
   /* checkAuth */
   useEffect(() => {
@@ -54,6 +43,8 @@ function ResponsiveAppBar() {
         console.log(user);
         console.log(user?.uid);
         console.log(setId);
+        console.log(images);
+        // console.log(images?.query);
       } else {
         console.log('유저없음');
       }
@@ -74,7 +65,7 @@ function ResponsiveAppBar() {
         console.log(res);
         setOfficeData(res);
       });
-  }, []);
+  }, [pathname]);
 
   if (pathCase({ pathname })) return null;
 
@@ -84,7 +75,6 @@ function ResponsiveAppBar() {
   //   });
   // };
 
-  console.log(List);
   return (
     <AppBar
       position="static"

@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 import { optionInfo } from '@/utils/config';
 import { cardData } from './homeDataAtom';
 
-const defaultObject = optionInfo
+export const defaultObject = optionInfo
   //메서드 체이닝
   ?.map((optionObject) => {
     return optionObject?.key;

@@ -84,6 +84,7 @@ const AddOffice = () => {
       const imageUrl = URL.createObjectURL(file);
       console.log(imageUrl); //임시용 / 보안위험
       setPrevImgUrl(imageUrl);
+      // setUploadImgUrl(imageUrl);
       /* 1, firebase 업로드성공
          2. setUploadImgUrl 넣어서 state 저장하고
          3. post 하는 img에 넣기  

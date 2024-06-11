@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import CommonInput from '@/component/common/CommonInput';
 import CommonInputLabel from '@/component/common/CommonInputLabel';
 import CommonSelect from '@/component/common/CommonSelect';
@@ -17,8 +17,7 @@ import {
 
 import { selectLegion, selectCity } from '@/utils/config';
 import Option from '@/component/common/Option';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { myOfficeData } from '@/lib/recoil/myOfficeAtom';
+import { useRecoilValue } from 'recoil';
 import { optionInfo } from '@/utils/config';
 import { checkedOptionAtom } from '@/lib/recoil/searchAtom';
 import CommonButton from '@/component/common/CommonButton';
@@ -28,10 +27,10 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 const OfficeEdit = () => {
   const { id } = useParams();
   const cardinfo = useRecoilValue<any>(cardData);
-
+  const navigator = useNavigate();
   const findData = cardinfo?.find((card: any) => id === card?._id);
 
-  const [card, setCard] = useRecoilState(myOfficeData);
+  const [loading, setLoading] = useState(true);
   const [officeName, setOfficeName] = useState<any>('');
   const [price, setPrice] = useState<any>('');
   const [selected, setSelected] = useState('');
@@ -60,7 +59,6 @@ const OfficeEdit = () => {
   };
   const [registeredOption, setRegisteredOption] = useState<any>([]);
   const handleSetOption = (option: any) => {
-    // console.log(cardData);
     setRegisteredOption((prev: any) => {
       //map??
       let checkTrue = prev?.find((data: any) => option?.name === data?.name);
@@ -78,21 +76,20 @@ const OfficeEdit = () => {
     );
   };
   const [file, setFile] = useState<any>(''); //firebase
+  console.log(file);
   const [prevImgUrl, setPrevImgUrl] = useState(''); //임시이미지
+  const [downloadImageUrl, setDownloadImageUrl] = useState('');
+  console.log(downloadImageUrl);
   const photo = useRef<HTMLInputElement>(null);
 
   const onchangeImageUpload = (e: any) => {
-    // if (e.target.files !== null) {
-    //   const imageFile = e.target.files[0];
-    //   setFile(imageFile);
-    // }
     const file = e.target.files[0]; //서버에 보내서 저장 ->
     console.log(file?.type.split('/')[0]);
     if (file?.type.split('/')[0] === 'image') {
       const imageUrl = URL.createObjectURL(file);
       console.log(imageUrl); //임시용 / 보안위험
       setPrevImgUrl(imageUrl);
-      setFile(imageUrl);
+      setFile(file);
       /* 1, firebase 업로드성공
          2. setFile 넣어서 state 저장하고
          3. post 하는 img에 넣기  
@@ -100,15 +97,6 @@ const OfficeEdit = () => {
     } else {
       window.alert('이미지 파일로 올려주세요.');
     }
-
-    // const { files } = e.target;
-    // const uploadFile = files[0];
-    // const reader = new FileReader();
-    // console.log(reader);
-    // reader.readAsDataURL(uploadFile);
-    // reader.onloadend = () => {
-    //   // setFile(reader?.result);
-    // };
   };
   const fileHandler = () => {
     if (photo.current) {
@@ -118,24 +106,14 @@ const OfficeEdit = () => {
   const changeImage = async () => {
     const formData = new FormData();
     formData.append('image', file);
-
-    // const result = await fetchInterceptor(
-    //   `http://${process.env.NEXT_PUBLIC_ENDPOINT}`,
-    //   {
-    //     method: Method.POST,
-    //     body: formData,
-    //     // headers: {
-    //     //   "Content-type": "application/json",
-    //     // },  -> fetch 를 사용해서 폼데이터를 보낼때 header는 자동으로 설정되어 따로 기재할 필요 없다.
-    //   }
-    // );
   };
 
   useEffect(() => {
+    //if
     const uploadFile = () => {
       const name = new Date().getTime() + file?.name;
       console.log(name);
-      const storageRef = ref(storage, file);
+      const storageRef = ref(storage, name);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         'state_changed',
@@ -159,6 +137,7 @@ const OfficeEdit = () => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setDownloadImageUrl(downloadURL);
             console.log('File available at', downloadURL);
           });
         }
@@ -176,13 +155,18 @@ const OfficeEdit = () => {
       setPrice(findData?.price);
       setRegisteredOption(findData?.option);
       setPrevImgUrl(findData?.image);
+      setDownloadImageUrl(findData?.image);
     }
+    setLoading(false);
   }, [findData]);
 
   const form = new FormData();
   form.append('image', file);
 
   const clickSaveOffice = () => {
+    // if(){
+    //   alert('저장')
+    // }
     fetch(`http://localhost:5502/api/product/${id}`, {
       // /:id
       method: 'PUT', //get data와 비교하기
@@ -200,7 +184,7 @@ const OfficeEdit = () => {
         },
         price,
         option: registeredOption,
-        image: form, //서버에서 보낼때 : formdata로 보내기
+        image: downloadImageUrl, //서버에서 보낼때 : formdata로 보내기
       }),
     })
       .then((res: any) => {
@@ -208,27 +192,21 @@ const OfficeEdit = () => {
       })
       .then((res: any) => {
         console.log(res);
-        setCard(res);
+        navigator('/myOffice');
       });
   };
-  // console.log(inputRef);
-  // function handleClick() {
-  //   inputRef.current.focus();
-  // }
   console.log(cardData);
   console.log(findData);
-  console.log(findData?.officeName);
   console.log({ officeName, price, selected, city, town, userId });
   console.log(findData?.option);
-  console.log(findData?.address?.legion);
   console.log(selected);
   console.log(registeredOption);
   console.log(file);
   console.log(form);
-  return (
+  return loading ? null : (
     <PageContainer>
       <Container>
-        <CommonTitle>오피스 추가하기</CommonTitle>
+        <CommonTitle>오피스 수정하기</CommonTitle>
         <Paper
           elevation={3}
           square={false}
@@ -376,7 +354,7 @@ const OfficeEdit = () => {
                 <img
                   // src="/public/noProfile.png"
                   src={prevImgUrl}
-                  style={{ width: 100, objectFit: 'cover' }}
+                  style={{ width: 100, height: 100, objectFit: 'cover' }}
                 />
               </Box>
             </Box>

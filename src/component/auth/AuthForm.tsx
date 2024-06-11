@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import { useMutation } from 'react-query';
 import CommonButton from '../common/CommonButton';
 import CommonInput from '../common/CommonInput';
 import PageContainer from '@/component/common/PageContainer';
@@ -16,8 +15,6 @@ import {
 } from '@/utils/validate';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userid, userType } from '@/lib/recoil/authAtom';
-// import { auth } from '@/';
-// import { auth } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import {
   auth,
@@ -27,12 +24,6 @@ import {
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { firebaseErrorCase } from '@/lib/firebase/firebaseErrorCase';
 import { setDoc, doc, addDoc, getDocs } from 'firebase/firestore';
-
-// import { getAgencyApi } from "../../fetch/get/main";
-// import { signupAgencyApi } from '../../fetch/post/main';
-// import { FcGoogle } from 'react-icons/fc';
-// import { BsArrowCounterclockwise } from 'react-icons/bs';
-// import { AiOutlineEyeInvisible } from "react-icons/ai";
 
 interface AgencyCardProps {
   email: string;

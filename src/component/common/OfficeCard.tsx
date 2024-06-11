@@ -12,19 +12,20 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
   console.log(id);
   const [heart, setHeart] = useRecoilState<any>(favorite);
   const clickHeart = (cardData: any) => {
-    // console.log(cardData);
+    console.log(cardData);
     setHeart((prev: any) => {
       //map??
-      let checkTrue = prev?.find((heart: any) => id === heart?.id);
+      let checkTrue = prev?.find((heart: any) => id === heart?._id);
+      console.log(checkTrue);
       if (checkTrue) {
-        return prev?.filter((heart: any) => id !== heart?.id);
+        return prev?.filter((heart: any) => id !== heart?._id);
       } else {
         return [cardData, ...prev];
       }
     });
   };
-
-  console.log(cardData);
+  console.log(heart);
+  console.log(cardData?.image);
   return (
     <>
       <Box
@@ -39,12 +40,10 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
           width: { lg: 260, md: 270, sm: 260, xs: '100%' },
           height: 'auto',
           cursor: 'pointer',
-          // backgroundColor: 'gray',
         }}
       >
-        <Box sx={{ minHeight: 160, overflow: 'hidden', position: 'relative' }}>
+        <Box sx={{ height: 160, overflow: 'hidden', position: 'relative' }}>
           <img
-            // src="/img3.avif"
             src={cardData?.image}
             style={{
               objectFit: 'cover',

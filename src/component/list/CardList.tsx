@@ -14,11 +14,7 @@ const CardList = ({ sx, ...others }: any) => {
   const filteredData = card?.filter((data: any) => data?._id === card?._id);
 
   const clickCard = (cardData: any) => {
-    {
-      role === 'customer'
-        ? navigator(`/reservation/${cardData?._id}`)
-        : navigator(`/officeEdit/${cardData?._id}`);
-    }
+    navigator(`/reservation/${cardData?._id}`);
   };
   console.log(card?.image);
   return (

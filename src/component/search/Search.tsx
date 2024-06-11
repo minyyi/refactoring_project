@@ -15,12 +15,15 @@ import {
   inputTownAtom,
   checkedOptionAtom,
 } from '@/lib/recoil/searchAtom';
+import { defaultObject } from '@/lib/recoil/searchAtom';
+import { resetButton } from '@/lib/recoil/resetAtom';
 
 const Search = () => {
   const [selected, setSelected] = useRecoilState(selectLegionAtom);
   const [city, setCity] = useRecoilState(selectCityAtom);
   const [town, setTown] = useRecoilState<any>(inputTownAtom);
   const [option, setOption] = useRecoilState<any>(checkedOptionAtom);
+  const [reset, setReset] = useRecoilState<any>(resetButton);
 
   // const [test, setTest] = useState({
   //   legion: '',
@@ -52,12 +55,14 @@ const Search = () => {
   //   setSearch(e.target.value);
   // };
 
-  // const handleReset = () => {
-  //   setSearch('');
-  //   // setSelected('');
-  //   // setCity('');
-  //   // setTown({ town: '' });
-  // };
+  const handleReset = () => {
+    // setSearch('');
+    setSelected('');
+    setCity('');
+    setTown('');
+    setOption(defaultObject);
+    setReset((prev: any) => !prev);
+  };
 
   // sessionStorage에 저장된 search 값을 가져옴
   // const sessionSearch = window.sessionStorage.getItem('search');
@@ -77,6 +82,7 @@ const Search = () => {
   // console.log(search);
   console.log(selected);
   console.log(city);
+  console.log(reset);
   // console.log(town);
   // console.log(option);
   // console.log(selectCity[selected]);
@@ -156,8 +162,10 @@ const Search = () => {
             value={town}
             onChange={handleFormData}
           />
-          <CommonButton size={'medium'}>검색</CommonButton>
-          <CommonButton size={'medium'}>초기화</CommonButton>
+          {/* <CommonButton size={'medium'}>검색</CommonButton> */}
+          <CommonButton size={'medium'} onClick={handleReset}>
+            초기화
+          </CommonButton>
         </Box>
         <Box sx={{ borderTop: 0.5, pt: 2, mt: 1 }}>
           {optionInfo.map((option: any, idx: any) => (

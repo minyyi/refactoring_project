@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, FormControlLabel, Checkbox } from '@mui/material';
 import { optionInfo } from '@/utils/config';
+import { resetButton } from '@/lib/recoil/resetAtom';
+import { useRecoilValue } from 'recoil';
 const Option = ({ option, handleSetOption, defaultChecked }: any) => {
   // const defaultObject = optionInfo
   //메서드 체이닝
@@ -14,6 +16,7 @@ const Option = ({ option, handleSetOption, defaultChecked }: any) => {
   //   };
   // }, {});
   const [checked, setChecked] = useState<any>(defaultChecked || false);
+  const resetvalue = useRecoilValue<any>(resetButton);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { name, checked } = event.target;
 
@@ -22,10 +25,15 @@ const Option = ({ option, handleSetOption, defaultChecked }: any) => {
     // console.log(name, checked);
   };
   useEffect(() => {
+    setChecked(false);
+  }, [resetvalue]);
+
+  useEffect(() => {
     if (defaultChecked) {
       setChecked(defaultChecked);
     }
   }, [defaultChecked]);
+
   // console.log(checked);
   // console.log(defaultChecked);
   return (

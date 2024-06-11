@@ -13,7 +13,7 @@ const WebAppbar = () => {
   console.log(getUserInfo);
 
   const role = localStorage.getItem('role');
-  const pages = [role, getUserInfo?.name, 'point'];
+  const pages = getUserInfo?.name ? [role, getUserInfo?.name, 'point'] : [];
 
   const clickLogo = () => {
     navigate('/home');

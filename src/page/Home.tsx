@@ -24,7 +24,6 @@ const Home = () => {
   const [card, setCard] = useRecoilState(cardData);
   const filterdData = [...card];
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const navigator = useNavigate();
 
   // const clickCard = () => {
@@ -38,78 +37,38 @@ const Home = () => {
 
   // const getId = authHook();
 
-  useEffect(() => {
-    const testApi = () => {
-      let test = fetch('https://jsonplaceholder.typicode.com/users')
-        .then((res: any) => {
-          return res.json();
-        })
-        .then((res) => {
-          setData(res);
-          setLoading(false);
-          return res;
-        });
-      // console.log(test);
-    };
-    testApi();
-  }, []);
-
   // console.log(data);
-  // console.log(card);
+  console.log(filterdData);
+
   return (
     <>
-      {loading ? (
-        <Box
+      <PageContainer
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Container
+          sx={{ display: 'flex', flexGrow: 1, justifyContent: 'center' }}
+        >
+          <Search />
+        </Container>
+        <Container
           sx={{
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100vh',
+            justifyContent: { sm: 'flex-start', xs: 'center' },
           }}
-        >
-          <Typography sx={{ fontSize: 100 }}>로딩중</Typography>
-        </Box>
-      ) : (
-        <PageContainer
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Container
-            sx={{ display: 'flex', flexGrow: 1, justifyContent: 'center' }}
-          >
-            <Search />
-          </Container>
-          <Container
-            sx={{
-              display: 'flex',
-              justifyContent: { sm: 'flex-start', xs: 'center' },
-            }}
-          ></Container>
-          <Container>
-            <CommonTitle>오피스 목록</CommonTitle>
+        ></Container>
+        <Container>
+          <CommonTitle>오피스 목록</CommonTitle>
 
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              {/* <BookmakrButton /> */}
-              <CardList />
-              {/* {cardData.filter((val) =>{
-          if(searchTerm == ""){
-            return val
-          }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
-            return val
-          }
-        }
-        }).map(data =>{
-          return <CardList />
-        })}
- */}
-            </Box>
-          </Container>
-          <Pagination sx={{ mt: 3 }} />
-        </PageContainer>
-      )}
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <CardList />
+          </Box>
+        </Container>
+        <Pagination sx={{ mt: 3 }} />
+      </PageContainer>
     </>
   );
 };
