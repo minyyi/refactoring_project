@@ -1,6 +1,6 @@
 import MyInfo from './MyInfo';
 import MyPhoto from './MyPhoto';
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
 
 const MyProfile = () => {
   return (

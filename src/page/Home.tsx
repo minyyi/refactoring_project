@@ -1,24 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Container,
-  Select,
-  Typography,
-  InputLabel,
-  MenuItem,
-  SelectChangeEvent,
-  FormControl,
-  Pagination,
-} from '@mui/material';
+import { Box, Container, SelectChangeEvent, Pagination } from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
 import Search from '@/component/search/Search';
 import CardList from '@/component/list/CardList';
 import CommonTitle from '@/component/common/CommonTitle';
 import { useRecoilState } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
-import { authHook } from '@/utils/authHook';
-import BookmakrButton from '@/component/common/BookmarkButton';
 
 const Home = () => {
   const [card, setCard] = useRecoilState(cardData);

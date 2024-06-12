@@ -19,7 +19,6 @@ import { selectLegion, selectCity } from '@/utils/config';
 import Option from '@/component/common/Option';
 import { useRecoilValue } from 'recoil';
 import { optionInfo } from '@/utils/config';
-import { checkedOptionAtom } from '@/lib/recoil/searchAtom';
 import CommonButton from '@/component/common/CommonButton';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { storage } from '@/lib/firebase/firebase';

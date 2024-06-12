@@ -1,7 +1,7 @@
-import { Container, Box, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import OfficeCard from '../common/OfficeCard';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { mySelector } from '@/lib/recoil/searchAtom';
 

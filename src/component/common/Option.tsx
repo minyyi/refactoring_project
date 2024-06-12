@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, FormControlLabel, Checkbox } from '@mui/material';
-import { optionInfo } from '@/utils/config';
+import { FormControlLabel, Checkbox } from '@mui/material';
 import { resetButton } from '@/lib/recoil/resetAtom';
 import { useRecoilValue } from 'recoil';
 const Option = ({ option, handleSetOption, defaultChecked }: any) => {

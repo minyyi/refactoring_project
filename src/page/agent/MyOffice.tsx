@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import CommonTitle from '@/component/common/CommonTitle';
 import OfficeCard from '@/component/common/OfficeCard';
 import PageContainer from '@/component/common/PageContainer';
@@ -6,10 +5,7 @@ import { Container, Box } from '@mui/material';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '@/lib/firebase/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
 import CommonButton from '@/component/common/CommonButton';
-import { myOfficeData } from '@/lib/recoil/myOfficeAtom';
 
 const MyOffice = () => {
   const navigator = useNavigate();

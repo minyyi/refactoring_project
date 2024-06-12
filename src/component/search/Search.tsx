@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Box, MenuItem, FormControl, Typography } from '@mui/material';
+import { Box, MenuItem, FormControl } from '@mui/material';
 
 import CommonSelect from '../common/CommonSelect';
 import { selectLegion, selectCity } from '@/utils/config';

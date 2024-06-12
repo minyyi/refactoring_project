@@ -1,6 +1,6 @@
 import PageContainer from '@/component/common/PageContainer';
 import CommonTitle from '@/component/common/CommonTitle';
-import { Box, Container, Pagination, Paper } from '@mui/material';
+import { Container, Pagination, Paper } from '@mui/material';
 import Noti from '@/component/noti/Noti';
 
 const NotiMsg = () => {

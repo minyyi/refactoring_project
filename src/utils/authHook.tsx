@@ -1,4 +1,3 @@
-import { Co2Sharp } from '@mui/icons-material';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { pathCase } from './config';

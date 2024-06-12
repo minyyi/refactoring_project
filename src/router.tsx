@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, useNavigate } from 'react-router-dom';
 // import Home from './page/Home';
 // import { Layout } from './component/layout/Layout';
 import LandingPage from './page/Landing';
@@ -63,10 +63,11 @@ const Router = () => {
 export default Router;
 
 const OurFallbackComponent = ({ error, resetErrorBoundary }: any) => {
+  const navigator = useNavigate();
   return (
     <div>
       <h1>An error occurred: {error.message}</h1>
-      <button onClick={resetErrorBoundary}>Try again</button>
+      <button onClick={() => navigator('/')}>돌아가기</button>
     </div>
   );
 };

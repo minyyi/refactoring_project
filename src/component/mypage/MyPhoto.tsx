@@ -1,6 +1,5 @@
-import { Box, Container, styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import CommonButton from '../common/CommonButton';
-import CommonInput from '../common/CommonInput';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',

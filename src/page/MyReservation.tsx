@@ -1,11 +1,9 @@
 import PageContainer from '@/component/common/PageContainer';
 import CommonTitle from '@/component/common/CommonTitle';
 import { Container, Typography, Box } from '@mui/material';
-import OfficeCard from '@/component/common/OfficeCard';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import PastReservation from '@/component/myreservation/PastReservation';
 import DataofReservation from '@/component/myreservation/DataofReservation';
 
 const MyReservation = () => {

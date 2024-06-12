@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import { ReactNode } from 'react';
 
 const CommonButton = ({ children, sx, ...others }: any) => {
   return (

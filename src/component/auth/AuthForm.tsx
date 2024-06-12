@@ -4,7 +4,7 @@ import CommonInput from '../common/CommonInput';
 import PageContainer from '@/component/common/PageContainer';
 import { Box, IconButton, InputAdornment, Typography } from '@mui/material';
 import CommonTitle from '../common/CommonTitle';
-import { PasswordTwoTone, VisibilityOff } from '@mui/icons-material';
+import { VisibilityOff } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -13,8 +13,8 @@ import {
   validatePassword,
   validateBusinessNumber,
 } from '@/utils/validate';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { userid, userType } from '@/lib/recoil/authAtom';
+import { useSetRecoilState } from 'recoil';
+import { userid } from '@/lib/recoil/authAtom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import {
   auth,
@@ -23,7 +23,7 @@ import {
 } from '../../lib/firebase/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { firebaseErrorCase } from '@/lib/firebase/firebaseErrorCase';
-import { setDoc, doc, addDoc, getDocs } from 'firebase/firestore';
+import { addDoc, getDocs } from 'firebase/firestore';
 
 interface AgencyCardProps {
   email: string;

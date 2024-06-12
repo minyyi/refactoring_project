@@ -19,7 +19,6 @@ import Option from '@/component/common/Option';
 import { useRecoilState } from 'recoil';
 import { myOfficeData } from '@/lib/recoil/myOfficeAtom';
 import { optionInfo } from '@/utils/config';
-import { checkedOptionAtom } from '@/lib/recoil/searchAtom';
 import CommonButton from '@/component/common/CommonButton';
 
 const AddOffice = () => {

@@ -1,27 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import CommonButton from '@/component/common/CommonButton';
 import PageContainer from '@/component/common/PageContainer';
-import CommonSelect from '@/component/common/CommonSelect';
 import CommonTitle from '@/component/common/CommonTitle';
-import CommonInputLabel from '@/component/common/CommonInputLabel';
-import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  MenuItem,
-  FormControl,
-} from '@mui/material';
+import { Box, Container, Paper, Typography } from '@mui/material';
 import OfficeCard from '@/component/common/OfficeCard';
-import Option from '@/component/common/Option';
 import Calendar from '@/component/reservation/Calendar';
-import { month, people } from '@/utils/config';
 import { useRecoilState, useRecoilValue, selector } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import SelectforReservation from '@/component/reservation/SelectforReservation';
 import { myReservation } from '@/lib/recoil/reservationAtom';
-import { format, addMonths } from 'date-fns';
+import { addMonths } from 'date-fns';
 
 const Reservation = ({ clickCard }: any) => {
   const { id } = useParams();
@@ -40,7 +29,6 @@ const Reservation = ({ clickCard }: any) => {
   });
 
   const list = useRecoilValue<any>(cardData);
-  // const id = list?._id;
 
   const findData = list?.find((card: any) => id === card?._id);
   const handleCalendarDate = (date: any) => {
@@ -69,15 +57,12 @@ const Reservation = ({ clickCard }: any) => {
         endDate: calEndDate,
         paymentDate: new Date(),
         people: bookData?.people,
-        // id,
       },
     ]);
   };
   console.log(list);
   console.log(id);
   console.log(findData);
-  // console.log(bookData);
-  // console.log(book);
 
   return (
     <PageContainer sx={{ display: 'flex', flexDirection: 'column', rowGap: 4 }}>
@@ -118,7 +103,6 @@ const Reservation = ({ clickCard }: any) => {
             >
               다른 오피스 보기
             </CommonButton>
-            {/* <CommonButton></CommonButton> */}
           </Box>
           <Paper
             elevation={3}
@@ -126,10 +110,8 @@ const Reservation = ({ clickCard }: any) => {
             sx={{
               flexGrow: 1,
               padding: 2,
-              //   columnGap: 10,
               display: 'flex',
               flexDirection: 'column',
-              //   justifyContent: 'center',
               alignItems: 'center',
             }}
           >

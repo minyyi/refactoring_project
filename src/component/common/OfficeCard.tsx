@@ -1,10 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import { Box, Typography, styled } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import BookmarkButton from './BookmarkButton';
 import { favorite } from '@/lib/recoil/favoritAtom';
-// import { useRecoilState } from 'recoil';
-// import { cardList } from '@/lib/recoil/homeDataAtom';
 
 const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
   // const id = localStorage.getItem('userid');
