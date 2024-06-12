@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Box, MenuItem, FormControl, Typography } from '@mui/material';
+import { Box, MenuItem, FormControl } from '@mui/material';
 
 import CommonSelect from '../common/CommonSelect';
 import { selectLegion, selectCity } from '@/utils/config';
@@ -15,12 +14,15 @@ import {
   inputTownAtom,
   checkedOptionAtom,
 } from '@/lib/recoil/searchAtom';
+import { defaultObject } from '@/lib/recoil/searchAtom';
+import { resetButton } from '@/lib/recoil/resetAtom';
 
 const Search = () => {
   const [selected, setSelected] = useRecoilState(selectLegionAtom);
   const [city, setCity] = useRecoilState(selectCityAtom);
   const [town, setTown] = useRecoilState<any>(inputTownAtom);
   const [option, setOption] = useRecoilState<any>(checkedOptionAtom);
+  const [reset, setReset] = useRecoilState<any>(resetButton);
 
   // const [test, setTest] = useState({
   //   legion: '',
@@ -31,6 +33,7 @@ const Search = () => {
   //여러개 ? 하나의 함수 안에서 조건으로 => todo하던거
   const handleSelect1 = (e: any) => {
     setSelected(e.target.value);
+    setCity('');
   };
   const handleSelect2 = (e: any) => {
     setCity(e.target.value);
@@ -38,25 +41,27 @@ const Search = () => {
 
   const handleFormData = (e: any) => {
     let { name, value } = e.target;
-    console.log({ name, value });
+    // console.log({ name, value });
     setTown(value);
   };
 
-  const handleSetOption = ({ name, value }: any) => {
+  const handleSetOption = ({ name, key }: any) => {
     setOption((prev: any) => {
-      return { ...prev, [name]: value };
+      return { ...prev, [key]: !prev[key] };
     });
   };
   // const handleSearch = (e: any) => {
   //   setSearch(e.target.value);
   // };
 
-  // const handleReset = () => {
-  //   setSearch('');
-  //   // setSelected('');
-  //   // setCity('');
-  //   // setTown({ town: '' });
-  // };
+  const handleReset = () => {
+    // setSearch('');
+    setSelected('');
+    setCity('');
+    setTown('');
+    setOption(defaultObject);
+    setReset((prev: any) => !prev);
+  };
 
   // sessionStorage에 저장된 search 값을 가져옴
   // const sessionSearch = window.sessionStorage.getItem('search');
@@ -76,8 +81,9 @@ const Search = () => {
   // console.log(search);
   console.log(selected);
   console.log(city);
-  console.log(town);
-  console.log(option);
+  console.log(reset);
+  // console.log(town);
+  // console.log(option);
   // console.log(selectCity[selected]);
   return (
     <>
@@ -155,8 +161,10 @@ const Search = () => {
             value={town}
             onChange={handleFormData}
           />
-          <CommonButton size={'medium'}>검색</CommonButton>
-          <CommonButton size={'medium'}>초기화</CommonButton>
+          {/* <CommonButton size={'medium'}>검색</CommonButton> */}
+          <CommonButton size={'medium'} onClick={handleReset}>
+            초기화
+          </CommonButton>
         </Box>
         <Box sx={{ borderTop: 0.5, pt: 2, mt: 1 }}>
           {optionInfo.map((option: any, idx: any) => (

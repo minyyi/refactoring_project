@@ -1,7 +1,6 @@
 import PageContainer from '@/component/common/PageContainer';
 import { Container, Box, Typography } from '@mui/material';
 import CommonTitle from '@/component/common/CommonTitle';
-import MyInfo from '@/component/mypage/MyInfo';
 import MyProfile from '@/component/mypage/MyProfile';
 
 const Mypage = () => {

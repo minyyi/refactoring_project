@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 export const userid = atom({
   key: 'userid',
-  default: '',
+  default: {},
 });
 
 export const userType = atom({

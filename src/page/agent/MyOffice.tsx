@@ -6,18 +6,26 @@ import { cardData } from '@/lib/recoil/homeDataAtom';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import CommonButton from '@/component/common/CommonButton';
-import { myOfficeData } from '@/lib/recoil/myOfficeAtom';
 
 const MyOffice = () => {
-  const card = useRecoilValue(myOfficeData);
   const navigator = useNavigate();
+  const card = useRecoilValue(cardData);
+  const userId = localStorage.getItem('userid');
+  const filteredData = card?.filter((data: any) => data?.userId === userId);
   const clickOffice = (cardData: any) => {
-    navigator(`/officeDatail/${cardData?.id}`);
+    navigator(`/officeEdit/${cardData?._id}`);
   };
+
   const clickAddOffice = () => {
     navigator('/addOffice');
   };
 
+  // useEffect(() => {
+
+  // }, [cardData]);
+
+  console.log(card);
+  console.log(filteredData);
   return (
     <PageContainer>
       <Container>
@@ -32,10 +40,10 @@ const MyOffice = () => {
         <Box
           sx={{ display: 'flex', columnGap: 2, flexWrap: 'wrap', padding: 2 }}
         >
-          {card?.map((cardData, idx) => {
+          {filteredData?.map((cardData: any, id: any) => {
             return (
               <OfficeCard
-                key={idx}
+                key={id}
                 cardData={cardData}
                 clickCard={clickOffice}
               />

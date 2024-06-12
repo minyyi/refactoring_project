@@ -12,7 +12,7 @@ const Authpage = ({ title }: any) => {
   const navigate = useNavigate();
   const [process, setProcess] = useState('');
   // const [process, setProcess] = useRecoilState(userType);
-  console.log(process);
+  // console.log(process);
   const clickSignup = () => {
     navigate('/signup');
   };

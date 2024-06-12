@@ -3,16 +3,15 @@ import PageContainer from '@/component/common/PageContainer';
 import { Container, Box, Typography } from '@mui/material';
 import CommonTitle from '@/component/common/CommonTitle';
 import OfficeCard from '@/component/common/OfficeCard';
-import { cardData } from '@/lib/recoil/homeDataAtom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { favorite } from '@/lib/recoil/favoritAtom';
 
 const Bookmark = ({ selected }: any) => {
   const { id } = useParams();
   const bookmark = useRecoilValue(favorite);
   const findData = selected?.find((card: any) => card?.id === id);
-  console.log(findData);
-  console.log(bookmark);
+  // console.log(findData);
+  // console.log(bookmark);
 
   return (
     <PageContainer

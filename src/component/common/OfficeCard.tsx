@@ -1,35 +1,28 @@
-import { useNavigate } from 'react-router-dom';
 import { Box, Typography, styled } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import BookmarkButton from './BookmarkButton';
 import { favorite } from '@/lib/recoil/favoritAtom';
-// import { useRecoilState } from 'recoil';
-// import { cardList } from '@/lib/recoil/homeDataAtom';
 
-const OfficeCard = ({
-  // clickHeart = () => {},
-  clickCard = () => {},
-  cardData,
-  sx,
-  ...others
-}: any) => {
-  const id = localStorage.getItem('userid');
+const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
+  // const id = localStorage.getItem('userid');
+  const id = cardData?._id;
+  console.log(id);
   const [heart, setHeart] = useRecoilState<any>(favorite);
   const clickHeart = (cardData: any) => {
     console.log(cardData);
     setHeart((prev: any) => {
       //map??
-      let checkTrue = prev?.find((heart: any) => cardData?.id === heart?.id);
+      let checkTrue = prev?.find((heart: any) => id === heart?._id);
+      console.log(checkTrue);
       if (checkTrue) {
-        return prev?.filter((heart: any) => cardData?.id !== heart?.id);
+        return prev?.filter((heart: any) => id !== heart?._id);
       } else {
         return [cardData, ...prev];
       }
     });
   };
-  console.log(id);
-  console.log('하트', heart);
-  console.log(clickCard);
+  console.log(heart);
+  console.log(cardData?.image);
   return (
     <>
       <Box
@@ -42,9 +35,8 @@ const OfficeCard = ({
           rowGap: 1,
 
           width: { lg: 260, md: 270, sm: 260, xs: '100%' },
-          height: 270,
+          height: 'auto',
           cursor: 'pointer',
-          // backgroundColor: 'gray',
         }}
       >
         <Box sx={{ height: 160, overflow: 'hidden', position: 'relative' }}>
@@ -63,14 +55,14 @@ const OfficeCard = ({
         <Box sx={{}}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography>{cardData?.officeName}</Typography>
-            <Typography>{cardData?.grade}</Typography>
+            <Typography>⭐️{cardData?.grade}</Typography>
           </Box>
           <Typography>
             {`${cardData?.address?.legion} `}
             {`${cardData?.address?.city} `}
             {cardData?.address?.town}
           </Typography>
-          {id ? <Typography>{cardData?.price}</Typography> : null}
+          {id ? <Typography>월 {cardData?.price}원</Typography> : null}
         </Box>
       </Box>
     </>

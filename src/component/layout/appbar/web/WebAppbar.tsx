@@ -3,12 +3,18 @@ import { Box, Typography, Button } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { userType } from '@/lib/recoil/authAtom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userid } from '@/lib/recoil/authAtom';
+import { cardData } from '@/lib/recoil/homeDataAtom';
 
 const WebAppbar = () => {
-  const process = localStorage.getItem('roll');
-  const pages = [process, 'name', 'point'];
   const navigate = useNavigate();
+  const getUserInfo = useRecoilValue<any>(userid);
+  console.log(getUserInfo);
+
+  const role = localStorage.getItem('role');
+  const pages = getUserInfo?.name ? [role, getUserInfo?.name, 'point'] : [];
+
   const clickLogo = () => {
     navigate('/home');
   };
@@ -39,6 +45,7 @@ const WebAppbar = () => {
       </Box>
 
       <Box
+        // key={pages}
         sx={{
           flexGrow: 1,
           display: 'flex',

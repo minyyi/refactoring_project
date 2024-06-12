@@ -36,6 +36,7 @@ export const selectLegion = [
   { legion: '강원특별자치도' },
   { legion: '충청북도' },
   { legion: '충청남도' },
+  { legion: '제주특별자치도' },
 ];
 
 export const selectCity: { [key: string]: string[] } = {
@@ -69,6 +70,7 @@ export const selectCity: { [key: string]: string[] } = {
   부산광역시: [
     '강서구',
     '금정구',
+    '기장군',
     '남구',
     '동구',
     '동래구',
@@ -297,17 +299,17 @@ export const optionInfo = [
 ];
 
 export const month = [
-  { term: '1개월' },
-  { term: '2개월' },
-  { term: '3개월' },
-  { term: '4개월' },
-  { term: '5개월' },
-  { term: '6개월' },
-  { term: '7개월' },
-  { term: '8개월' },
-  { term: '9개월' },
-  { term: '10개월' },
-  { term: '11개월' },
+  { term: '1개월', value: 1 },
+  { term: '2개월', value: 2 },
+  { term: '3개월', value: 3 },
+  { term: '4개월', value: 4 },
+  { term: '5개월', value: 5 },
+  { term: '6개월', value: 6 },
+  { term: '7개월', value: 7 },
+  { term: '8개월', value: 8 },
+  { term: '9개월', value: 9 },
+  { term: '10개월', value: 10 },
+  { term: '11개월', value: 11 },
 ];
 export const people = [
   { number: '1명' },

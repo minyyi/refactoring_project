@@ -44,7 +44,7 @@ const MobileAppbar = () => {
     }
 
     setState((prev) => !prev);
-    console.log('toggleDrawer', path);
+    // console.log('toggleDrawer', path);
   };
 
   return (

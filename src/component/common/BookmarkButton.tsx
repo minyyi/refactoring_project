@@ -6,17 +6,7 @@ import { favorite } from '@/lib/recoil/favoritAtom';
 
 const BookmarkButton = ({ clickHeart, cardData }: any) => {
   const heart = useRecoilValue(favorite);
-  const heartOn = heart?.find((data: any) => data?.id === cardData?.id);
-  //   const StyledRating = styled(Rating)({
-  //     '& .MuiRating-iconFilled': {
-  //       color: '#ff6d75',
-  //     },
-  //     '& .MuiRating-iconHover': {
-  //       color: '#ff3d47',
-  //     },
-  //   });
-  console.log(heart);
-  console.log(cardData);
+  const heartOn = heart?.find((data: any) => data?._id === cardData?._id);
   return (
     <ToggleButton
       value="check"

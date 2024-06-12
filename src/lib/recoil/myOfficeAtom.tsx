@@ -43,5 +43,5 @@ export const myOffice = [
 
 export const myOfficeData = atom({
   key: 'myOfficeData',
-  default: myOffice,
+  default: [],
 });

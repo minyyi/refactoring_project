@@ -1,13 +1,12 @@
 import { Box, Typography } from '@mui/material';
 import { cardData } from '@/lib/recoil/homeDataAtom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import OfficeCard from '../common/OfficeCard';
 import { useNavigate } from 'react-router-dom';
 import CommonButton from '../common/CommonButton';
-import { grey } from '@mui/material/colors';
 
 const PastReservation = () => {
-  const [card, setCard] = useRecoilState(cardData);
+  const [card, setCard] = useRecoilState<any>(cardData);
   const navigator = useNavigate();
   //   const list = useRecoilValue(cardData);
   //   const findData = list?.find((card: any) => card?.id === id);
@@ -18,12 +17,12 @@ const PastReservation = () => {
 
   return (
     <>
-      {card?.map((cardData, idx) => {
+      {card?.map((cardData: any, idx: any) => {
         return (
           <Box sx={{ display: 'flex', columnGap: 4 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 2 }}>
               <OfficeCard
-                key={cardData?.id}
+                key={cardData?._id}
                 cardData={cardData}
                 clickCard={clickCard}
               />

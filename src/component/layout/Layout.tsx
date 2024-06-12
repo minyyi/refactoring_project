@@ -7,7 +7,7 @@ import { useSetRecoilState } from 'recoil';
 import { userid } from '@/lib/recoil/authAtom';
 import { authHook } from '@/utils/authHook';
 
-export const Layout = (props: { children: ReactNode }) => {
+const Layout = (props: { children: ReactNode }) => {
   const location = useLocation();
   authHook();
 
@@ -36,3 +36,4 @@ export const Layout = (props: { children: ReactNode }) => {
     </>
   );
 };
+export default Layout;

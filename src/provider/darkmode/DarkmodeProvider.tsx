@@ -1,6 +1,5 @@
 import { useState, useMemo, ReactNode, createContext, useContext } from 'react';
 import { PaletteMode } from '@mui/material';
-import { userid } from '@/lib/recoil/authAtom';
 
 const ColorModeContext = createContext<{
   mode: PaletteMode;
