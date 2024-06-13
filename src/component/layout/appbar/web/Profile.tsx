@@ -10,12 +10,8 @@ import {
   useTheme,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { userid } from '@/lib/recoil/authAtom';
 import { customerMenuItemArray, agentMenuItemArray } from '@/utils/config';
 import { useColorModeContext } from '@/provider/darkmode/DarkmodeProvider';
-import ColorModeContextProvider from '@/provider/darkmode/DarkmodeProvider';
-import { useRecoilState } from 'recoil';
-import { userType } from '@/lib/recoil/authAtom';
 
 // const settings = [
 //   { title: 'Profile', path: '/home', type: 'profile' },
@@ -41,7 +37,6 @@ const Profile = () => {
       setAnchorElUser(event.currentTarget);
     }
   };
-  const [process, setProcess] = useRecoilState(userType);
 
   const handleCloseUserMenu = (setting: any) => {
     setAnchorElUser(null);

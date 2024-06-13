@@ -11,7 +11,7 @@ import {
   Typography,
   MenuItem,
   Paper,
-  styled,
+  // styled,
 } from '@mui/material';
 
 import { selectLegion, selectCity } from '@/utils/config';
@@ -141,6 +141,8 @@ const AddOffice = () => {
 
   console.log({ officeName, price, selected, city, town, userId });
   console.log(option);
+  console.log(card);
+  console.log(setUploadImgUrl);
   return (
     <PageContainer>
       <Container>
@@ -232,7 +234,7 @@ const AddOffice = () => {
                 // alignItems: 'center',
               }}
             >
-              {optionInfo.map((option: any, idx: any) => (
+              {optionInfo.map((option: any) => (
                 <Option
                   key={option?.name}
                   option={option}
@@ -287,7 +289,9 @@ const AddOffice = () => {
             </Box>
 
             <Box sx={{ width: 400, display: 'flex' }}>
-              <CommonButton fullWidth>오피스 등록하기</CommonButton>
+              <CommonButton fullWidth onClick={clickSaveOffice}>
+                오피스 등록하기
+              </CommonButton>
             </Box>
           </Box>
         </Paper>
@@ -298,14 +302,14 @@ const AddOffice = () => {
 
 export default AddOffice;
 
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-});
+// const VisuallyHiddenInput = styled('input')({
+//   clip: 'rect(0 0 0 0)',
+//   clipPath: 'inset(50%)',
+//   height: 1,
+//   overflow: 'hidden',
+//   position: 'absolute',
+//   bottom: 0,
+//   left: 0,
+//   whiteSpace: 'nowrap',
+//   width: 1,
+// });

@@ -1,9 +1,7 @@
 import PageContainer from '@/component/common/PageContainer';
 import CommonTitle from '@/component/common/CommonTitle';
 import { Container, Typography, Box } from '@mui/material';
-import { cardData } from '@/lib/recoil/homeDataAtom';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
 import DataofReservation from '@/component/myreservation/DataofReservation';
 
 const MyReservation = () => {
@@ -13,7 +11,7 @@ const MyReservation = () => {
     // console.log(cardData);
   };
 
-  const [card, setCard] = useRecoilState(cardData);
+  // const [card, setCard] = useRecoilState(cardData);
 
   return (
     <PageContainer

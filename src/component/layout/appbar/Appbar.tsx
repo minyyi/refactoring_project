@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Container, useMediaQuery, List } from '@mui/material';
+import { AppBar, Toolbar, Container, useMediaQuery } from '@mui/material';
 import WebAppbar from './web/WebAppbar';
 import Profile from './web/Profile';
 import MobileAppbar from './mobile/MobileAppbar';
@@ -6,15 +6,15 @@ import DarkmodeButton from './common/DarkmodeButton';
 import { useLocation } from 'react-router-dom';
 import { pathCase } from '@/utils/config';
 import { useEffect } from 'react';
-import { getDocs, collection, addDoc } from 'firebase/firestore';
+import { getDocs } from 'firebase/firestore';
 import {
   auth,
   USER_COLLECTION,
   IMAGE,
   // useGetImage,
 } from '@/lib/firebase/firebase';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useSetRecoilState } from 'recoil';
 import { userid } from '@/lib/recoil/authAtom';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 
@@ -22,7 +22,7 @@ function ResponsiveAppBar() {
   const matches = useMediaQuery((theme: any) => theme.breakpoints.down('md'));
   const { pathname } = useLocation();
   const setId = useSetRecoilState(userid);
-  const getUserInfo = useRecoilValue(userid);
+  // const getUserInfo = useRecoilValue(userid);
   const setOfficeData = useSetRecoilState(cardData);
 
   /* checkAuth */

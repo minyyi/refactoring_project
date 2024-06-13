@@ -39,7 +39,7 @@ const Bookmark = ({ selected }: any) => {
             key={findData}
             sx={{ display: 'flex', columnGap: 2, px: 4, flexWrap: 'wrap' }}
           >
-            {bookmark.map((cardData, idx) => {
+            {bookmark.map((cardData) => {
               return <OfficeCard key={findData?.id} cardData={cardData} />;
             })}
           </Box>

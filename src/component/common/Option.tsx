@@ -18,7 +18,7 @@ const Option = ({ option, handleSetOption, defaultChecked }: any) => {
   const resetvalue = useRecoilValue<any>(resetButton);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { name, checked } = event.target;
-
+    console.log(name);
     setChecked(checked);
     handleSetOption(option);
     // console.log(name, checked);

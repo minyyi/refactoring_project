@@ -41,12 +41,13 @@ const Search = () => {
 
   const handleFormData = (e: any) => {
     let { name, value } = e.target;
-    // console.log({ name, value });
+    console.log({ name, value });
     setTown(value);
   };
 
   const handleSetOption = ({ name, key }: any) => {
     setOption((prev: any) => {
+      console.log(name);
       return { ...prev, [key]: !prev[key] };
     });
   };
@@ -83,7 +84,7 @@ const Search = () => {
   console.log(city);
   console.log(reset);
   // console.log(town);
-  // console.log(option);
+  console.log(option);
   // console.log(selectCity[selected]);
   return (
     <>
@@ -167,7 +168,7 @@ const Search = () => {
           </CommonButton>
         </Box>
         <Box sx={{ borderTop: 0.5, pt: 2, mt: 1 }}>
-          {optionInfo.map((option: any, idx: any) => (
+          {optionInfo.map((option: any) => (
             <Option
               key={option?.name}
               option={option}

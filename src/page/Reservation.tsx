@@ -6,13 +6,13 @@ import CommonTitle from '@/component/common/CommonTitle';
 import { Box, Container, Paper, Typography } from '@mui/material';
 import OfficeCard from '@/component/common/OfficeCard';
 import Calendar from '@/component/reservation/Calendar';
-import { useRecoilState, useRecoilValue, selector } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import SelectforReservation from '@/component/reservation/SelectforReservation';
 import { myReservation } from '@/lib/recoil/reservationAtom';
 import { addMonths } from 'date-fns';
 
-const Reservation = ({ clickCard }: any) => {
+const Reservation = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const Reservation = ({ clickCard }: any) => {
     navigate('/home');
   };
   const [startDate, setStartDate] = useState<any>(null);
-  const [endDate, setEndDate] = useState<any>(null);
+  // const [endDate, setEndDate] = useState<any>(null);
   const [book, setBook] = useRecoilState<any>(myReservation);
   const [bookData, setBookData] = useState<any>({
     endDate: '',
@@ -62,6 +62,7 @@ const Reservation = ({ clickCard }: any) => {
   };
   console.log(list);
   console.log(id);
+  console.log(book);
   console.log(findData);
 
   return (

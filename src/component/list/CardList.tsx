@@ -9,9 +9,9 @@ const CardList = ({ sx, ...others }: any) => {
   const card = useRecoilValue<any>(cardData);
   console.log(card);
   const navigator = useNavigate();
-  const role = localStorage.getItem('role');
+  // const role = localStorage.getItem('role');
   const searchFilter = useRecoilValue(mySelector);
-  const filteredData = card?.filter((data: any) => data?._id === card?._id);
+  // const filteredData = card?.filter((data: any) => data?._id === card?._id);
 
   const clickCard = (cardData: any) => {
     navigator(`/reservation/${cardData?._id}`);

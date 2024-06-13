@@ -3,22 +3,20 @@ import PageContainer from '@/component/common/PageContainer';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { Container, Box } from '@mui/material';
 import { useRecoilValue } from 'recoil';
-import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { checkedOptionAtom } from '@/lib/recoil/searchAtom';
 
-const OfficeDatail = ({ clickCard }: any) => {
-  const { id } = useParams();
-  const office = useRecoilValue<any>(cardData);
-  const findData = office?.find((card: any) => card?.id === id);
+const OfficeDatail = () => {
+  const card = useRecoilValue(cardData);
+  const userId = localStorage.getItem('userid');
 
-  const [option, setOption] = useRecoilState<any>(checkedOptionAtom);
-  const handleSetOption = ({ name, value }: any) => {
-    setOption((prev: any) => {
-      return { ...prev, [name]: value };
-    });
-  };
+  const findData = card?.find((data: any) => data?.userId === userId);
 
+  // const [option, setOption] = useRecoilState<any>(checkedOptionAtom);
+  // const handleSetOption = ({ name, value }: any) => {
+  //   setOption((prev: any) => {
+  //     return { ...prev, [name]: value };
+  //   });
+  // };
+  console.log(findData);
   return (
     <PageContainer>
       <Container>
@@ -28,7 +26,7 @@ const OfficeDatail = ({ clickCard }: any) => {
           <Typography>{findData?.address?.city}</Typography>
         </Box>
         <Box>
-          {.map((option: any, idx: any) => (
+          {findData.map((option: any, idx: any) => (
             <Option
               key={option?.name}
               option={option}
