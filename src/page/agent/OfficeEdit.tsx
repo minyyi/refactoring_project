@@ -12,7 +12,6 @@ import {
   Typography,
   MenuItem,
   Paper,
-  styled,
 } from '@mui/material';
 
 import { selectLegion, selectCity } from '@/utils/config';
@@ -46,14 +45,17 @@ const OfficeEdit = () => {
 
   const handleOfficeName = (e: any) => {
     let { name, value } = e.target;
+    console.log(name);
     setOfficeName(value);
   };
   const handleFormData = (e: any) => {
     let { name, value } = e.target;
+    console.log(name);
     setTown(value);
   };
   const handlePrice = (e: any) => {
     let { name, value } = e.target;
+    console.log(name);
     setPrice(value);
   };
   const [registeredOption, setRegisteredOption] = useState<any>([]);
@@ -102,10 +104,10 @@ const OfficeEdit = () => {
       photo.current!.click();
     }
   };
-  const changeImage = async () => {
-    const formData = new FormData();
-    formData.append('image', file);
-  };
+  // const changeImage = async () => {
+  //   const formData = new FormData();
+  //   formData.append('image', file);
+  // };
 
   useEffect(() => {
     //if
@@ -302,7 +304,7 @@ const OfficeEdit = () => {
                 // alignItems: 'center',
               }}
             >
-              {optionInfo.map((option: any, idx: any) => (
+              {optionInfo.map((option: any, _: any) => (
                 <Option
                   key={option?.name}
                   option={option}
@@ -371,15 +373,3 @@ const OfficeEdit = () => {
 };
 
 export default OfficeEdit;
-
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-});

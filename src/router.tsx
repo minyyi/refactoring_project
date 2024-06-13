@@ -62,7 +62,7 @@ const Router = () => {
 };
 export default Router;
 
-const OurFallbackComponent = ({ error, resetErrorBoundary }: any) => {
+const OurFallbackComponent = ({ error }: any) => {
   const navigator = useNavigate();
   return (
     <div>
