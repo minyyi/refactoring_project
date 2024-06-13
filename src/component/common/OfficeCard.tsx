@@ -1,10 +1,11 @@
-import { Box, Typography, styled } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import BookmarkButton from './BookmarkButton';
 import { favorite } from '@/lib/recoil/favoritAtom';
 
 const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
   // const id = localStorage.getItem('userid');
+  console.log(others);
   const id = cardData?._id;
   console.log(id);
   const [heart, setHeart] = useRecoilState<any>(favorite);

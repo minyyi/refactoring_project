@@ -14,10 +14,10 @@ const PastReservation = () => {
   const clickCard = (cardData: any) => {
     navigator(`/reservation/${cardData?.id}`);
   };
-
+  console.log(setCard);
   return (
     <>
-      {card?.map((cardData: any, idx: any) => {
+      {card?.map((cardData: any) => {
         return (
           <Box sx={{ display: 'flex', columnGap: 4 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 2 }}>

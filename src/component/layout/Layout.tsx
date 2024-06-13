@@ -1,14 +1,13 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { Box } from '@mui/material';
 import Footer from './footer/Footer';
 import Appbar from './appbar/Appbar';
 import { useLocation } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { userid } from '@/lib/recoil/authAtom';
 import { authHook } from '@/utils/authHook';
 
 const Layout = (props: { children: ReactNode }) => {
   const location = useLocation();
+  console.log(location);
   authHook();
 
   return (

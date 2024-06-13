@@ -60,6 +60,7 @@ export const AuthForm = ({
     title: string;
     process: string;
   }) => {
+    console.log(process);
     if (title === '로그인') {
       console.log('클릭');
       login(signup?.email, signup?.password);

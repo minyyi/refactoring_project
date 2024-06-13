@@ -1,22 +1,20 @@
 import { Search } from '@mui/icons-material';
-import { useTheme } from '@mui/material/styles';
-import { createContext, useContext } from 'react';
 
-import * as React from 'react';
+import { useState } from 'react';
 import { IconButton, Drawer, Typography, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import SidebarHeader from '@/component/layout/appbar/mobile/sidebar/HeaderofSidebar';
 import SidebarMenu from '@/component/layout/appbar/mobile/sidebar/BodyofSidebar';
 import SidebarFooter from './sidebar/FooterofSidebar';
-import { customerMenuItemArray } from '@/utils/config';
+import { customerMenuItemArray, agentMenuItemArray } from '@/utils/config';
 import DarkmodeButton from '../common/DarkmodeButton';
 
-const ColorModeContext = createContext({ toggleColorMode: () => {} });
+// const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const MobileAppbar = () => {
-  const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
+  // const theme = useTheme();
+  // const colorMode = useContext(ColorModeContext);
 
   const navigate = useNavigate();
 
@@ -24,7 +22,7 @@ const MobileAppbar = () => {
     navigate('/home');
   };
 
-  const [state, setState] = React.useState(false);
+  const [state, setState] = useState(false);
 
   const toggleDrawer = (
     event: React.KeyboardEvent | React.MouseEvent,
@@ -103,6 +101,7 @@ const MobileAppbar = () => {
           <SidebarHeader toggleDrawer={toggleDrawer} />
           <SidebarMenu
             customerMenuItemArray={customerMenuItemArray}
+            agentMenuItemArray={agentMenuItemArray}
             toggleDrawer={toggleDrawer}
           />
           <SidebarFooter />

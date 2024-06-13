@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Box, Container, SelectChangeEvent, Pagination } from '@mui/material';
+import { Box, Container, Pagination } from '@mui/material';
 import PageContainer from '@/component/common/PageContainer';
 import Search from '@/component/search/Search';
 import CardList from '@/component/list/CardList';
@@ -11,22 +9,17 @@ import { cardData } from '@/lib/recoil/homeDataAtom';
 const Home = () => {
   const [card, setCard] = useRecoilState(cardData);
   const filterdData = [...card];
-  const [data, setData] = useState([]);
-  const navigator = useNavigate();
+  // const [address, setAddress] = useState('');
 
-  // const clickCard = () => {
-  //   navigate('/reservation');
+  // const handleChange = (event: SelectChangeEvent) => {
+  //   setAddress(event.target.value as string);
   // };
-  const [address, setAddress] = useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAddress(event.target.value as string);
-  };
 
   // const getId = authHook();
 
   // console.log(data);
   console.log(filterdData);
+  console.log(setCard);
 
   return (
     <>

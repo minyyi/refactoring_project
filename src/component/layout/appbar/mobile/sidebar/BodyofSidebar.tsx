@@ -1,3 +1,5 @@
+// import { agentMenuItemArray, customerMenuItemArray } from '@/utils/config';
+import { agentMenuItemArray, customerMenuItemArray } from '@/utils/config';
 import {
   Box,
   List,
@@ -8,10 +10,13 @@ import {
 
 interface Toggle {
   customerMenuItemArray: any;
+  agentMenuItemArray: any;
   toggleDrawer: (event: any, path?: string) => void;
 }
 
 const SidebarMenu = (props: Toggle) => {
+  const role = localStorage.getItem('role');
+
   return (
     <Box
       sx={{ pl: 1, flexGrow: 1 }}
@@ -20,18 +25,42 @@ const SidebarMenu = (props: Toggle) => {
       // onKeyDown={toggleDrawer} //예외
     >
       <List>
-        {props?.customerMenuItemArray?.map((menu: any, idx: any) => (
-          <ListItem key={idx} disablePadding>
-            <ListItemButton
-              onClick={(event) => {
-                props?.toggleDrawer(event, menu?.path);
-              }}
-              // onKeyDown={toggleDrawer} //예외
-            >
-              <ListItemText primary={menu?.title} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {/* {props?.customerMenuItemArray?.map((menu: any, idx: any) => ( */}
+        {role === 'agency'
+          ? agentMenuItemArray.map((menu) => (
+              <ListItem
+                key={menu?.title}
+                // onClick={() => handleCloseUserMenu(menu)}
+                disablePadding
+              >
+                <ListItemButton
+                  onClick={(event) => {
+                    props?.toggleDrawer(event, menu?.path);
+                  }}
+                  // onKeyDown={toggleDrawer} //예외
+                >
+                  {/* textAlign="center" */}
+                  <ListItemText>{menu?.title}</ListItemText>
+                </ListItemButton>
+              </ListItem>
+            ))
+          : customerMenuItemArray.map((menu) => (
+              <ListItem
+                key={menu?.title}
+                // onClick={() => handleCloseUserMenu(menu)}
+                disablePadding
+              >
+                <ListItemButton
+                  onClick={(event) => {
+                    props?.toggleDrawer(event, menu?.path);
+                  }}
+                  // onKeyDown={toggleDrawer} //예외
+                >
+                  {/* textAlign="center" */}
+                  <ListItemText>{menu?.title}</ListItemText>
+                </ListItemButton>
+              </ListItem>
+            ))}
       </List>
     </Box>
   );

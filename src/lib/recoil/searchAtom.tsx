@@ -42,7 +42,7 @@ export const mySelector = selector({
     const town: any = get(inputTownAtom);
     const townSplit: any = town ? town?.split('') : null;
     // console.log(town);
-    // console.log(townSplit);
+    console.log(townSplit);
 
     return initialData.filter((data: any) => {
       // legion과 city 조건을 체크합니다.

@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
-const Noti = () => {
+const Noti = (noti: any) => {
   const data = {
     title: '기간 만료 안내',
     createdAt: '2024.03.15',
@@ -12,6 +12,7 @@ const Noti = () => {
   };
   return (
     <Box
+      key={noti}
       sx={{
         display: 'flex',
         flexDirection: 'column',

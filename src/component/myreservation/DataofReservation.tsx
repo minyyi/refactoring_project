@@ -15,7 +15,7 @@ const DataofReservation = ({ clickCard }: any) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: 2 }}>
-      {card?.map((cardData: any, idx: any) => {
+      {card?.map((cardData: any) => {
         return (
           <Box sx={{ display: 'flex', columnGap: 4 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 2 }}>

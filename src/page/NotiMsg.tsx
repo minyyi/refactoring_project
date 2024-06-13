@@ -18,7 +18,7 @@ const NotiMsg = () => {
           <CommonTitle>알림메시지</CommonTitle>
           <Paper elevation={3} square={false} sx={{ padding: 3 }}>
             {Array.from({ length: 5 }, (noti, idx) => {
-              return <Noti />;
+              return <Noti key={idx} noti={noti} />;
             })}
           </Paper>
         </Container>
