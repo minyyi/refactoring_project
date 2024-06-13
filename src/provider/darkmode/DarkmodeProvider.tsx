@@ -1,4 +1,4 @@
-import { useState, useMemo, ReactNode, createContext, useContext } from 'react';
+import { useState, ReactNode, createContext, useContext } from 'react';
 import { PaletteMode } from '@mui/material';
 
 const ColorModeContext = createContext<{
