@@ -24,7 +24,7 @@ function ResponsiveAppBar() {
   const setId = useSetRecoilState(userid);
   // const getUserInfo = useRecoilValue(userid);
   const setOfficeData = useSetRecoilState(cardData);
-
+  console.log(USER_COLLECTION);
   /* checkAuth */
   useEffect(() => {
     onAuthStateChanged(auth, async (user: any) => {
@@ -33,10 +33,20 @@ function ResponsiveAppBar() {
         localStorage.setItem('token', user?.accessToken);
         const data = await getDocs(USER_COLLECTION);
         const images = await getDocs(IMAGE);
-        const List = data.docs.map((doc) => ({ ...doc.data() }));
-        const find = List?.find((data) => data.userid === user?.uid);
-        setId({ name: find?.name, role: find?.role });
 
+        const List: any = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc?.id,
+        }));
+        const find = List?.find((data: any) => data.userid === user?.uid);
+        setId({
+          id: find?.id,
+          email: find?.email,
+          name: find?.name,
+          role: find?.role,
+          bookmarks: find?.bookmarks || [],
+        });
+        console.log(data);
         console.log(List);
         console.log(find?.name, find?.role);
         localStorage.setItem('role', find?.role);

@@ -3,7 +3,13 @@ import { useRecoilState } from 'recoil';
 import BookmarkButton from './BookmarkButton';
 import { favorite } from '@/lib/recoil/favoritAtom';
 
-const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
+const OfficeCard = ({
+  clickCard = () => {},
+  cardData,
+  sx,
+  onHeart,
+  ...others
+}: any) => {
   // const id = localStorage.getItem('userid');
   console.log(others);
   const id = cardData?._id;
@@ -50,7 +56,11 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, ...others }: any) => {
               borderRadius: 5,
             }}
           />
-          <BookmarkButton clickHeart={clickHeart} cardData={cardData} />
+          <BookmarkButton
+            clickHeart={clickHeart}
+            cardData={cardData}
+            onHeart={onHeart}
+          />
         </Box>
 
         <Box sx={{}}>

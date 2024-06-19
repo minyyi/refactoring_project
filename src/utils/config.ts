@@ -6,7 +6,7 @@ export const customerMenuItemArray = [
 ];
 export const agentMenuItemArray = [
   { title: 'Mypage', path: '/mypage' },
-  { title: 'MyOffice', path: '/myoffice' },
+  { title: 'AddOffice', path: '/addoffice' },
   { title: 'Reservation', path: '/reservationList' },
   { title: 'Logout', path: '/', type: 'logout' },
 ];

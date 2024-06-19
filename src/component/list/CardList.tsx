@@ -4,6 +4,8 @@ import OfficeCard from '../common/OfficeCard';
 import { useRecoilValue } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { mySelector } from '@/lib/recoil/searchAtom';
+import { userid } from '@/lib/recoil/authAtom';
+import { favorite } from '@/lib/recoil/favoritAtom';
 
 const CardList = ({ sx, ...others }: any) => {
   const card = useRecoilValue<any>(cardData);
@@ -16,6 +18,14 @@ const CardList = ({ sx, ...others }: any) => {
   const clickCard = (cardData: any) => {
     navigator(`/reservation/${cardData?._id}`);
   };
+
+  const cardInfo = useRecoilValue<any>(cardData);
+  const userInfo = useRecoilValue<any>(userid);
+  const bookmark = useRecoilValue(favorite);
+  const onHeart = cardInfo?.filter(
+    (card: any) => userInfo?.bookmarks?.some((id: any) => id === card?._id)
+  );
+
   console.log(card?.image);
   return (
     <>
@@ -32,7 +42,12 @@ const CardList = ({ sx, ...others }: any) => {
       >
         {searchFilter?.map((cardData: any, id: any) => {
           return (
-            <OfficeCard key={id} clickCard={clickCard} cardData={cardData} />
+            <OfficeCard
+              key={id}
+              clickCard={clickCard}
+              cardData={cardData}
+              onHeart={onHeart}
+            />
           );
         })}
       </Container>

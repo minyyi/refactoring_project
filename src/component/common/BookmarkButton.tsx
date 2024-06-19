@@ -1,12 +1,36 @@
 import { ToggleButton } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useRecoilValue } from 'recoil';
-import { favorite } from '@/lib/recoil/favoritAtom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+// import { favorite } from '@/lib/recoil/favoritAtom';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase/firebase';
+import { userid } from '@/lib/recoil/authAtom';
 
-const BookmarkButton = ({ clickHeart, cardData }: any) => {
-  const heart = useRecoilValue(favorite);
-  const heartOn = heart?.find((data: any) => data?._id === cardData?._id);
+const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
+  // const heart = useRecoilValue(favorite);
+  const [userId, setUserId] = useRecoilState(userid);
+  const heartOn = onHeart?.find((data: any) => data?._id === cardData?._id);
+  const userInfo = useRecoilValue<any>(userid);
+
+  const bookmarkRef = doc(db, 'users', userInfo?.id);
+
+  const bookmark = async () => {
+    // Set the "capital" field of the city 'DC'
+    if (heartOn) {
+      await updateDoc(bookmarkRef, {
+        bookmarks: userInfo?.bookmarks?.filter(
+          (id: any) => id !== cardData?._id
+        ),
+      });
+      // setUserId();
+    } else {
+      await updateDoc(bookmarkRef, {
+        bookmarks: [...userInfo?.bookmarks, cardData?._id],
+      });
+    }
+  };
+  console.log(userInfo);
   return (
     <ToggleButton
       value="check"
@@ -14,6 +38,7 @@ const BookmarkButton = ({ clickHeart, cardData }: any) => {
       onClick={(e: any) => {
         e.stopPropagation();
         clickHeart(cardData);
+        bookmark();
       }}
       sx={{
         position: 'absolute',

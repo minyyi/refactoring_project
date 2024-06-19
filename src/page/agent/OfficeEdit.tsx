@@ -22,6 +22,7 @@ import CommonButton from '@/component/common/CommonButton';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { storage } from '@/lib/firebase/firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+
 const OfficeEdit = () => {
   const { id } = useParams();
   const cardinfo = useRecoilValue<any>(cardData);
@@ -35,7 +36,7 @@ const OfficeEdit = () => {
   const [city, setCity] = useState('');
   const [town, setTown] = useState<any>('');
 
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem('userid');
   const handleSelect1 = (e: any) => {
     setSelected(e.target.value);
   };
@@ -164,7 +165,7 @@ const OfficeEdit = () => {
   const form = new FormData();
   form.append('image', file);
 
-  const clickSaveOffice = () => {
+  const clickEditOffice = () => {
     // if(){
     //   alert('저장')
     // }
@@ -193,7 +194,9 @@ const OfficeEdit = () => {
       })
       .then((res: any) => {
         console.log(res);
-        navigator('/myOffice');
+        window.alert('오피스 정보가 수정되었습니다.');
+
+        navigator('/home');
       });
   };
   console.log(cardData);
@@ -361,7 +364,7 @@ const OfficeEdit = () => {
             </Box>
 
             <Box sx={{ width: 400, display: 'flex' }}>
-              <CommonButton fullWidth onClick={clickSaveOffice}>
+              <CommonButton fullWidth onClick={clickEditOffice}>
                 수정하기
               </CommonButton>
             </Box>
