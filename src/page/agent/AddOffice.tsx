@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CommonInput from '@/component/common/CommonInput';
 import CommonInputLabel from '@/component/common/CommonInputLabel';
 import CommonSelect from '@/component/common/CommonSelect';
@@ -11,7 +12,6 @@ import {
   Typography,
   MenuItem,
   Paper,
-  // styled,
 } from '@mui/material';
 
 import { selectLegion, selectCity } from '@/utils/config';
@@ -20,17 +20,28 @@ import { useRecoilState } from 'recoil';
 import { myOfficeData } from '@/lib/recoil/myOfficeAtom';
 import { optionInfo } from '@/utils/config';
 import CommonButton from '@/component/common/CommonButton';
+import { storage } from '@/lib/firebase/firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 const AddOffice = () => {
+  const navigator = useNavigate();
+
   const [card, setCard] = useRecoilState(myOfficeData);
-  const [officeName, setOfficeName] = useState<any>('');
-  const [price, setPrice] = useState<any>('');
+  const [officeName, setOfficeName] = useState('');
+  const [price, setPrice] = useState('');
   const [selected, setSelected] = useState('');
   const [city, setCity] = useState('');
-  const [town, setTown] = useState<any>({
-    town: '',
-  });
-  const userId = localStorage.getItem('userId');
+  const [town, setTown] = useState('');
+  const userId = localStorage.getItem('userid');
+
+  // const [getUserId, setGetUserId] = useState<string | null>(null);
+
+  // useEffect(() => {
+  //   const storedUserId = localStorage.getItem('userId');
+  //   if (storedUserId) {
+  //     setGetUserId(storedUserId);
+  //   }
+  // }, []);
   const handleSelect1 = (e: any) => {
     setSelected(e.target.value);
   };
@@ -39,31 +50,18 @@ const AddOffice = () => {
   };
 
   const handleOfficeName = (e: any) => {
-    let { name, value } = e.target;
-    // console.log({ name, value });
-    setOfficeName({ [name]: value });
+    setOfficeName(e.target.value);
   };
   const handleFormData = (e: any) => {
-    let { name, value } = e.target;
-    // console.log({ name, value });
-    setTown({ [name]: value });
+    setTown(e.target.value);
   };
   const handlePrice = (e: any) => {
-    let { name, value } = e.target;
-    // console.log({ name, value });
-    setPrice({ [name]: value });
+    setPrice(e.target.value);
   };
-  // const [option, setOption] = useState<any>([]);
-  // const handleSetOption = (option: any) => {
-  //   setOption((prev: any) => {
-  //     return [...prev, option];
-  //   });
-  // };
+
   const [option, setOption] = useState<any>([]);
   const handleSetOption = (option: any) => {
-    // console.log(cardData);
     setOption((prev: any) => {
-      //map??
       let checkTrue = prev?.find((data: any) => option?.name === data?.name);
       if (checkTrue) {
         return prev?.filter((data: any) => option?.key !== data?.key);
@@ -72,50 +70,72 @@ const AddOffice = () => {
       }
     });
   };
-  const [uploadImgUrl, setUploadImgUrl] = useState(''); //firebase
+
+  const [file, setFile] = useState<any>(''); //firebase
   const [prevImgUrl, setPrevImgUrl] = useState(''); //임시이미지
+  const [uploadImageUrl, setUploadImageUrl] = useState('');
   const photo = useRef<HTMLInputElement>(null);
 
   const onchangeImageUpload = (e: any) => {
     const file = e.target.files[0]; //서버에 보내서 저장 ->
-    console.log(file?.type.split('/')[0]);
     if (file?.type.split('/')[0] === 'image') {
       const imageUrl = URL.createObjectURL(file);
-      console.log(imageUrl); //임시용 / 보안위험
       setPrevImgUrl(imageUrl);
-      // setUploadImgUrl(imageUrl);
-      /* 1, firebase 업로드성공
-         2. setUploadImgUrl 넣어서 state 저장하고
-         3. post 하는 img에 넣기  
-      */
+      setFile(file);
     } else {
       window.alert('이미지 파일로 올려주세요.');
     }
-
-    // const { files } = e.target;
-    // const uploadFile = files[0];
-    // const reader = new FileReader();
-    // console.log(reader);
-    // reader.readAsDataURL(uploadFile);
-    // reader.onloadend = () => {
-    //   // setUploadImgUrl(reader?.result);
-    // };
   };
+
   const fileHandler = () => {
-    if (photo.current) {
-      photo.current!.click();
+    if (photo?.current) {
+      photo?.current!.click();
     }
   };
+
+  useEffect(() => {
+    const uploadFile = () => {
+      const name = new Date().getTime() + file?.name;
+      const storageRef = ref(storage, name);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          switch (snapshot.state) {
+            case 'paused':
+              break;
+            case 'running':
+              break;
+            default:
+              break;
+          }
+          console.log(progress);
+        },
+        (error) => {
+          console.error(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setUploadImageUrl(downloadURL);
+          });
+        }
+      );
+    };
+    file && uploadFile();
+  }, [file]);
+
   const clickSaveOffice = () => {
-    fetch('http://localhost:5502/api/products', {
-      method: 'POST', //get data와 비교하기
+    fetch(`http://${import.meta.env.VITE_BACKEND_URL}:5502/api/products`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         userId,
         officeName,
-        grade: '4.5(21)',
+        grade: '',
         address: {
           legion: selected,
           city: city,
@@ -123,37 +143,27 @@ const AddOffice = () => {
         },
         price,
         option,
-        image: uploadImgUrl, //서버에서 보낼때 : formdata로 보내기
+        image: uploadImageUrl,
       }),
     })
       .then((res: any) => {
         return res.json();
       })
       .then((res: any) => {
-        console.log(res);
         setCard(res);
+        window.alert('오피스 등록이 완료되었습니다.');
+        navigator('/home');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
   };
-  // console.log(inputRef);
-  // function handleClick() {
-  //   inputRef.current.focus();
-  // }
 
-  console.log({ officeName, price, selected, city, town, userId });
-  console.log(option);
-  console.log(card);
-  console.log(setUploadImgUrl);
   return (
     <PageContainer>
       <Container>
         <CommonTitle>오피스 추가하기</CommonTitle>
-        <Paper
-          elevation={3}
-          square={false}
-          sx={{
-            my: 2,
-          }}
-        >
+        <Paper elevation={3} square={false} sx={{ my: 2 }}>
           <Box
             sx={{
               display: 'flex',
@@ -168,11 +178,11 @@ const AddOffice = () => {
               size="normal"
               label={'오피스 이름'}
               name="officeName"
-              value={officeName?.officeName}
+              value={officeName}
               type="text"
               sx={{ width: 400 }}
               onChange={handleOfficeName}
-            ></CommonInput>
+            />
             <Typography>주소</Typography>
             <FormControl sx={{ display: 'flex', width: 400 }}>
               <CommonInputLabel>시/도</CommonInputLabel>
@@ -180,7 +190,6 @@ const AddOffice = () => {
                 label="시/도"
                 onChange={handleSelect1}
                 value={selected}
-                //   sx={{ width: 400 }}
               >
                 {selectLegion.map((address: any, idx: any) => (
                   <MenuItem key={idx} value={address.legion}>
@@ -189,7 +198,6 @@ const AddOffice = () => {
                 ))}
               </CommonSelect>
             </FormControl>
-
             <FormControl sx={{ display: 'flex', width: 400 }}>
               <CommonInputLabel>시/군/구</CommonInputLabel>
               <CommonSelect
@@ -197,7 +205,6 @@ const AddOffice = () => {
                 onChange={handleSelect2}
                 disabled={!selected}
                 value={city}
-                //   sx={{ width: 400 }}
               >
                 {selectCity?.[selected]?.map((city: any, idx: any) => (
                   <MenuItem key={idx} value={city}>
@@ -212,7 +219,7 @@ const AddOffice = () => {
               label={'읍/면/동/리'}
               type="text"
               name="town"
-              value={town?.town}
+              value={town}
               onChange={handleFormData}
             />
             <Typography>가격</Typography>
@@ -222,23 +229,15 @@ const AddOffice = () => {
               label={'가격'}
               type="text"
               name="price"
-              value={price?.price}
+              value={price}
               onChange={handlePrice}
             />
-
             <Typography>옵션</Typography>
-            <Box
-              sx={{
-                width: 400,
-                // display: 'flex',
-                // alignItems: 'center',
-              }}
-            >
+            <Box sx={{ width: 400 }}>
               {optionInfo.map((option: any) => (
                 <Option
                   key={option?.name}
                   option={option}
-                  // handleSetOption={() => handleSetOption(option)}
                   handleSetOption={handleSetOption}
                 />
               ))}
@@ -251,7 +250,6 @@ const AddOffice = () => {
                 columnGap: 2,
               }}
             >
-              {/* <label htmlFor="ex_file">파일 등록</label> */}
               <CommonButton sx={{ height: 40 }} onClick={fileHandler}>
                 사진 추가
                 <input
@@ -261,10 +259,8 @@ const AddOffice = () => {
                   accept="image/*"
                   multiple
                   onChange={onchangeImageUpload}
-                  style={{
-                    display: 'none',
-                  }}
-                ></input>
+                  style={{ display: 'none' }}
+                />
               </CommonButton>
               <Box
                 sx={{
@@ -281,13 +277,11 @@ const AddOffice = () => {
                 }}
               >
                 <img
-                  // src="/public/noProfile.png"
                   src={prevImgUrl}
                   style={{ width: 100, objectFit: 'cover' }}
                 />
               </Box>
             </Box>
-
             <Box sx={{ width: 400, display: 'flex' }}>
               <CommonButton fullWidth onClick={clickSaveOffice}>
                 오피스 등록하기
@@ -301,15 +295,3 @@ const AddOffice = () => {
 };
 
 export default AddOffice;
-
-// const VisuallyHiddenInput = styled('input')({
-//   clip: 'rect(0 0 0 0)',
-//   clipPath: 'inset(50%)',
-//   height: 1,
-//   overflow: 'hidden',
-//   position: 'absolute',
-//   bottom: 0,
-//   left: 0,
-//   whiteSpace: 'nowrap',
-//   width: 1,
-// });

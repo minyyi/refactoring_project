@@ -138,7 +138,13 @@ export const AuthForm = ({
         localStorage.setItem('userid', userCredential?.user?.uid);
         localStorage.setItem('token', userCredential?.user?.accessToken);
         localStorage.setItem('role', find?.role);
-        setId({ email: find?.email, name: find?.name, role: find?.role }); //렌더링용
+        setId({
+          id: find?.id,
+          email: find?.email,
+          name: find?.name,
+          role: find?.role,
+          bookmarks: find?.bookmarks || [],
+        }); //렌더링용
         console.log(setId);
         navigate('/home');
       })
