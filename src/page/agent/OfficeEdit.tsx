@@ -169,7 +169,7 @@ const OfficeEdit = () => {
     // if(){
     //   alert('저장')
     // }
-    fetch(`http://localhost:5502/api/product/${id}`, {
+    fetch(`http://${import.meta.env.VITE_BACKEND_URL}:5502/api/product/${id}`, {
       // /:id
       method: 'PUT', //get data와 비교하기
       headers: {
