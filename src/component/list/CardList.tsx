@@ -21,7 +21,7 @@ const CardList = ({ sx, ...others }: any) => {
 
   const cardInfo = useRecoilValue<any>(cardData);
   const userInfo = useRecoilValue<any>(userid);
-  const bookmark = useRecoilValue(favorite);
+  // const bookmark = useRecoilValue(favorite);
   const onHeart = cardInfo?.filter(
     (card: any) => userInfo?.bookmarks?.some((id: any) => id === card?._id)
   );

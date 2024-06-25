@@ -158,7 +158,7 @@ const AddOffice = () => {
         console.error('Error:', error);
       });
   };
-
+  console.log(card);
   return (
     <PageContainer>
       <Container>
