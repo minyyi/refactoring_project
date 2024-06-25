@@ -23,7 +23,7 @@ const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
           (id: any) => id !== cardData?._id
         ),
       });
-      // setUserId();
+      setUserId(userId);
     } else {
       await updateDoc(bookmarkRef, {
         bookmarks: [...userInfo?.bookmarks, cardData?._id],

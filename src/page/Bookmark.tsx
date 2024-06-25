@@ -3,7 +3,6 @@ import { Container, Box, Typography } from '@mui/material';
 import CommonTitle from '@/component/common/CommonTitle';
 import OfficeCard from '@/component/common/OfficeCard';
 import { useRecoilValue } from 'recoil';
-import { favorite } from '@/lib/recoil/favoritAtom';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { userid } from '@/lib/recoil/authAtom';
 
