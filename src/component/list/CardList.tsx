@@ -5,7 +5,6 @@ import { useRecoilValue } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { mySelector } from '@/lib/recoil/searchAtom';
 import { userid } from '@/lib/recoil/authAtom';
-import { favorite } from '@/lib/recoil/favoritAtom';
 
 const CardList = ({ sx, ...others }: any) => {
   const card = useRecoilValue<any>(cardData);
