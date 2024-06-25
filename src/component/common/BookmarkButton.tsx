@@ -2,13 +2,11 @@ import { ToggleButton } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useRecoilState, useRecoilValue } from 'recoil';
-// import { favorite } from '@/lib/recoil/favoritAtom';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/firebase';
 import { userid } from '@/lib/recoil/authAtom';
 
 const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
-  // const heart = useRecoilValue(favorite);
   const [userId, setUserId] = useRecoilState(userid);
   const heartOn = onHeart?.find((data: any) => data?._id === cardData?._id);
   const userInfo = useRecoilValue<any>(userid);
@@ -16,21 +14,31 @@ const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
   const bookmarkRef = doc(db, 'users', userInfo?.id);
 
   const bookmark = async () => {
-    // Set the "capital" field of the city 'DC'
-    if (heartOn) {
-      await updateDoc(bookmarkRef, {
-        bookmarks: userInfo?.bookmarks?.filter(
-          (id: any) => id !== cardData?._id
-        ),
-      });
+    if (!userInfo || !userInfo.bookmarks) {
+      console.error('User info or bookmarks are undefined');
+      return;
+    }
+
+    try {
+      if (heartOn) {
+        await updateDoc(bookmarkRef, {
+          bookmarks: userInfo.bookmarks.filter(
+            (id: any) => id !== cardData?._id
+          ),
+        });
+      } else {
+        await updateDoc(bookmarkRef, {
+          bookmarks: [...userInfo.bookmarks, cardData?._id],
+        });
+      }
       setUserId(userId);
-    } else {
-      await updateDoc(bookmarkRef, {
-        bookmarks: [...userInfo?.bookmarks, cardData?._id],
-      });
+    } catch (error) {
+      console.error('Error updating document: ', error);
     }
   };
+
   console.log(userInfo);
+
   return (
     <ToggleButton
       value="check"
@@ -48,11 +56,10 @@ const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
         width: 10,
         height: 10,
         zIndex: 333,
-        // backgroundColor: '#ffffff',
         ':hover': {
           //   backgroundColor: '#ffffff',
         },
-        ':seleced': {
+        ':selected': {
           backgroundColor: '#ffffff',
         },
       }}
@@ -65,4 +72,5 @@ const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
     </ToggleButton>
   );
 };
+
 export default BookmarkButton;
