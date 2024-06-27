@@ -62,7 +62,7 @@ function ResponsiveAppBar() {
   }, []);
 
   useEffect(() => {
-    fetch(`https://${import.meta.env.VITE_BACKEND_URL}:5502/api/products`, {
+    fetch(`http://${import.meta.env.VITE_BACKEND_URL}:5502/api/products`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

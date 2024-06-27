@@ -169,29 +169,26 @@ const OfficeEdit = () => {
     // if(){
     //   alert('저장')
     // }
-    fetch(
-      `https://${import.meta.env.VITE_BACKEND_URL}:5502/api/product/${id}`,
-      {
-        // /:id
-        method: 'PUT', //get data와 비교하기
-        headers: {
-          'Content-Type': 'application/json',
+    fetch(`http://${import.meta.env.VITE_BACKEND_URL}:5502/api/product/${id}`, {
+      // /:id
+      method: 'PUT', //get data와 비교하기
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: findData?.userId,
+        officeName,
+        grade: findData?.grade,
+        address: {
+          legion: selected,
+          city: city,
+          town: town,
         },
-        body: JSON.stringify({
-          userId: findData?.userId,
-          officeName,
-          grade: findData?.grade,
-          address: {
-            legion: selected,
-            city: city,
-            town: town,
-          },
-          price,
-          option: registeredOption,
-          image: downloadImageUrl, //서버에서 보낼때 : formdata로 보내기
-        }),
-      }
-    )
+        price,
+        option: registeredOption,
+        image: downloadImageUrl, //서버에서 보낼때 : formdata로 보내기
+      }),
+    })
       .then((res: any) => {
         return res.json();
       })
