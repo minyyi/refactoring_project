@@ -62,7 +62,7 @@ function ResponsiveAppBar() {
   }, [pathname]);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/products`, {
+    fetch(`http://${import.meta.env.VITE_BACKEND_URL}/api/products`, {
       // ${import.meta.env.VITE_BACKEND_URL}
       method: 'GET',
       headers: {
