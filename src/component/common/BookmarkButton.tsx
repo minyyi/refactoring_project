@@ -5,10 +5,10 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/firebase';
 import { userid } from '@/lib/recoil/authAtom';
-import { useState, useEffect } from 'react';
 
 const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
   const [userId, setUserId] = useRecoilState(userid);
+  console.log(userId);
   const userInfo = useRecoilValue<any>(userid);
   // const [bookmarkRef, setBookmarkRef] = useState<any>(null);
 

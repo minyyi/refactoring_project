@@ -1,8 +1,8 @@
 import { Box, Typography, CircularProgress } from '@mui/material';
 import CommonInput from '../common/CommonInput';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { userid } from '@/lib/recoil/authAtom';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/firebase';
 import { useState } from 'react';
@@ -10,7 +10,6 @@ import { useState } from 'react';
 const MyInfo = () => {
   const [newName, setNewName] = useState('');
   const [getUserInfo, setGetUserInfo] = useRecoilState<any>(userid);
-  const queryClient = useQueryClient();
 
   const updateUserName = async ({ userid, newName }: any) => {
     if (!userid || typeof userid !== 'string') {

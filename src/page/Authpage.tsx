@@ -5,8 +5,8 @@ import PageContainer from '@/component/common/PageContainer';
 import CommonTitle from '@/component/common/CommonTitle';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { AuthForm } from '@/component/auth/AuthForm';
-import { useRecoilState } from 'recoil';
-import { userType } from '@/lib/recoil/authAtom';
+// import { useRecoilState } from 'recoil';
+// import { userType } from '@/lib/recoil/authAtom';
 
 const Authpage = ({ title }: any) => {
   const navigate = useNavigate();

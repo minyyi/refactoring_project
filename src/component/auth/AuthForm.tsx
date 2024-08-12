@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CommonButton from '../common/CommonButton';
 import CommonInput from '../common/CommonInput';
 import PageContainer from '@/component/common/PageContainer';
