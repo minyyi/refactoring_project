@@ -10,14 +10,14 @@ import { AuthForm } from '@/component/auth/AuthForm';
 
 const Authpage = ({ title }: any) => {
   const navigate = useNavigate();
-  const [process, setProcess] = useState('');
-  // const [process, setProcess] = useRecoilState(userType);
-  // console.log(process);
+  const [role, setRole] = useState('');
+  // const [role, setrole] = useRecoilState(userType);
+  // console.log(role);
   const clickSignup = () => {
     navigate('/signup');
   };
-  const handleSetProcess = (key: string) => {
-    setProcess(() => {
+  const handleSetRole = (key: string) => {
+    setRole(() => {
       return key;
     });
   };
@@ -43,12 +43,8 @@ const Authpage = ({ title }: any) => {
           width: '100%',
         }}
       >
-        {process ? (
-          <AuthForm
-            process={process}
-            title={title}
-            clickBack={handleSetProcess}
-          />
+        {role ? (
+          <AuthForm role={role} title={title} clickBack={handleSetRole} />
         ) : (
           <>
             <CommonTitle sx={{ margin: 'auto' }}>{title}</CommonTitle>
@@ -64,7 +60,7 @@ const Authpage = ({ title }: any) => {
               }}
             >
               <Box
-                onClick={() => handleSetProcess('agency')}
+                onClick={() => handleSetRole('agency')}
                 sx={{
                   position: 'relative',
                   display: 'flex',
@@ -97,7 +93,7 @@ const Authpage = ({ title }: any) => {
                 />
               </Box>
               <Box
-                onClick={() => handleSetProcess('customer')}
+                onClick={() => handleSetRole('customer')}
                 sx={{
                   position: 'relative',
                   display: 'flex',

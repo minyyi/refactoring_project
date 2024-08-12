@@ -31,16 +31,17 @@ interface AgencyCardProps {
   password: string;
   passwordConfirm: string;
   businessNumber: string;
+  // bookmark: any;
 }
 
 export const AuthForm = ({
   title,
   clickBack,
-  process,
+  role,
 }: {
   clickBack: (key: string) => void;
   title: string;
-  process: string;
+  role: string;
 }) => {
   const navigate = useNavigate();
   const setId = useSetRecoilState(userid);
@@ -51,16 +52,11 @@ export const AuthForm = ({
     name: '',
     password: '',
     passwordConfirm: '',
+    // bookmark: [],
   });
 
-  const clicktoButton = ({
-    title,
-    process,
-  }: {
-    title: string;
-    process: string;
-  }) => {
-    console.log(process);
+  const clicktoButton = ({ title, role }: { title: string; role: string }) => {
+    console.log(role);
     if (title === '로그인') {
       console.log('클릭');
       login(signup?.email, signup?.password);
@@ -76,6 +72,8 @@ export const AuthForm = ({
     });
   };
 
+  // useEffect(token? '/home' ) 랜딩, 로그인페이지에서 토큰, 있으면 홈으로 넘어가도록!
+
   // const userCollectionRef = collection(db, 'users');
   const createUser = async ({
     userid,
@@ -83,6 +81,7 @@ export const AuthForm = ({
     role,
     businessNumber,
     email,
+    // bookmark: [],
   }: any) => {
     await addDoc(useGetCollection('users'), {
       userid: userid,
@@ -90,7 +89,7 @@ export const AuthForm = ({
       role,
       businessNumber,
       email,
-      // ...user,
+      // bookmark: [],
     });
   };
 
@@ -103,7 +102,7 @@ export const AuthForm = ({
         const additionalData = {
           userid: user?.uid,
           name: signup?.name,
-          role: process,
+          role: role,
           businessNumber: signup?.businessNumber,
           email: signup?.email,
         };
@@ -116,6 +115,7 @@ export const AuthForm = ({
           name: '',
           password: '',
           passwordConfirm: '',
+          // bookmark: [],
         });
 
         console.log('성공');
@@ -184,7 +184,7 @@ export const AuthForm = ({
             <ArrowBackIosNewIcon />
           </IconButton>
           <CommonTitle sx={{ padding: 0 }}>
-            {process === 'agency' ? '임대인' : '일반회원'} {title}
+            {role === 'agency' ? '임대인' : '일반회원'} {title}
           </CommonTitle>
           <Box sx={{ pl: 4 }}></Box>
         </Box>
@@ -282,7 +282,7 @@ export const AuthForm = ({
             />
           </>
         )}
-        {title === '회원가입' && process === 'agency' && (
+        {title === '회원가입' && role === 'agency' && (
           <CommonInput
             value={signup.businessNumber}
             name={'businessNumber'}
@@ -305,7 +305,7 @@ export const AuthForm = ({
           onClick={() =>
             clicktoButton({
               title,
-              process,
+              role,
             })
           }
           //   clickHandler={() => clickSignupButton()}
@@ -318,7 +318,7 @@ export const AuthForm = ({
                 !validatePassword(signup.password) ||
                 // signup.password !== signup.passwordConfirm ||
                 !validateName(signup.name) ||
-                (process === 'agency'
+                (role === 'agency'
                   ? !validateBusinessNumber(signup.businessNumber)
                   : false)
           }
