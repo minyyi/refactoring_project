@@ -59,10 +59,11 @@ function ResponsiveAppBar() {
         console.log('유저없음');
       }
     });
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
-    fetch(`http://${import.meta.env.VITE_BACKEND_URL}:5502/api/products`, {
+    fetch(`http://localhost:8080/api/products`, {
+      // ${import.meta.env.VITE_BACKEND_URL}
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

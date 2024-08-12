@@ -22,6 +22,7 @@ import CommonButton from '@/component/common/CommonButton';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 import { storage } from '@/lib/firebase/firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { useMutation, useQueryClient } from 'react-query';
 
 const OfficeEdit = () => {
   const { id } = useParams();
@@ -35,6 +36,10 @@ const OfficeEdit = () => {
   const [selected, setSelected] = useState('');
   const [city, setCity] = useState('');
   const [town, setTown] = useState<any>('');
+
+  const clickCancel = () => {
+    navigator('/home');
+  };
 
   const userId = localStorage.getItem('userid');
   const handleSelect1 = (e: any) => {
@@ -165,40 +170,81 @@ const OfficeEdit = () => {
   const form = new FormData();
   form.append('image', file);
 
-  const clickEditOffice = () => {
-    // if(){
-    //   alert('저장')
-    // }
-    fetch(`http://${import.meta.env.VITE_BACKEND_URL}:5502/api/product/${id}`, {
-      // /:id
-      method: 'PUT', //get data와 비교하기
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userId: findData?.userId,
-        officeName,
-        grade: findData?.grade,
-        address: {
-          legion: selected,
-          city: city,
-          town: town,
-        },
-        price,
-        option: registeredOption,
-        image: downloadImageUrl, //서버에서 보낼때 : formdata로 보내기
-      }),
-    })
-      .then((res: any) => {
-        return res.json();
-      })
-      .then((res: any) => {
-        console.log(res);
-        window.alert('오피스 정보가 수정되었습니다.');
+  const queryClient = useQueryClient();
 
-        navigator('/home');
-      });
+  const editOfficeMutation = useMutation({
+    mutationFn: (updatedOffice) =>
+      fetch(`http://localhost:8080/api/product/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedOffice),
+      }).then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries('offices'); // 'offices'는 오피스 목록을 조회하는 쿼리 키입니다. 실제 사용하는 키로 변경해주세요.
+      window.alert('오피스 정보가 수정되었습니다.');
+      navigator('/home');
+    },
+  });
+
+  const clickEditOffice = () => {
+    const updatedOffice: any = {
+      userId: findData?.userId,
+      officeName,
+      grade: findData?.grade,
+      address: {
+        legion: selected,
+        city: city,
+        town: town,
+      },
+      price,
+      option: registeredOption,
+      image: downloadImageUrl,
+    };
+
+    editOfficeMutation.mutate(updatedOffice);
   };
+  // const clickEditOffice = () => {
+  //   // if(){
+  //   //   alert('저장')
+  //   // }
+  //   /*useMutate*/
+  //   fetch(`http://${import.meta.env.VITE_BACKEND_URL}:8080/api/product/${id}`, {
+  //     // /:id
+  //     method: 'PUT', //get data와 비교하기
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       userId: findData?.userId,
+  //       officeName,
+  //       grade: findData?.grade,
+  //       address: {
+  //         legion: selected,
+  //         city: city,
+  //         town: town,
+  //       },
+  //       price,
+  //       option: registeredOption,
+  //       image: downloadImageUrl, //서버에서 보낼때 : formdata로 보내기
+  //     }),
+  //   })
+  //     .then((res: any) => {
+  //       return res.json();
+  //     })
+  //     .then((res: any) => {
+  //       console.log(res);
+  //       window.alert('오피스 정보가 수정되었습니다.');
+
+  //       navigator('/home');
+  //     });
+  // };
   console.log(cardData);
   console.log(findData);
   console.log({ officeName, price, selected, city, town, userId });
@@ -210,7 +256,13 @@ const OfficeEdit = () => {
   return loading ? null : (
     <PageContainer>
       <Container>
-        <CommonTitle>오피스 수정하기</CommonTitle>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <CommonTitle>오피스 수정하기</CommonTitle>
+          <Box>
+            <CommonButton onClick={clickCancel}>취소</CommonButton>
+          </Box>
+        </Box>
+
         <Paper
           elevation={3}
           square={false}

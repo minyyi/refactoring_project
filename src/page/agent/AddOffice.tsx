@@ -34,6 +34,10 @@ const AddOffice = () => {
   const [town, setTown] = useState('');
   const userId = localStorage.getItem('userid');
 
+  const clickCancel = () => {
+    navigator('/home');
+  };
+
   // const [getUserId, setGetUserId] = useState<string | null>(null);
 
   // useEffect(() => {
@@ -127,7 +131,7 @@ const AddOffice = () => {
   }, [file]);
 
   const clickSaveOffice = () => {
-    fetch(`http://${import.meta.env.VITE_BACKEND_URL}:5502/api/products`, {
+    fetch(`http://${import.meta.env.VITE_BACKEND_URL}:8080/api/products`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -162,7 +166,12 @@ const AddOffice = () => {
   return (
     <PageContainer>
       <Container>
-        <CommonTitle>오피스 추가하기</CommonTitle>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <CommonTitle>오피스 추가하기</CommonTitle>
+          <Box>
+            <CommonButton onClick={clickCancel}>취소</CommonButton>
+          </Box>
+        </Box>
         <Paper elevation={3} square={false} sx={{ my: 2 }}>
           <Box
             sx={{

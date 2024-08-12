@@ -12,7 +12,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { customerMenuItemArray, agentMenuItemArray } from '@/utils/config';
 import { useColorModeContext } from '@/provider/darkmode/DarkmodeProvider';
-
+import { auth } from '@/lib/firebase/firebase';
+import { signOut } from 'firebase/auth';
 // const settings = [
 //   { title: 'Profile', path: '/home', type: 'profile' },
 //   { title: 'Bookmark', path: '/home' },
@@ -23,6 +24,7 @@ const Profile = () => {
   const navigator = useNavigate();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
+  const role = localStorage.getItem('role');
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -38,20 +40,21 @@ const Profile = () => {
     }
   };
 
-  const handleCloseUserMenu = (setting: any) => {
+  const handleCloseUserMenu = async (setting: any) => {
     setAnchorElUser(null);
-    // console.log(setting);
+    console.log(setting);
     if (setting?.type === 'logout') {
-      localStorage.removeItem('userid');
+      console.log('로그아웃실행');
+      await signOut(auth);
       localStorage.setItem('mode', 'light');
+      context?.setMode('light');
+      localStorage.removeItem('userid');
       localStorage.removeItem('role');
       localStorage.removeItem('token');
-      context?.setMode('light');
     }
     //'mode', prevMode === 'light' ? 'dark' : 'light'
     navigator(setting?.path);
   };
-  const role = localStorage.getItem('role');
 
   return (
     <>
