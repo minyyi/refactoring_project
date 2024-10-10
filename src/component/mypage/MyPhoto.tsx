@@ -17,7 +17,7 @@ const MyPhoto = () => {
     <Box>
       <Box sx={{ borderColor: 'gray' }}>
         <img
-          src="/public/noProfile.png"
+          src="/noProfile.png"
           style={{ width: 300, alignItems: 'center', paddingTop: 40 }}
         />
       </Box>
