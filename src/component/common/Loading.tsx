@@ -10,7 +10,7 @@ const Loading = () => {
         height: '100vh',
       }}
     >
-      <img src="/public/__Iphone-spinner-1.gif" />
+      <img src="/__Iphone-spinner-1.gif" />
       <Typography sx={{ fontSize: 50 }}>로딩중</Typography>
     </Box>
   );
