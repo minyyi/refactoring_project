@@ -131,7 +131,7 @@ const AddOffice = () => {
   }, [file]);
 
   const clickSaveOffice = () => {
-    fetch(`http://${import.meta.env.VITE_BACKEND_URL}/api/products`, {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -174,7 +174,7 @@ const OfficeEdit = () => {
 
   const editOfficeMutation = useMutation({
     mutationFn: (updatedOffice) =>
-      fetch(`http://${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`, {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
