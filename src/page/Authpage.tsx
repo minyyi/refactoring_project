@@ -88,7 +88,7 @@ const Authpage = ({ title }: any) => {
                   />
                 </Typography>
                 <img
-                  src="/public/free-icon-rent-2590468.png"
+                  src="/free-icon-rent-2590468.png"
                   style={{ width: 150, alignItems: 'center', paddingTop: 40 }}
                 />
               </Box>
@@ -121,7 +121,7 @@ const Authpage = ({ title }: any) => {
                   />
                 </Typography>
                 <img
-                  src="/public/free-icon-building-4257899.png"
+                  src="/free-icon-building-4257899.png"
                   style={{ width: 150, alignItems: 'center', paddingTop: 40 }}
                 />
               </Box>
