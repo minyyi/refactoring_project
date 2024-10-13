@@ -71,13 +71,16 @@ function ResponsiveAppBar() {
     })
       .then((res: any) => {
         if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
+          throw new Error(`Error! status: ${res.status}`);
         }
         return res.json();
       })
       .then((res: any) => {
         console.log(res);
         setOfficeData(res);
+      })
+      .catch((error: any) => {
+        console.log(error);
       });
   }, [pathname]);
 
