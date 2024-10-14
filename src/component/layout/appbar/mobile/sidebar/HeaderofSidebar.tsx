@@ -1,12 +1,16 @@
 import { Box, Divider, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Profile from '../../web/Profile';
+import { userid } from '@/lib/recoil/authAtom';
+import { useRecoilValue } from 'recoil';
 
 const SidebarHeader = ({
   toggleDrawer,
 }: {
   toggleDrawer: (event: any, path?: string) => void;
 }) => {
+  const userInfo = useRecoilValue<any>(userid);
+
   return (
     <>
       <Box
@@ -26,7 +30,7 @@ const SidebarHeader = ({
           }}
         >
           <Profile />
-          <Typography noWrap>이름이름이름이름이름이름dl</Typography>
+          <Typography noWrap>{userInfo.name}</Typography>
         </Box>
         <IconButton
           onClick={(event) => toggleDrawer(event)}

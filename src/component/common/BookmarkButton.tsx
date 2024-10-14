@@ -13,7 +13,7 @@ const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
   // const [bookmarkRef, setBookmarkRef] = useState<any>(null);
 
   // userInfo와 userInfo.bookmarks가 정의되었는지 확인합니다.
-  if (!userInfo || !Array.isArray(userInfo.bookmarks)) {
+  if (!userInfo || !userInfo.id || !Array.isArray(userInfo.bookmarks)) {
     console.error('User info or bookmarks are undefined or not an array');
     return null;
   }
@@ -56,29 +56,46 @@ const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
   //   }
   // };
 
+  // const bookmark = async () => {
+  //   try {
+  //     if (heartOn) {
+  //       await updateDoc(bookmarkRef, {
+  //         bookmarks: userInfo.bookmarks.filter(
+  //           (id: any) => id !== cardData?._id
+  //         ),
+  //       });
+  //       setUserId({
+  //         ...userInfo,
+  //         bookmarks: userInfo.bookmarks.filter(
+  //           (id: any) => id !== cardData?._id
+  //         ),
+  //       });
+  //     } else {
+  //       await updateDoc(bookmarkRef, {
+  //         bookmarks: [...userInfo.bookmarks, cardData?._id],
+  //       });
+  //       setUserId({
+  //         ...userInfo,
+  //         bookmarks: [...userInfo.bookmarks, cardData?._id],
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error('Error updating document: ', error);
+  //   }
+  // };
+
   const bookmark = async () => {
     try {
-      if (heartOn) {
-        await updateDoc(bookmarkRef, {
-          bookmarks: userInfo.bookmarks.filter(
-            (id: any) => id !== cardData?._id
-          ),
-        });
-        setUserId({
-          ...userInfo,
-          bookmarks: userInfo.bookmarks.filter(
-            (id: any) => id !== cardData?._id
-          ),
-        });
-      } else {
-        await updateDoc(bookmarkRef, {
-          bookmarks: [...userInfo.bookmarks, cardData?._id],
-        });
-        setUserId({
-          ...userInfo,
-          bookmarks: [...userInfo.bookmarks, cardData?._id],
-        });
-      }
+      const newBookmarks = heartOn
+        ? userInfo.bookmarks.filter((id: any) => id !== cardData?._id)
+        : [...userInfo.bookmarks, cardData?._id];
+
+      await updateDoc(bookmarkRef, { bookmarks: newBookmarks });
+
+      setUserId({
+        ...userInfo,
+        bookmarks: newBookmarks,
+      });
     } catch (error) {
       console.error('Error updating document: ', error);
     }
@@ -100,7 +117,7 @@ const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
         border: 0,
         width: 10,
         height: 10,
-        zIndex: 333,
+        // zIndex: 333,
         ':hover': {
           //   backgroundColor: '#ffffff',
         },
