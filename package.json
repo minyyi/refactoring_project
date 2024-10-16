@@ -11,6 +11,7 @@
     "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "devDependencies": {
+    "@types/react-lazy-load-image-component": "^1.6.4",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2",
     "vite": "^5.0.0"
@@ -45,6 +46,7 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.13",
     "react-firebase-auth": "^1.0.3",
+    "react-lazy-load-image-component": "^1.6.2",
     "react-material-ui-carousel": "^3.4.2",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.20.1",

@@ -7,78 +7,45 @@ import { db } from '@/lib/firebase/firebase';
 import { userid } from '@/lib/recoil/authAtom';
 
 const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
-  const [userId, setUserId] = useRecoilState(userid);
-  console.log(userId);
-  const userInfo = useRecoilValue<any>(userid);
+  let [userId, setUserId] = useRecoilState<any>(userid);
+  // console.log(userId);
+  // let userInfo = useRecoilValue<any>(userid);
   // const [bookmarkRef, setBookmarkRef] = useState<any>(null);
+  const bookmarks = userId.bookmarks || [];
 
-  // userInfo와 userInfo.bookmarks가 정의되었는지 확인합니다.
-  if (!userInfo || !userInfo.id || !Array.isArray(userInfo.bookmarks)) {
-    console.error('User info or bookmarks are undefined or not an array');
+  if (!userId.id || !Array.isArray(userId.bookmarks)) {
+    //!userInfo ||
+    // console.error('User info or bookmarks are undefined or not an array');
+    // userId = { ...userId, bookmarks: [] };
     return null;
   }
-  // onHeart 배열이 정의되었는지, 그리고 빈 배열이 아닌지 확인합니다.
+
   // const heartOn =
-  //   onHeart && Array.isArray(onHeart)
-  //     ? onHeart.find((data: any) => data && data._id === cardData?._id)
+  //   Array.isArray(onHeart) && onHeart.length > 0
+  //     ? onHeart.some((data: any) => data && data._id === cardData?._id)
   //     : false;
-  const heartOn =
-    Array.isArray(onHeart) && onHeart.length > 0
-      ? onHeart.some((data: any) => data && data._id === cardData?._id)
-      : false;
   // useEffect(() => {
   //   if (userInfo && userInfo.id) {
   //     setBookmarkRef(doc(db, 'users', userInfo.id));
   //   }
   // }, [userInfo]);
-
-  const bookmarkRef = doc(db, 'users', userInfo.id);
+  const heartOn = onHeart.some(
+    (data: any) => data && data._id === cardData?._id
+  );
+  const bookmarkRef = doc(db, 'users', userId.id);
 
   // const bookmark = async () => {
   //   try {
-  //     let newBookmarks: string[];
-  //     if (heartOn) {
-  //       newBookmarks = userInfo.bookmarks.filter(
-  //         (id: any) => id !== cardData?._id
-  //       );
-  //     } else {
-  //       newBookmarks = [...userInfo.bookmarks, cardData?._id];
-  //     }
+  //     const newBookmarks = heartOn
+  //       ? userInfo.bookmarks.filter((id: any) => id !== cardData?._id)
+  //       : [...userInfo.bookmarks, cardData?._id];
 
   //     await updateDoc(bookmarkRef, { bookmarks: newBookmarks });
 
   //     setUserId({
   //       ...userInfo,
-  //       bookmarks: [...userInfo.bookmarks, cardData?._id],
+  //       bookmarks: newBookmarks,
   //     });
-  //   } catch (error) {
-  //     console.error('Error updating document: ', error);
-  //   }
-  // };
-
-  // const bookmark = async () => {
-  //   try {
-  //     if (heartOn) {
-  //       await updateDoc(bookmarkRef, {
-  //         bookmarks: userInfo.bookmarks.filter(
-  //           (id: any) => id !== cardData?._id
-  //         ),
-  //       });
-  //       setUserId({
-  //         ...userInfo,
-  //         bookmarks: userInfo.bookmarks.filter(
-  //           (id: any) => id !== cardData?._id
-  //         ),
-  //       });
-  //     } else {
-  //       await updateDoc(bookmarkRef, {
-  //         bookmarks: [...userInfo.bookmarks, cardData?._id],
-  //       });
-  //       setUserId({
-  //         ...userInfo,
-  //         bookmarks: [...userInfo.bookmarks, cardData?._id],
-  //       });
-  //     }
   //   } catch (error) {
   //     console.error('Error updating document: ', error);
   //   }
@@ -87,15 +54,18 @@ const BookmarkButton = ({ clickHeart, cardData, onHeart }: any) => {
   const bookmark = async () => {
     try {
       const newBookmarks = heartOn
-        ? userInfo.bookmarks.filter((id: any) => id !== cardData?._id)
-        : [...userInfo.bookmarks, cardData?._id];
+        ? bookmarks.filter((id: any) => id !== cardData?._id)
+        : [...bookmarks, cardData?._id];
 
       await updateDoc(bookmarkRef, { bookmarks: newBookmarks });
-
-      setUserId({
-        ...userInfo,
+      setUserId((prevState: any) => ({
+        ...prevState,
         bookmarks: newBookmarks,
-      });
+      }));
+      // setUserId({
+      //   ...userId,
+      //   bookmarks: newBookmarks,
+      // });
     } catch (error) {
       console.error('Error updating document: ', error);
     }

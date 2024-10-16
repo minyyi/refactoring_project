@@ -63,7 +63,7 @@ const Profile = () => {
           <Avatar
             sx={{ color: 'inherit' }}
             alt="Remy Sharp"
-            src="/static/images/avatar/2.jpg"
+            // src="/static/images/avatar/2.jpg"
           />
         </IconButton>
         {!matches ? (
