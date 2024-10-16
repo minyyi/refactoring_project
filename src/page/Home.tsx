@@ -7,17 +7,8 @@ import { useRecoilState } from 'recoil';
 import { cardData } from '@/lib/recoil/homeDataAtom';
 
 const Home = () => {
-  const [card, setCard] = useRecoilState(cardData);
+  const [card, setCard] = useRecoilState<any>(cardData);
   const filterdData = [...card];
-  // const [address, setAddress] = useState('');
-
-  // const handleChange = (event: SelectChangeEvent) => {
-  //   setAddress(event.target.value as string);
-  // };
-
-  // const getId = authHook();
-
-  // console.log(data);
   console.log(filterdData);
   console.log(setCard);
 

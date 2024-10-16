@@ -174,7 +174,7 @@ const OfficeEdit = () => {
 
   const editOfficeMutation = useMutation({
     mutationFn: (updatedOffice) =>
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`, {
+      fetch(`https://api.devmin.store/api/product/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -192,7 +192,9 @@ const OfficeEdit = () => {
       navigator('/home');
     },
   });
-
+  console.log(
+    `API URL: ${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`
+  );
   const clickEditOffice = () => {
     const updatedOffice: any = {
       userId: findData?.userId,

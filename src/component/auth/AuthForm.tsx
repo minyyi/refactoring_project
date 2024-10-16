@@ -31,7 +31,7 @@ interface AgencyCardProps {
   password: string;
   passwordConfirm: string;
   businessNumber: string;
-  // bookmark: any;
+  bookmark: string[];
 }
 
 export const AuthForm = ({
@@ -52,7 +52,7 @@ export const AuthForm = ({
     name: '',
     password: '',
     passwordConfirm: '',
-    // bookmark: [],
+    bookmark: [],
   });
 
   const clicktoButton = ({ title, role }: { title: string; role: string }) => {
@@ -81,7 +81,7 @@ export const AuthForm = ({
     role,
     businessNumber,
     email,
-    // bookmark: [],
+    // bookmark,
   }: any) => {
     await addDoc(useGetCollection('users'), {
       userid: userid,
@@ -89,7 +89,7 @@ export const AuthForm = ({
       role,
       businessNumber,
       email,
-      // bookmark: [],
+      bookmark: [],
     });
   };
 
@@ -105,6 +105,7 @@ export const AuthForm = ({
           role: role,
           businessNumber: signup?.businessNumber,
           email: signup?.email,
+          bookmark: [],
         };
 
         createUser(additionalData);
@@ -115,7 +116,7 @@ export const AuthForm = ({
           name: '',
           password: '',
           passwordConfirm: '',
-          // bookmark: [],
+          bookmark: [],
         });
 
         console.log('성공');
@@ -138,12 +139,14 @@ export const AuthForm = ({
         localStorage.setItem('userid', userCredential?.user?.uid);
         localStorage.setItem('token', userCredential?.user?.accessToken);
         localStorage.setItem('role', find?.role);
+        // localStorage.setItem('bookmarks', find?.bookmarks);
+        console.log('Find object:', find);
         setId({
           id: find?.id,
           email: find?.email,
           name: find?.name,
           role: find?.role,
-          bookmarks: find?.bookmarks || [],
+          bookmarks: find?.bookmarks, //|| [],
         }); //렌더링용
         console.log(setId);
         navigate('/home');
@@ -193,7 +196,12 @@ export const AuthForm = ({
             fullWidth
             label={'이메일'}
             placeholder={'이메일을 입력해 주세요'}
-            error={signup.email && !validateEmail(signup.email)}
+            error={Boolean(signup.email && !validateEmail(signup.email))}
+            // errorMessage={
+            //   signup.email && !validateEmail(signup.email)
+            //     ? '이메일 형식이 올바르지 않습니다'
+            //     : ''
+            // }
             sx={{ mb: 0 }}
             // helperText={
             //   //스타일링   빼고 p태그로 대체하거나

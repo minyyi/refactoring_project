@@ -2,6 +2,8 @@ import { Box, Typography } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import BookmarkButton from './BookmarkButton';
 import { favorite } from '@/lib/recoil/favoritAtom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const OfficeCard = ({
   clickCard = () => {},
@@ -11,7 +13,7 @@ const OfficeCard = ({
   ...others
 }: any) => {
   // const id = localStorage.getItem('userid');
-  console.log(others);
+  // console.log(others);
   const id = cardData?._id;
   console.log(id);
   const [heart, setHeart] = useRecoilState<any>(favorite);
@@ -30,6 +32,7 @@ const OfficeCard = ({
   };
   console.log(heart);
   console.log(cardData?.image);
+  console.log(cardData);
   return (
     <>
       <Box
@@ -47,7 +50,7 @@ const OfficeCard = ({
         }}
       >
         <Box sx={{ height: 160, overflow: 'hidden', position: 'relative' }}>
-          <img
+          <LazyLoadImage
             src={cardData?.image}
             style={{
               objectFit: 'cover',

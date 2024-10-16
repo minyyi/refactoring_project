@@ -17,7 +17,6 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useSetRecoilState } from 'recoil';
 import { userid } from '@/lib/recoil/authAtom';
 import { cardData } from '@/lib/recoil/homeDataAtom';
-import { useQuery } from 'react-query';
 
 function ResponsiveAppBar() {
   const matches = useMediaQuery((theme: any) => theme.breakpoints.down('md'));
@@ -63,58 +62,31 @@ function ResponsiveAppBar() {
   }, [pathname]);
 
   //리액트쿼리로 바꿔보기!
-  const fetchProducts = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/api/products`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    if (!response.ok) {
-      throw new Error(`Error! status: ${response.status}`);
-    }
-    return response.json();
-  };
-
-  const { data, error } = useQuery('products', fetchProducts, {
-    onSuccess: (data) => {
-      console.log(data);
-      setOfficeData(data);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-  console.log('Current data:', data);
-  if (error) console.log('Error occurred:', error);
-  // useEffect(() => {
-  //   fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
-  //     // ${import.meta.env.VITE_BACKEND_URL}
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then((res: any) => {
-  //       if (!res.ok) {
-  //         throw new Error(`Error! status: ${res.status}`);
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((res: any) => {
-  //       console.log(res);
-  //       setOfficeData(res);
-  //     })
-  //     .catch((error: any) => {
-  //       console.log(error);
-  //     });
-  // }, [pathname]);
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
+      // ${import.meta.env.VITE_BACKEND_URL}
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res: any) => {
+        if (!res.ok) {
+          throw new Error(`Error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((res: any) => {
+        console.log(res);
+        setOfficeData(res);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }, [pathname]);
 
   if (pathCase({ pathname })) return null;
-
+  console.log(setOfficeData);
   // const getImage = async ({}: any) => {
   //   await addDoc(useGetImage('users'), {
   //     // ...user,
