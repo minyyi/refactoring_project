@@ -5,15 +5,24 @@ import { favorite } from '@/lib/recoil/favoritAtom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const OfficeCard = ({
-  clickCard = () => {},
-  cardData,
-  sx,
-  onHeart,
-  ...others
-}: any) => {
-  // const id = localStorage.getItem('userid');
-  // console.log(others);
+// interface CardData {
+//   address: any;
+//   _id: string;
+//   id?: string;
+//   officeName: string;
+//   image: string;
+//   grade: number;
+//   price: number;
+// }
+
+// interface OfficeCardProps {
+//   clickCard?: (cardData: CardData) => void;
+//   cardData: CardData;
+//   sx?: React.CSSProperties;
+//   onHeart: any;
+// }
+
+const OfficeCard = ({ clickCard = () => {}, cardData, sx, onHeart }: any) => {
   const id = cardData?._id;
   console.log(id);
   const [heart, setHeart] = useRecoilState<any>(favorite);
@@ -32,13 +41,14 @@ const OfficeCard = ({
   };
   console.log(heart);
   console.log(cardData?.image);
-  console.log(cardData);
+  console.log(id);
   return (
     <>
       <Box
-        key={cardData?.id}
+        key={id}
         onClick={() => clickCard(cardData)}
         sx={{
+          ...sx,
           display: 'flex',
           // justifyContent: 'center',
           flexDirection: 'column',

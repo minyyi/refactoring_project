@@ -14,11 +14,6 @@ import { customerMenuItemArray, agentMenuItemArray } from '@/utils/config';
 import { useColorModeContext } from '@/provider/darkmode/DarkmodeProvider';
 import { auth } from '@/lib/firebase/firebase';
 import { signOut } from 'firebase/auth';
-// const settings = [
-//   { title: 'Profile', path: '/home', type: 'profile' },
-//   { title: 'Bookmark', path: '/home' },
-//   { title: 'Reservation', path: '/home' },
-// ];
 
 const Profile = () => {
   const navigator = useNavigate();
