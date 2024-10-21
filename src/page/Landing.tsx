@@ -105,34 +105,6 @@ const LandingPage = () => {
                   </Box>
                 );
               })}
-              {/* <Box
-                sx={{
-                  display: 'flex',
-                  columnGap: 2,
-                  alignItems: 'center',
-                }}
-              >
-                <CommentIcon sx={{ color: 'white' }} />
-                <Typography
-                  sx={{ fontWeight: 600, fontSize: 18, color: 'white' }}
-                >
-                  채팅으로 바로 문의하고
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  columnGap: 2,
-                  alignItems: 'center',
-                }}
-              >
-                <ReceiptLongIcon sx={{ color: 'white' }} />
-                <Typography
-                  sx={{ fontWeight: 600, fontSize: 18, color: 'white' }}
-                >
-                  간편하게 예약하세요.
-                </Typography>
-              </Box> */}
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <CommonButton

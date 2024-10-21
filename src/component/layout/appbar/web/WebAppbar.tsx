@@ -1,5 +1,4 @@
 import { Box, Typography, Button } from '@mui/material';
-// import MenuIcon from "@mui/icons-material/Menu";
 import { Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
