@@ -1,9 +1,14 @@
 import { Box, Typography, Container } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub'; // import styled from "@emotion/styled";
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import InstagramIcon from '@mui/icons-material/Instagram';
+// import GitHubIcon from '@mui/icons-material/GitHub';
+// import YouTubeIcon from '@mui/icons-material/YouTube';
+// import InstagramIcon from '@mui/icons-material/Instagram';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { pathCase } from '@/utils/config';
+import { lazy, Suspense } from 'react';
+
+const GitHubIcon = lazy(() => import('@mui/icons-material/GitHub'));
+const YouTubeIcon = lazy(() => import('@mui/icons-material/YouTube'));
+const InstagramIcon = lazy(() => import('@mui/icons-material/Instagram'));
 
 const Footer = () => {
   const { pathname } = useLocation();
@@ -110,9 +115,11 @@ const Footer = () => {
               columnGap: 2,
             }}
           >
-            <GitHubIcon fontSize="medium" />
-            <YouTubeIcon fontSize="medium" />
-            <InstagramIcon fontSize="medium" />
+            <Suspense fallback={<div>Loading...</div>}>
+              <GitHubIcon fontSize="medium" />
+              <YouTubeIcon fontSize="medium" />
+              <InstagramIcon fontSize="medium" />
+            </Suspense>
           </Box>
         </Container>
       </Box>

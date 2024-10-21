@@ -1,31 +1,21 @@
 import { Box, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import BookmarkButton from './BookmarkButton';
 import { favorite } from '@/lib/recoil/favoritAtom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-// interface CardData {
-//   address: any;
-//   _id: string;
-//   id?: string;
-//   officeName: string;
-//   image: string;
-//   grade: number;
-//   price: number;
-// }
-
-// interface OfficeCardProps {
-//   clickCard?: (cardData: CardData) => void;
-//   cardData: CardData;
-//   sx?: React.CSSProperties;
-//   onHeart: any;
-// }
+const optimizeImageUrl = (url: string, width = 300) => {
+  return `${url}?width=${width}`;
+};
 
 const OfficeCard = ({ clickCard = () => {}, cardData, sx, onHeart }: any) => {
   const id = cardData?._id;
   console.log(id);
   const [heart, setHeart] = useRecoilState<any>(favorite);
+  // const blurredPlaceholder = `${cardData.image}?w=20&blur=50`;
+  const dynamicPlaceholder = `https://via.placeholder.com/300x200/CCCCCC/969696?text=${encodeURIComponent(cardData.officeName)}`;
   const clickHeart = (cardData: any) => {
     console.log(cardData);
     setHeart((prev: any) => {
@@ -39,6 +29,11 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, onHeart }: any) => {
       }
     });
   };
+  useEffect(() => {
+    const img = new Image();
+    img.src = optimizeImageUrl(cardData.image);
+  }, [cardData.image]);
+
   console.log(heart);
   console.log(cardData?.image);
   console.log(id);
@@ -61,7 +56,11 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, onHeart }: any) => {
       >
         <Box sx={{ height: 160, overflow: 'hidden', position: 'relative' }}>
           <LazyLoadImage
-            src={cardData?.image}
+            src={optimizeImageUrl(cardData?.image)}
+            alt={cardData.officeName}
+            effect="blur"
+            // placeholderSrc="/path/to/placeholder-image.jpg"
+            placeholderSrc={dynamicPlaceholder}
             style={{
               objectFit: 'cover',
               width: '100%',
@@ -93,10 +92,4 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, onHeart }: any) => {
   );
 };
 
-export default OfficeCard;
-
-// const BookmakrButton = styled('div')({
-//   position: 'absolute',
-//   top: '5px',
-//   left: '5px',
-// });
+export default React.memo(OfficeCard);

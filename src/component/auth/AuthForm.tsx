@@ -156,14 +156,7 @@ export const AuthForm = ({
         firebaseErrorCase(error);
       });
   };
-  //   const clickSignupButton = () => {
-  //     postSignup.mutate({
-  //       businessNumber: signup?.businessNumber,
-  //       email: signup?.email,
-  //       name: signup?.email,
-  //       password: signup?.password,
-  //     });
-  //   };
+
   return (
     <PageContainer
       sx={{
@@ -197,11 +190,6 @@ export const AuthForm = ({
             label={'이메일'}
             placeholder={'이메일을 입력해 주세요'}
             error={Boolean(signup.email && !validateEmail(signup.email))}
-            // errorMessage={
-            //   signup.email && !validateEmail(signup.email)
-            //     ? '이메일 형식이 올바르지 않습니다'
-            //     : ''
-            // }
             sx={{ mb: 0 }}
             // helperText={
             //   //스타일링   빼고 p태그로 대체하거나
@@ -318,7 +306,6 @@ export const AuthForm = ({
           }
           //   clickHandler={() => clickSignupButton()}
           disabled={
-            //함수로 바꾸기 chatGPT
             title === '로그인'
               ? !validateEmail(signup.email) ||
                 !validatePassword(signup.password)

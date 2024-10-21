@@ -17,6 +17,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useSetRecoilState } from 'recoil';
 import { userid } from '@/lib/recoil/authAtom';
 import { cardData } from '@/lib/recoil/homeDataAtom';
+import { useQuery, useQueryClient } from 'react-query';
+import axios from 'axios';
 
 function ResponsiveAppBar() {
   const matches = useMediaQuery((theme: any) => theme.breakpoints.down('md'));
@@ -25,6 +27,9 @@ function ResponsiveAppBar() {
   // const getUserInfo = useRecoilValue(userid);
   const setOfficeData = useSetRecoilState(cardData);
   console.log(USER_COLLECTION);
+  const queryClient = useQueryClient();
+  console.log(queryClient);
+
   /* checkAuth */
   useEffect(() => {
     onAuthStateChanged(auth, async (user: any) => {
@@ -62,29 +67,58 @@ function ResponsiveAppBar() {
   }, [pathname]);
 
   //리액트쿼리로 바꿔보기!
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
-      // ${import.meta.env.VITE_BACKEND_URL}
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res: any) => {
-        if (!res.ok) {
-          throw new Error(`Error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((res: any) => {
-        console.log(res);
-        setOfficeData(res);
-      })
-      .catch((error: any) => {
-        console.log(error);
-      });
-  }, [pathname]);
+  // useEffect(() => {
+  //   fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
+  //     // ${import.meta.env.VITE_BACKEND_URL}
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((res: any) => {
+  //       if (!res.ok) {
+  //         throw new Error(`Error! status: ${res.status}`);
+  //       }
+  //       return res.json();
+  //     })
+  //     .then((res: any) => {
+  //       console.log(res);
+  //       setOfficeData(res);
+  //     })
+  //     .catch((error: any) => {
+  //       console.log(error);
+  //     });
+  // }, [pathname]);
 
+  const fetchProducts = async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/products`
+    );
+    return response.data;
+  };
+
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery('products', fetchProducts, {
+    onSuccess: (data) => {
+      console.log(data);
+      setOfficeData(data);
+    },
+    onError: (error) => {
+      console.error('Error fetching products:', error);
+    },
+  });
+
+  useEffect(() => {
+    if (products) {
+      setOfficeData(products);
+    }
+  }, [products, setOfficeData]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching data</div>;
   if (pathCase({ pathname })) return null;
   console.log(setOfficeData);
   // const getImage = async ({}: any) => {
