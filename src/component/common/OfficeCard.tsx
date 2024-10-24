@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import BookmarkButton from './BookmarkButton';
 import { favorite } from '@/lib/recoil/favoritAtom';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const optimizeImageUrl = (url: string, width = 300) => {
@@ -15,7 +15,7 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, onHeart }: any) => {
   console.log(id);
   const [heart, setHeart] = useRecoilState<any>(favorite);
   // const blurredPlaceholder = `${cardData.image}?w=20&blur=50`;
-  const dynamicPlaceholder = `https://via.placeholder.com/300x200/CCCCCC/969696?text=${encodeURIComponent(cardData.officeName)}`;
+  // const dynamicPlaceholder = `https://via.placeholder.com/300x200/CCCCCC/969696?text=${encodeURIComponent(cardData.officeName)}`;
   const clickHeart = (cardData: any) => {
     console.log(cardData);
     setHeart((prev: any) => {
