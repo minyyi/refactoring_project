@@ -2,7 +2,7 @@ import { Route, Routes, BrowserRouter, useNavigate } from 'react-router-dom';
 import LandingPage from './page/Landing';
 import Authpage from './page/Authpage';
 import Reservation from './page/Reservation';
-import { useEffect, Suspense, lazy } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useColorModeContext } from './provider/darkmode/DarkmodeProvider';
 import NotiMsg from './page/NotiMsg';
 import Bookmark from './page/Bookmark';
