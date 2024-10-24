@@ -1,29 +1,33 @@
 import { Route, Routes, BrowserRouter, useNavigate } from 'react-router-dom';
 import LandingPage from './page/Landing';
 import Authpage from './page/Authpage';
-// import Reservation from './page/Reservation';
+import Reservation from './page/Reservation';
 import { useEffect, Suspense, lazy } from 'react';
 import { useColorModeContext } from './provider/darkmode/DarkmodeProvider';
-// import NotiMsg from './page/NotiMsg';
-// import Bookmark from './page/Bookmark';
+import NotiMsg from './page/NotiMsg';
+import Bookmark from './page/Bookmark';
 import OfficeDatail from './page/agent/OfficeDatail';
 import { ErrorBoundary } from 'react-error-boundary';
 import Loading from './component/common/Loading';
 import Homepage from './page/Homepage';
 import Layout from './component/layout/Layout';
+import MyReservation from './page/MyReservation';
+import Mypage from './page/Mypage';
+import AddOffice from './page/agent/AddOffice';
+import OfficeEdit from './page/agent/OfficeEdit';
 
 // const LandingPage = lazy(() => import('./page/Landing'));
 // const Authpage = lazy(() => import('./page/Authpage'));
-const Reservation = lazy(() => import('./page/Reservation'));
-const NotiMsg = lazy(() => import('./page/NotiMsg'));
-const Bookmark = lazy(() => import('./page/Bookmark'));
+// const Reservation = lazy(() => import('./page/Reservation'));
+// const NotiMsg = lazy(() => import('./page/NotiMsg'));
+// const Bookmark = lazy(() => import('./page/Bookmark'));
 // const OfficeDatail = lazy(() => import('./page/agent/OfficeDatail'));
 // const Homepage = lazy(() => import('./page/Homepage'));
 // const Layout = lazy(() => import('./component/layout/Layout'));
-const Mypage = lazy(() => import('./page/Mypage'));
-const MyReservation = lazy(() => import('./page/MyReservation'));
-const AddOffice = lazy(() => import('./page/agent/AddOffice'));
-const OfficeEdit = lazy(() => import('./page/agent/OfficeEdit'));
+// const Mypage = lazy(() => import('./page/Mypage'));
+// const MyReservation = lazy(() => import('./page/MyReservation'));
+// const AddOffice = lazy(() => import('./page/agent/AddOffice'));
+// const OfficeEdit = lazy(() => import('./page/agent/OfficeEdit'));
 
 const Router = () => {
   const preloadComponent = (factory: () => Promise<any>) => {

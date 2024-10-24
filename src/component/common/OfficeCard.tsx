@@ -55,12 +55,26 @@ const OfficeCard = ({ clickCard = () => {}, cardData, sx, onHeart }: any) => {
         }}
       >
         <Box sx={{ height: 160, overflow: 'hidden', position: 'relative' }}>
-          <LazyLoadImage
+          {/* <LazyLoadImage
             src={optimizeImageUrl(cardData?.image)}
             alt={cardData.officeName}
             effect="blur"
             // placeholderSrc="/path/to/placeholder-image.jpg"
             placeholderSrc={dynamicPlaceholder}
+            style={{
+              objectFit: 'cover',
+              width: '100%',
+              height: '100%',
+              borderRadius: 5,
+            }}
+          /> */}
+          <img
+            src={optimizeImageUrl(cardData?.image)}
+            alt="중요 이미지"
+            // fetchpriority="high" // 브라우저에게 높은 우선순위로 로드하도록 지시
+            loading="eager" // 즉시 로딩 (lazy loading 비활성화)
+            decoding="sync" // 동기적 디코딩
+            // onLoad={() => {}} // 로딩 완료 추적
             style={{
               objectFit: 'cover',
               width: '100%',

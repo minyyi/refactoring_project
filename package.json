@@ -47,6 +47,7 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.13",
     "react-firebase-auth": "^1.0.3",
+    "react-helmet-async": "^2.0.5",
     "react-lazy-load-image-component": "^1.6.2",
     "react-material-ui-carousel": "^3.4.2",
     "react-query": "^3.39.3",
