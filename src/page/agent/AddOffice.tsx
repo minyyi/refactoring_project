@@ -233,7 +233,7 @@ const AddOffice = () => {
         console.error('Error:', error);
       });
   };
-  // console.log(card);
+  console.log(card);
   return (
     <PageContainer>
       <Container>
