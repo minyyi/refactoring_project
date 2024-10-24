@@ -4,6 +4,7 @@ import ColorModeContextProvider from '@/provider/darkmode/DarkmodeProvider';
 import Router from './router';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient();
 
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <ColorModeContextProvider>
         <MuiProvider>
-          <Router />
+          <HelmetProvider>
+            <Router />
+          </HelmetProvider>
         </MuiProvider>
       </ColorModeContextProvider>
     </QueryClientProvider>
