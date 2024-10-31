@@ -88,38 +88,86 @@ const OfficeEdit = () => {
   const [downloadImageUrl, setDownloadImageUrl] = useState('');
   console.log(downloadImageUrl);
   const photo = useRef<HTMLInputElement>(null);
+  const onchangeImageUpload = async (e: any) => {
+    const file = e.target.files[0];
 
-  const onchangeImageUpload = (e: any) => {
-    const file = e.target.files[0]; //서버에 보내서 저장 ->
-    console.log(file?.type.split('/')[0]);
     if (file?.type.split('/')[0] === 'image') {
-      const imageUrl = URL.createObjectURL(file);
-      console.log(imageUrl); //임시용 / 보안위험
-      setPrevImgUrl(imageUrl);
-      setFile(file);
-      /* 1, firebase 업로드성공
-         2. setFile 넣어서 state 저장하고
-         3. post 하는 img에 넣기  
-      */
+      try {
+        // 현재 이미지 미리보기용 URL 생성
+        const imageUrl = URL.createObjectURL(file);
+        setPrevImgUrl(imageUrl);
+
+        // 이미지를 WebP로 변환
+        const webpBlob = await convertToWebP(file);
+        // 변환된 WebP 파일 생성 (원본 파일명.webp)
+        const webpFile = new File(
+          [webpBlob],
+          `${file.name.split('.')[0]}.webp`,
+          { type: 'image/webp' }
+        );
+        console.log('이미지변환', webpBlob, webpFile);
+        setFile(webpFile);
+      } catch (error) {
+        console.error('이미지 변환 중 에러:', error);
+        window.alert('이미지 변환 중 문제가 발생했습니다.');
+      }
     } else {
       window.alert('이미지 파일로 올려주세요.');
     }
   };
+
+  // WebP 변환 함수
+  const convertToWebP = async (file: File): Promise<Blob> => {
+    // Canvas 생성
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // 이미지 로드
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+
+    return new Promise((resolve, reject) => {
+      img.onload = () => {
+        // Canvas 크기 설정
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        // 이미지를 Canvas에 그리기
+        ctx?.drawImage(img, 0, 0);
+
+        // WebP로 변환 (품질 0.8 = 80%)
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              resolve(blob);
+            } else {
+              reject(new Error('WebP 변환 실패'));
+            }
+          },
+          'image/webp',
+          0.8
+        );
+
+        // 메모리 해제
+        URL.revokeObjectURL(img.src);
+      };
+
+      img.onerror = () => {
+        reject(new Error('이미지 로드 실패'));
+        URL.revokeObjectURL(img.src);
+      };
+    });
+  };
+
   const fileHandler = () => {
-    if (photo.current) {
-      photo.current!.click();
+    if (photo?.current) {
+      photo?.current!.click();
     }
   };
-  // const changeImage = async () => {
-  //   const formData = new FormData();
-  //   formData.append('image', file);
-  // };
 
   useEffect(() => {
-    //if
     const uploadFile = () => {
       const name = new Date().getTime() + file?.name;
-      console.log(name);
       const storageRef = ref(storage, name);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
@@ -127,31 +175,92 @@ const OfficeEdit = () => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
           switch (snapshot.state) {
             case 'paused':
-              console.log('Upload is paused');
               break;
             case 'running':
-              console.log('Upload is running');
               break;
             default:
               break;
           }
+          console.log(progress);
         },
         (error) => {
-          console.log(error);
+          console.error(error);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setDownloadImageUrl(downloadURL);
-            console.log('File available at', downloadURL);
           });
         }
       );
     };
     file && uploadFile();
   }, [file]);
+
+  // const onchangeImageUpload = (e: any) => {
+  //   const file = e.target.files[0]; //서버에 보내서 저장 ->
+  //   console.log(file?.type.split('/')[0]);
+  //   if (file?.type.split('/')[0] === 'image') {
+  //     const imageUrl = URL.createObjectURL(file);
+  //     console.log(imageUrl); //임시용 / 보안위험
+  //     setPrevImgUrl(imageUrl);
+  //     setFile(file);
+  //     /* 1, firebase 업로드성공
+  //        2. setFile 넣어서 state 저장하고
+  //        3. post 하는 img에 넣기
+  //     */
+  //   } else {
+  //     window.alert('이미지 파일로 올려주세요.');
+  //   }
+  // };
+  // const fileHandler = () => {
+  //   if (photo.current) {
+  //     photo.current!.click();
+  //   }
+  // };
+  // const changeImage = async () => {
+  //   const formData = new FormData();
+  //   formData.append('image', file);
+  // };
+
+  // useEffect(() => {
+  //   //if
+  //   const uploadFile = () => {
+  //     const name = new Date().getTime() + file?.name;
+  //     console.log(name);
+  //     const storageRef = ref(storage, name);
+  //     const uploadTask = uploadBytesResumable(storageRef, file);
+  //     uploadTask.on(
+  //       'state_changed',
+  //       (snapshot) => {
+  //         const progress =
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //         console.log('Upload is ' + progress + '% done');
+  //         switch (snapshot.state) {
+  //           case 'paused':
+  //             console.log('Upload is paused');
+  //             break;
+  //           case 'running':
+  //             console.log('Upload is running');
+  //             break;
+  //           default:
+  //             break;
+  //         }
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //       },
+  //       () => {
+  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //           setDownloadImageUrl(downloadURL);
+  //           console.log('File available at', downloadURL);
+  //         });
+  //       }
+  //     );
+  //   };
+  //   file && uploadFile();
+  // }, [file]);
 
   useEffect(() => {
     if (findData) {
